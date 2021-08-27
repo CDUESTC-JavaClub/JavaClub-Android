@@ -12,10 +12,16 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
+        android:id="@+id/navigation_kc"
+        android:name="club.cduestc.ui.kc.KcFragment"
+        android:label="@string/title_kc"
+        tools:layout="@layout/fragment_kc" />
+
+    <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="club.cduestc.ui.dashboard.DashboardFragment"
+        android:name="club.cduestc.ui.dashboard.BaiFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_bai" />
 
     <fragment
         android:id="@+id/navigation_notifications"

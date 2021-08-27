@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.JavaClub" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.JavaClub" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -11,6 +11,48 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+
         <!-- Customize your theme here. -->
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:clipToPadding">true</item>
+        <item name="android:fitsSystemWindows">true</item>
+    </style>
+
+    <style name="FunctionButtonBai" parent="@style/Widget.MaterialComponents.Button.TextButton">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:textSize">17sp</item>
+        <item name="materialThemeOverlay">@style/BaiColor</item>
+    </style>
+
+    <style name="BaiColor">
+        <item name="colorPrimary">@color/blue</item>
+        <item name="colorPrimaryVariant">@color/blue</item>
+        <item name="colorOnPrimary">@color/white</item>
+    </style>
+
+    <style name="FunctionButtonKc" parent="@style/Widget.MaterialComponents.Button.TextButton">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:textSize">17sp</item>
+        <item name="materialThemeOverlay">@style/KcColor</item>
+    </style>
+
+    <style name="KcColor">
+        <item name="colorPrimary">@color/green</item>
+        <item name="colorPrimaryVariant">@color/green</item>
+        <item name="colorOnPrimary">@color/white</item>
+    </style>
+
+    <style name="SpiltLine">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:layout_marginHorizontal">10dp</item>
     </style>
 </resources>

@@ -4,9 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.webkit.WebSettings
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import club.cduestc.R
 import club.cduestc.databinding.FragmentHomeBinding
@@ -21,21 +22,23 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
-    ): View? {
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         homeViewModel =
-                ViewModelProvider(this).get(HomeViewModel::class.java)
+            ViewModelProvider(this).get(HomeViewModel::class.java)
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val root: View = binding.root
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
-        return root
+        val web = binding.forumWebView
+        web.settings.javaScriptEnabled = true
+        web.settings.cacheMode = WebSettings.LOAD_NO_CACHE;
+
+        web.webViewClient = WebViewClient()
+        web.loadUrl("https://study.cduestc.club/index.php")
+
+        return binding.root
     }
 
     override fun onDestroyView() {

@@ -1,6 +1,23 @@
 <resources>
     <string name="app_name">JavaClub</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
+    <string name="title_home">俱乐部</string>
+    <string name="title_kc">教务系统</string>
+    <string name="title_dashboard">百叶计划</string>
     <string name="title_notifications">Notifications</string>
+
+    <string name="model_kc">教务系统功能</string>
+    <string name="model_kc_desc">含教务系统的全部功能，包括成绩查询、课程表查询等。</string>
+    <string name="btn_kc_score">学期成绩查询</string>
+    <string name="btn_kc_class">课程表查询</string>
+    <string name="btn_kc_user">学籍信息查询</string>
+    <string name="model_kc_note">以下功能模块的网络请求，会直接访问教务系统接口，无需经过App服务器进行数据传输或中转，全力保证个人隐私数据不会泄露。</string>
+
+    <string name="model_bai">百叶计划功能</string>
+    <string name="model_bai_desc">包含活动报名、活动取消、积分查询等功能。</string>
+    <string name="btn_bai_join_md">明德活动</string>
+    <string name="btn_bai_join_dx">笃行活动</string>
+    <string name="btn_bai_join_bx">博学活动</string>
+    <string name="btn_bai_join_jm">尽美活动</string>
+    <string name="btn_bai_manage">管理我的活动</string>
+    <string name="btn_bai_score">百叶积分</string>
 </resources>
