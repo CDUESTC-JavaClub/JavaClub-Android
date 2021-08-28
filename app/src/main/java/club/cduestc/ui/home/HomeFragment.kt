@@ -19,6 +19,15 @@ import android.widget.RelativeLayout
 
 import android.widget.ProgressBar
 import android.widget.Toast
+import club.cduestc.net.NetManager
+import club.jw.auth.KcAccount
+import android.webkit.WebResourceRequest
+
+import android.os.Build
+
+import android.annotation.TargetApi
+import android.os.StrictMode
+
 
 class HomeFragment : Fragment() {
 
@@ -32,21 +41,25 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
         val web = binding.forumWebView
+        web.clearCache(true)
         web.visibility = View.GONE
         web.settings.javaScriptEnabled = true
         web.webViewClient = object : WebViewClient() {
-            override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
-                super.onPageStarted(view, url, favicon)
-            }
-
             override fun onPageFinished(view: WebView?, url: String?) {
                 super.onPageFinished(view, url)
                 binding.webLoad.visibility = View.GONE
                 web.visibility = View.VISIBLE
             }
         }
+        NetManager.createTask{
+            val index = NetManager.loginIndex()
 
-        web.loadUrl("https://study.cduestc.club/index.php")
+            activity?.runOnUiThread{
+                if(index == "error") web.loadUrl("https://www.bilibili.com/")
+                else web.loadUrl(index)
+            }
+        }
+
         return binding.root
     }
 

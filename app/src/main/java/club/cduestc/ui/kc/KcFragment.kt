@@ -27,8 +27,6 @@ class KcFragment : Fragment() {
 
         _binding = FragmentKcBinding.inflate(inflater, container, false)
 
-
-
         return binding.root
     }
 
