@@ -41,13 +41,17 @@
         <item name="android:insetTop">0dp</item>
         <item name="android:insetBottom">0dp</item>
         <item name="android:textSize">17sp</item>
-        <item name="materialThemeOverlay">@style/KcColor</item>
+        <item name="materialThemeOverlay">@style/BaiColor</item>
     </style>
 
-    <style name="KcColor">
-        <item name="colorPrimary">@color/green</item>
-        <item name="colorPrimaryVariant">@color/green</item>
+    <style name="MainColor">
+        <item name="colorPrimary">#FF60D1AE</item>
+        <item name="colorPrimaryVariant">#FF60D1AE</item>
         <item name="colorOnPrimary">@color/white</item>
+    </style>
+
+    <style name="LoginButton" parent="@style/Widget.MaterialComponents.Button">
+        <item name="materialThemeOverlay">@style/MainColor</item>
     </style>
 
     <style name="SpiltLine">

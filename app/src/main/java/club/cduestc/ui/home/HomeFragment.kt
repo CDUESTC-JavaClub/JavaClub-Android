@@ -1,32 +1,16 @@
 package club.cduestc.ui.home
 
 import android.annotation.SuppressLint
-import android.app.ProgressDialog
-import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import club.cduestc.R
 import club.cduestc.databinding.FragmentHomeBinding
-import android.widget.RelativeLayout
-
-import android.widget.ProgressBar
-import android.widget.Toast
 import club.cduestc.net.NetManager
-import club.jw.auth.KcAccount
-import android.webkit.WebResourceRequest
-
-import android.os.Build
-
-import android.annotation.TargetApi
-import android.os.StrictMode
 
 
 class HomeFragment : Fragment() {
