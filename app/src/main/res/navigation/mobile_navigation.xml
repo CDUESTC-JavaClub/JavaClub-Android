@@ -25,7 +25,7 @@
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="club.cduestc.ui.notifications.NotificationsFragment"
+        android:name="club.cduestc.ui.settings.SettingsFragment"
         android:label="@string/title_settings"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_settings" />
 </navigation>

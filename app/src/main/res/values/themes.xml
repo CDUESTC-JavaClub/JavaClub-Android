@@ -14,8 +14,7 @@
 
         <!-- Customize your theme here. -->
         <item name="android:windowTranslucentStatus">true</item>
-        <item name="android:clipToPadding">true</item>
-        <item name="android:fitsSystemWindows">true</item>
+
     </style>
 
     <style name="FunctionButtonBai" parent="@style/Widget.MaterialComponents.Button.TextButton">

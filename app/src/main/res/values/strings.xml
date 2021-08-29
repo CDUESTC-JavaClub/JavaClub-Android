@@ -24,4 +24,6 @@
     <string name="login_name">用户名/邮箱</string>
     <string name="login_password">密码</string>
     <string name="login_btn">登录</string>
+
+    <string name="settings_info">你可以对您的学号（教务账号）、百叶计划账号进行绑定，我们只会在远端保存您的学号，个人信息和密码都存储在本地，这些敏感信息会跟随软件卸载一起移除</string>
 </resources>

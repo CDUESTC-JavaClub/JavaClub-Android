@@ -13,7 +13,7 @@ import club.cduestc.ui.dashboard.BaiFragment
 import club.cduestc.ui.home.HomeFragment
 import club.cduestc.ui.kc.KcFragment
 import club.cduestc.ui.nav.FixFragmentNavigator
-import club.cduestc.ui.notifications.NotificationsFragment
+import club.cduestc.ui.settings.SettingsFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
@@ -76,7 +76,7 @@ class MainActivity : AppCompatActivity() {
 
         val destination4 = fragmentNavigator.createDestination()
         destination4.id = R.id.navigation_notifications
-        destination4.className = NotificationsFragment::class.java.canonicalName ?: ""
+        destination4.className = SettingsFragment::class.java.canonicalName ?: ""
         destination4.label = resources.getString(R.string.title_settings)
         navGraph.addDestination(destination4)
 
