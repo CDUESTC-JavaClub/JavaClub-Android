@@ -58,4 +58,16 @@
         <item name="android:layout_height">1dp</item>
         <item name="android:layout_marginHorizontal">10dp</item>
     </style>
+
+    <style name="TextColor">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="SettingBackground">
+        <item name="android:background">@color/gray</item>
+    </style>
+
+    <style name="SwitchColor">
+        <item name="offColor">@color/gray</item>
+    </style>
 </resources>

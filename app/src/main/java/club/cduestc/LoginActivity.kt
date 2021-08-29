@@ -8,13 +8,30 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import club.cduestc.net.NetManager
 
 
 class LoginActivity : AppCompatActivity() {
 
-    override fun onStart() {
-        super.onStart()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        val settingsPreference = getSharedPreferences("settings", MODE_PRIVATE)
+        val auto = settingsPreference.getBoolean("settings_auto_dark", false)
+        val dark = settingsPreference.getBoolean("settings_dark_mode", false)
+        if(!auto){
+            if (dark){
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            }else{
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+        }else{
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+        }
+
+        super.onCreate(savedInstanceState)
+        window.navigationBarColor = Color.TRANSPARENT
+        setContentView(R.layout.activity_login)
+
         val sharedPreference = getSharedPreferences("data", MODE_PRIVATE)
         val success = sharedPreference.getBoolean("base_last", false)
         val baseName = sharedPreference.getString("base_id", "").toString()
@@ -41,16 +58,7 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
         }
-    }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        window.navigationBarColor = Color.TRANSPARENT
-        setContentView(R.layout.activity_login)
-        val sharedPreference = getSharedPreferences("data", MODE_PRIVATE)
-        val baseName = sharedPreference.getString("base_id", "")
-        val basePassword = sharedPreference.getString("base_password", "")
-        val success = sharedPreference.getBoolean("base_last", false)
         val btn = findViewById<Button>(R.id.btn_login)
         if(success) {
             btn.isEnabled = false

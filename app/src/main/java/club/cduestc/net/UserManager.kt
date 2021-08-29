@@ -32,6 +32,14 @@ object UserManager {
         return header
     }
 
+    fun getSignature() : String {
+        return data.getString("signature")
+    }
+
+    fun getBindId() : String? {
+        return data.getString("bindId")
+    }
+
     fun getBackground() : Bitmap?{
         return background
     }
