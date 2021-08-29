@@ -12,7 +12,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import club.cduestc.net.NetManager
+import club.cduestc.util.NetManager
 
 
 class LoginActivity : AppCompatActivity() {

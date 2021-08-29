@@ -27,7 +27,7 @@
     </style>
 
     <style name="SettingBackground">
-        <item name="android:background">#717171</item>
+        <item name="android:background">#131313</item>
     </style>
 
     <style name="SwitchColor">

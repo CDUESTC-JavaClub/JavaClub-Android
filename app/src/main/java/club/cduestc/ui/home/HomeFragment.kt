@@ -10,10 +10,7 @@ import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import club.cduestc.databinding.FragmentHomeBinding
-import club.cduestc.net.NetManager
-import club.cduestc.net.UserManager
-import com.alibaba.fastjson.JSON
-import com.alibaba.fastjson.JSONObject
+import club.cduestc.util.UserManager
 
 
 class HomeFragment : Fragment() {

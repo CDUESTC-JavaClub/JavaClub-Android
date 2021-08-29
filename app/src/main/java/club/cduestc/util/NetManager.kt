@@ -1,4 +1,4 @@
-package club.cduestc.net
+package club.cduestc.util
 
 import com.alibaba.fastjson.JSONObject
 import org.apache.commons.codec.binary.Base64
@@ -7,7 +7,6 @@ import java.io.ByteArrayOutputStream
 import java.io.IOException
 import java.lang.RuntimeException
 import java.net.HttpCookie
-import java.net.SocketTimeoutException
 import java.security.GeneralSecurityException
 import java.security.KeyFactory
 import java.security.interfaces.RSAPublicKey

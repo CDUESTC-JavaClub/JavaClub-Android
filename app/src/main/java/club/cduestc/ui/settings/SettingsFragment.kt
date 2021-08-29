@@ -13,8 +13,8 @@ import androidx.lifecycle.ViewModelProvider
 import club.cduestc.LoginActivity
 import club.cduestc.R
 import club.cduestc.databinding.FragmentSettingsBinding
-import club.cduestc.net.NetManager
-import club.cduestc.net.UserManager
+import club.cduestc.util.NetManager
+import club.cduestc.util.UserManager
 
 
 class SettingsFragment : Fragment() {

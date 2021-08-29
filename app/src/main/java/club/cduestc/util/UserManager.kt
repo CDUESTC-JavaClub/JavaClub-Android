@@ -1,4 +1,4 @@
-package club.cduestc.net
+package club.cduestc.util
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -13,6 +13,7 @@ object UserManager {
     private lateinit var data : JSONObject
     private var header : Bitmap? = null
     private var background : Bitmap? = null
+    var kcPassword : String? = null
 
     fun init(data : JSONObject) {
         this.data = data
