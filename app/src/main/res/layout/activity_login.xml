@@ -36,6 +36,8 @@
             android:textColor="#fefefe"
             android:textAlignment="center"
             android:hint="@string/login_name"
+            android:lines="1"
+            android:maxLength="20"
             android:background="@drawable/translucent"/>
 
         <EditText
@@ -47,6 +49,8 @@
             android:inputType="textPassword"
             android:textAlignment="center"
             android:hint="@string/login_password"
+            android:lines="1"
+            android:maxLength="20"
             android:background="@drawable/translucent"/>
 
         <com.google.android.material.button.MaterialButton
@@ -70,7 +74,8 @@
                 android:textColor="@color/white"
                 android:shadowColor="@color/gray"
                 android:shadowRadius="10"
-                android:text="注册" />
+                android:id="@+id/link_register"
+                android:text="@string/register_link" />
 
             <TextView
                 android:layout_width="0dp"
@@ -80,7 +85,8 @@
                 android:textColor="@color/white"
                 android:shadowColor="@color/gray"
                 android:shadowRadius="10"
-                android:text="忘记密码？" />
+                android:id="@+id/link_forget"
+                android:text="@string/forgot_link" />
         </LinearLayout>
 
         <View

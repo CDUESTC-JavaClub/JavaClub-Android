@@ -36,6 +36,14 @@ object NetManager {
         return true
     }
 
+    fun logout(){
+        get("/auth/logout")
+    }
+
+    fun update() : Boolean{
+        return true
+    }
+
     private var cookies : List<HttpCookie> = ArrayList()
     private fun post(url: String, data : Map<String, String>) : JSONObject?{
         return try {
