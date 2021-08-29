@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="Theme.JavaClub" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorPrimary">@color/main</item>
+        <item name="colorPrimaryVariant">@color/main</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
@@ -29,8 +29,8 @@
     </style>
 
     <style name="BaiColor">
-        <item name="colorPrimary">@color/blue</item>
-        <item name="colorPrimaryVariant">@color/blue</item>
+        <item name="colorPrimary">@color/black</item>
+        <item name="colorPrimaryVariant">@color/black</item>
         <item name="colorOnPrimary">@color/white</item>
     </style>
 
@@ -46,7 +46,7 @@
 
     <style name="MainColor">
         <item name="colorPrimary">#FF60D1AE</item>
-        <item name="colorPrimaryVariant">#FF60D1AE</item>
+        <item name="colorPrimaryVariant">#A6C5BB</item>
         <item name="colorOnPrimary">@color/white</item>
     </style>
 

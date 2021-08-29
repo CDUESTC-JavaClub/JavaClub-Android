@@ -71,13 +71,13 @@ class MainActivity : AppCompatActivity() {
         val destination3 = fragmentNavigator.createDestination()
         destination3.id = R.id.navigation_dashboard
         destination3.className = BaiFragment::class.java.canonicalName ?: ""
-        destination3.label = resources.getString(R.string.title_dashboard)
+        destination3.label = resources.getString(R.string.title_bai)
         navGraph.addDestination(destination3)
 
         val destination4 = fragmentNavigator.createDestination()
         destination4.id = R.id.navigation_notifications
         destination4.className = NotificationsFragment::class.java.canonicalName ?: ""
-        destination4.label = resources.getString(R.string.title_notifications)
+        destination4.label = resources.getString(R.string.title_settings)
         navGraph.addDestination(destination4)
 
         navGraph.startDestination = R.id.navigation_home

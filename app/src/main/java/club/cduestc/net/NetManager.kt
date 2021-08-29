@@ -1,25 +1,17 @@
 package club.cduestc.net
 
-import android.R.attr
-import android.annotation.SuppressLint
-import android.graphics.Bitmap
-import android.view.View
-import android.webkit.WebView
-import android.webkit.WebViewClient
-import androidx.fragment.app.FragmentActivity
-import club.cduestc.MainActivity
 import com.alibaba.fastjson.JSONObject
 import org.apache.commons.codec.binary.Base64
 import org.jsoup.Jsoup
 import java.io.ByteArrayOutputStream
-import java.lang.IllegalStateException
+import java.io.IOException
 import java.lang.RuntimeException
 import java.net.HttpCookie
+import java.net.SocketTimeoutException
 import java.security.GeneralSecurityException
 import java.security.KeyFactory
 import java.security.interfaces.RSAPublicKey
 import java.security.spec.X509EncodedKeySpec
-import java.util.*
 import java.util.concurrent.Executors
 import javax.crypto.Cipher
 import kotlin.collections.ArrayList
@@ -34,33 +26,44 @@ object NetManager {
         executorService.execute(task)
     }
 
-    fun loginIndex() : String{
-        val key = get("/auth/public-key").getString("data");
-        val req = mapOf("id" to "Test", "password" to encrypt("123456", key), "remember-me" to "true")
-        val res = post("/auth/login", req)
-        if(res.getIntValue("status") != 200) return "error"
-        val data = res.getJSONObject("data")
-        return data.getString("index")
+    fun login(name: String, pwd: String) : Boolean {
+        val getRes = get("/auth/public-key") ?: return false
+        val key = getRes.getString("data");
+        val req = mapOf("id" to name, "password" to encrypt(pwd, key), "remember-me" to "true")
+        val res = post("/auth/login", req) ?: return false
+        if (res.getIntValue("status") != 200) return false
+        UserManager.init(res.getJSONObject("data"))
+        return true
     }
 
     private var cookies : List<HttpCookie> = ArrayList()
-    private fun post(url: String, data : Map<String, String>) : JSONObject{
-        val con = Jsoup.connect(ip+url)
-        cookies.forEach{ con.cookie(it.name, it.value) }
-        con.ignoreContentType(true)
-        con.data(data)
-        val str = con.post().body().text()
-        cookies = con.cookieStore().cookies
-        return JSONObject.parseObject(str)
+    private fun post(url: String, data : Map<String, String>) : JSONObject?{
+        return try {
+            val con = Jsoup.connect(ip+url)
+            con.timeout(5000)
+            cookies.forEach{ con.cookie(it.name, it.value) }
+            con.ignoreContentType(true)
+            con.data(data)
+            val str = con.post().body().text()
+            cookies = con.cookieStore().cookies
+            JSONObject.parseObject(str)
+        }catch (e : IOException){
+            null
+        }
     }
 
-    private fun get(url : String) : JSONObject{
-        val con = Jsoup.connect(ip+url)
-        cookies.forEach{ con.cookie(it.name, it.value) }
-        con.ignoreContentType(true)
-        val str = con.get().body().text()
-        cookies = con.cookieStore().cookies
-        return JSONObject.parseObject(str)
+    private fun get(url : String) : JSONObject?{
+        return try{
+            val con = Jsoup.connect(ip+url)
+            con.timeout(5000)
+            cookies.forEach{ con.cookie(it.name, it.value) }
+            con.ignoreContentType(true)
+            val str = con.get().body().text()
+            cookies = con.cookieStore().cookies
+            JSONObject.parseObject(str)
+        }catch (e : IOException){
+            null
+        }
     }
 
     private fun encrypt(str: String, publicKey: String?): String {

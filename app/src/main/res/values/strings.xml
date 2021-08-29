@@ -2,8 +2,8 @@
     <string name="app_name">JavaClub</string>
     <string name="title_home">俱乐部</string>
     <string name="title_kc">教务系统</string>
-    <string name="title_dashboard">百叶计划</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_bai">百叶计划</string>
+    <string name="title_settings">个人设置</string>
 
     <string name="model_kc">教务系统功能</string>
     <string name="model_kc_desc">含教务系统的全部功能，包括成绩查询、课程表查询等。</string>
@@ -20,4 +20,8 @@
     <string name="btn_bai_join_jm">尽美活动</string>
     <string name="btn_bai_manage">管理我的活动</string>
     <string name="btn_bai_score">百叶积分</string>
+
+    <string name="login_name">用户名/邮箱</string>
+    <string name="login_password">密码</string>
+    <string name="login_btn">登录</string>
 </resources>

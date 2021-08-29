@@ -11,6 +11,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import club.cduestc.databinding.FragmentHomeBinding
 import club.cduestc.net.NetManager
+import club.cduestc.net.UserManager
+import com.alibaba.fastjson.JSON
+import com.alibaba.fastjson.JSONObject
 
 
 class HomeFragment : Fragment() {
@@ -35,14 +38,7 @@ class HomeFragment : Fragment() {
                 web.visibility = View.VISIBLE
             }
         }
-        NetManager.createTask{
-            val index = NetManager.loginIndex()
-
-            activity?.runOnUiThread{
-                if(index == "error") web.loadUrl("https://www.bilibili.com/")
-                else web.loadUrl(index)
-            }
-        }
+        web.loadUrl(UserManager.getIndex())
 
         return binding.root
     }
