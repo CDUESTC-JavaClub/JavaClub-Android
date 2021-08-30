@@ -29,6 +29,7 @@
 
     <string name="settings_info">你可以对您的学号（教务账号）、百叶计划账号进行绑定，我们只会在远端保存您的学号，个人信息和密码都存储在本地，这些敏感信息会跟随软件卸载一起移除</string>
     <string name="settings_user_id">已绑定学号</string>
+    <string name="settings_user_email">已绑定邮箱</string>
     <string name="settings_dark_mode">使用深色模式</string>
     <string name="settings_auto_dark">颜色跟随系统变换</string>
     <string name="settings_dark_info">切换颜色配置后，需要重新启动APP生效</string>

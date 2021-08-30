@@ -18,7 +18,7 @@ import kotlin.collections.ArrayList
 
 object NetManager {
 
-    private var ip = "http://192.168.10.3:8080/api"
+    private var ip = "http://192.168.202.38:8080/api"
     private var executorService = Executors.newFixedThreadPool(10)
 
     fun createTask(task : Runnable){
@@ -26,13 +26,23 @@ object NetManager {
     }
 
     fun login(name: String, pwd: String) : Boolean {
+        cookies = null  //清理缓存
         val getRes = get("/auth/public-key") ?: return false
-        val key = getRes.getString("data");
+        val key = getRes.getString("data")
         val req = mapOf("id" to name, "password" to encrypt(pwd, key), "remember-me" to "true")
         val res = post("/auth/login", req) ?: return false
         if (res.getIntValue("status") != 200) return false
         UserManager.init(res.getJSONObject("data"))
         return true
+    }
+
+    fun bind(id: String, pwd : String) : Boolean {
+        val getRes = get("/auth/public-key") ?: return false
+        val key = getRes.getString("data")
+        val map = mapOf("id" to id, "password" to encrypt(pwd, key))
+        val res = post("/auth/bind-id", map) ?: return false
+        if (res.getIntValue("status") != 200) return false
+        return res.getBoolean("data")
     }
 
     fun logout(){
@@ -43,18 +53,19 @@ object NetManager {
         return true
     }
 
-    private var cookies : List<HttpCookie> = ArrayList()
+    private var cookies : List<HttpCookie>? = null
     private fun post(url: String, data : Map<String, String>) : JSONObject?{
         return try {
             val con = Jsoup.connect(ip+url)
-            con.timeout(5000)
-            cookies.forEach{ con.cookie(it.name, it.value) }
+            con.timeout(10000)
+            cookies?.forEach{ con.cookie(it.name, it.value) }
             con.ignoreContentType(true)
             con.data(data)
             val str = con.post().body().text()
-            cookies = con.cookieStore().cookies
+            if(cookies == null) cookies = ArrayList(con.cookieStore().cookies)
             JSONObject.parseObject(str)
         }catch (e : IOException){
+            e.printStackTrace()
             null
         }
     }
@@ -62,11 +73,11 @@ object NetManager {
     private fun get(url : String) : JSONObject?{
         return try{
             val con = Jsoup.connect(ip+url)
-            con.timeout(5000)
-            cookies.forEach{ con.cookie(it.name, it.value) }
+            con.timeout(10000)
+            cookies?.forEach{ con.cookie(it.name, it.value) }
             con.ignoreContentType(true)
             val str = con.get().body().text()
-            cookies = con.cookieStore().cookies
+            if(cookies == null) cookies = ArrayList(con.cookieStore().cookies)
             JSONObject.parseObject(str)
         }catch (e : IOException){
             null

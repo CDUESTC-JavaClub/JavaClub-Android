@@ -70,4 +70,8 @@
     <style name="SwitchColor">
         <item name="offColor">@color/gray</item>
     </style>
+
+    <style name="NavColor">
+        <item name="android:background">@color/white</item>
+    </style>
 </resources>

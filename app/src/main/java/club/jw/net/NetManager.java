@@ -61,8 +61,8 @@ public class NetManager {
         String salt = str.substring(str.indexOf("CryptoJS.SHA1('") + 15, str.indexOf("' + form['password']"));  //解析动态盐
         loginData.password(DigestUtils.sha1Hex(salt+loginData.getPassword()));  //密码加盐计算SHA1处理
         WebResponse response = request("/loginExt.action", Method.POST, main.getCookies(), loginData);
-        if(main.getStatusCode() != 200){
-            return new ErrorResponse(main.getReason(), main.getStatusCode());
+        if(response.getStatusCode() != 200){
+            return new ErrorResponse(main.getReason(), response.getStatusCode());
         }
         String resp = response.getDocument().toString();
         if(resp.contains("密码错误") || resp.contains("Error Password")){

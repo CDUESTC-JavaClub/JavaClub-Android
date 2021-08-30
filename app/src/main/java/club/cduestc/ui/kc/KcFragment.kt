@@ -5,10 +5,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import club.cduestc.databinding.FragmentKcBinding
+import club.cduestc.util.KcManager
+import club.cduestc.util.NetManager
 import club.cduestc.util.UserManager
 
 class KcFragment : Fragment() {
@@ -24,7 +27,7 @@ class KcFragment : Fragment() {
         val performance = requireActivity().getSharedPreferences("data", AppCompatActivity.MODE_PRIVATE)
         if(UserManager.getBindId() != null && performance.contains("kc_password")) displayMenu(performance)
         if(UserManager.getBindId() != null) initEdit()
-        binding.saveKcBtn.setOnClickListener { savePassword(performance, binding.kcPassword.text.toString()) }
+        binding.saveKcBtn.setOnClickListener { savePassword(performance, binding.kcPassword.text.toString(), binding.kcId.text.toString()) }
 
         return binding.root
     }
@@ -39,9 +42,30 @@ class KcFragment : Fragment() {
         binding.kcId.isEnabled = false
     }
 
-    private fun savePassword(performance: SharedPreferences, pwd : String){
-        performance.edit().putString("kc_password", pwd).apply()
-        TODO("登陆验证是否成功")
+    private fun savePassword(performance: SharedPreferences, pwd : String, id : String){
+        postSave()
+        NetManager.createTask{
+            if(NetManager.bind(id, pwd)){
+                performance.edit().putString("kc_password", pwd).apply()
+                requireActivity().runOnUiThread { displayMenu(performance) }
+                return@createTask
+            }else{
+                requireActivity().runOnUiThread {
+                    endSave()
+                    Toast.makeText(context, "登陆失败，账号或密码错误！", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
+    private fun postSave(){
+        binding.saveKcBtn.isEnabled = false
+        binding.saveKcBtn.text = "正在验证..."
+    }
+
+    private fun endSave(){
+        binding.saveKcBtn.isEnabled = true
+        binding.saveKcBtn.text = "保存"
     }
 
     private fun displayMenu(performance: SharedPreferences){

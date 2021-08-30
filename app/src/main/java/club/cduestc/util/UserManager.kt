@@ -29,6 +29,10 @@ object UserManager {
         return data.getString("username")
     }
 
+    fun getEmail(): String {
+        return data.getString("bindEmail")
+    }
+
     fun getHeader() : Bitmap?{
         return header
     }
