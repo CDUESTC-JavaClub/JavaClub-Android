@@ -68,6 +68,22 @@
             android:layout_height="50dp"/>
     </androidx.cardview.widget.CardView>
 
+    <LinearLayout
+        android:id="@+id/kc_loading"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+        <ProgressBar
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="正在连接到教务系统..."/>
+    </LinearLayout>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/kc_menu"
         android:visibility="gone"
