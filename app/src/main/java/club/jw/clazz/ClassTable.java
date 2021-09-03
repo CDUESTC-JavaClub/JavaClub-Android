@@ -1,5 +1,9 @@
 package club.jw.clazz;
 
+import com.alibaba.fastjson.JSONArray;
+
+import org.json.JSONObject;
+
 import club.jw.net.entity.response.ClassesResponse;
 
 import java.util.ArrayList;
@@ -34,5 +38,11 @@ public class ClassTable {
      */
     public void forEach(Consumer<Clazz> consumer){
         clazzList.forEach(consumer);
+    }
+
+    public JSONArray toJSONArray(){
+        JSONArray array = new JSONArray();
+        clazzList.forEach(clazz -> array.add(clazz.toJSON()));
+        return array;
     }
 }

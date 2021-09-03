@@ -11,7 +11,15 @@
     <string name="btn_kc_class">课程表查询</string>
     <string name="btn_kc_user">学籍信息查询</string>
     <string name="model_kc_note">以下功能模块的网络请求，会直接访问教务系统接口，无需经过App服务器进行数据传输或中转，全力保证个人隐私数据不会泄露。</string>
-    <string name="kc_score_loading">正在读取成绩信息...</string>
+    <string name="kc_score_loading">正在读取成绩信息…</string>
+    <string name="kc_class_loading">正在读取课程表信息…</string>
+    <string name="kc_class_monday">周一</string>
+    <string name="kc_class_tuesday">周二</string>
+    <string name="kc_class_wednesday">周三</string>
+    <string name="kc_class_thursday">周四</string>
+    <string name="kc_class_friday">周五</string>
+    <string name="kc_class_saturday">周六</string>
+    <string name="kc_class_sunday">周日</string>
 
     <string name="model_bai">百叶计划功能</string>
     <string name="model_bai_desc">包含活动报名、活动取消、积分查询等功能。</string>

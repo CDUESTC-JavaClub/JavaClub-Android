@@ -18,7 +18,7 @@ import kotlin.collections.ArrayList
 
 object NetManager {
 
-    private var ip = "http://192.168.10.2/api"
+    private var ip = "http://api.cduestc.club/api"
     private var executorService = Executors.newFixedThreadPool(10)
 
     fun createTask(task : Runnable){

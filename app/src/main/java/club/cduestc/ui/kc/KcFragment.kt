@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import club.cduestc.MainActivity
 import club.cduestc.databinding.FragmentKcBinding
 import club.cduestc.ui.kc.sub.KcScoreActivity
+import club.cduestc.ui.kc.sub.KcTableActivity
 import club.cduestc.util.KcManager
 import club.cduestc.util.NetManager
 import club.cduestc.util.UserManager
@@ -35,8 +36,14 @@ class KcFragment : Fragment() {
         binding.saveKcBtn.setOnClickListener { savePassword(performance, binding.kcPassword.text.toString(), binding.kcId.text.toString()) }
 
         binding.btnKcScore.setOnClickListener(this::displayScore)
+        binding.btnKcClass.setOnClickListener(this::displayClass)
 
         return binding.root
+    }
+
+    private fun displayClass(it : View){
+        val intent = Intent(context, KcTableActivity::class.java)
+        startActivity(intent)
     }
 
     private fun displayScore(it : View){

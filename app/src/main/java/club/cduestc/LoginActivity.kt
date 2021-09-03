@@ -13,11 +13,18 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import club.cduestc.util.NetManager
+import com.gargoylesoftware.htmlunit.BrowserVersion
+import com.gargoylesoftware.htmlunit.WebClient
+import com.gargoylesoftware.htmlunit.html.HtmlPage
 
 
 class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        val client = WebClient(BrowserVersion.CHROME)
+        val page : HtmlPage = client.getPage("https://www.baidu.com")
+
+
         val settingsPreference = getSharedPreferences("settings", MODE_PRIVATE)
         if(!settingsPreference.contains("settings_auto_dark")) settingsPreference.edit().putBoolean("settings_auto_dark", true).apply()
         val auto = settingsPreference.getBoolean("settings_auto_dark", false)
@@ -108,7 +115,7 @@ class LoginActivity : AppCompatActivity() {
             if(!NetManager.login(username.text.toString(), password.text.toString())){
                 runOnUiThread {
                     it.isEnabled = true
-                    (it as Button).text = "登录"
+                    it.text = "登录"
                     Toast.makeText(this, "登陆失败，可能是用户名或密码填写错误！", Toast.LENGTH_SHORT).show()
                 }
             }else{
