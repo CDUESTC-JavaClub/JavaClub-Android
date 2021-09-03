@@ -1,7 +1,6 @@
 package club.jw.net.enums;
 
 import com.gargoylesoftware.htmlunit.HttpMethod;
-import org.apache.http.HttpRequest;
 import org.jsoup.Connection;
 
 public enum Method {

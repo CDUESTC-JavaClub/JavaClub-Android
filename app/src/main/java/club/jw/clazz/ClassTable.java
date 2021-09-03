@@ -45,4 +45,8 @@ public class ClassTable {
         clazzList.forEach(clazz -> array.add(clazz.toJSON()));
         return array;
     }
+
+    public List<Clazz> getClazzList() {
+        return clazzList;
+    }
 }

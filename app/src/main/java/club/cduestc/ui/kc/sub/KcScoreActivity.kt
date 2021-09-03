@@ -1,5 +1,6 @@
 package club.cduestc.ui.kc.sub
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
@@ -19,6 +20,7 @@ class KcScoreActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_kc_score)
 
+        window.navigationBarColor = Color.TRANSPARENT
         this.initScore()
     }
 

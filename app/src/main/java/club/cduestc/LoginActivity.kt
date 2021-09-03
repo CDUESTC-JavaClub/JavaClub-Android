@@ -21,10 +21,6 @@ import com.gargoylesoftware.htmlunit.html.HtmlPage
 class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        val client = WebClient(BrowserVersion.CHROME)
-        val page : HtmlPage = client.getPage("https://www.baidu.com")
-
-
         val settingsPreference = getSharedPreferences("settings", MODE_PRIVATE)
         if(!settingsPreference.contains("settings_auto_dark")) settingsPreference.edit().putBoolean("settings_auto_dark", true).apply()
         val auto = settingsPreference.getBoolean("settings_auto_dark", false)
