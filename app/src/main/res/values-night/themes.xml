@@ -35,4 +35,9 @@
     <style name="NavColor">
         <item name="android:background">#131313</item>
     </style>
+
+    <style name="Theme.JavaClub.AppWidgetContainer" parent="Theme.JavaClub.AppWidgetContainerParent">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:colorBackground">#AA000000</item>
+    </style>
 </resources>

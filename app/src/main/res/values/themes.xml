@@ -74,4 +74,15 @@
     <style name="NavColor">
         <item name="android:background">@color/white</item>
     </style>
+
+    <style name="Theme.JavaClub.AppWidgetContainerParent">
+        <item name="appWidgetRadius">10dp</item>
+        <item name="appWidgetPadding">10dp</item>
+        <item name="appWidgetInnerRadius">5dp</item>
+    </style>
+
+    <style name="Theme.JavaClub.AppWidgetContainer" parent="Theme.JavaClub.AppWidgetContainerParent">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:colorBackground">#AAFFFFFF</item>
+    </style>
 </resources>

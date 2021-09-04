@@ -132,7 +132,7 @@ class KcTableActivity : AppCompatActivity() {
             1 -> "10:05"
             2 -> "14:00"
             3 -> "15:50"
-            4 -> "7:00"
+            4 -> "18:30"
             else -> "0:00"
         }
     }
