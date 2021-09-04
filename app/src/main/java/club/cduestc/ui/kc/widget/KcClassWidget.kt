@@ -2,51 +2,36 @@ package club.cduestc.ui.kc.widget
 
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
+import android.content.ComponentName
 import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
+import android.util.Log
+import android.view.View
+import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.RemoteViews
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import club.cduestc.R
+import com.alibaba.fastjson.JSON
+import com.alibaba.fastjson.JSONObject
+import java.util.*
+import kotlin.concurrent.fixedRateTimer
+import kotlin.math.abs
 
-/**
- * Implementation of App Widget functionality.
- */
 class KcClassWidget : AppWidgetProvider() {
-    override fun onUpdate(
-        context: Context,
-        appWidgetManager: AppWidgetManager,
-        appWidgetIds: IntArray
-    ) {
-        // There may be multiple widgets active, so update all of them
-        for (appWidgetId in appWidgetIds) {
-            updateAppWidget(context, appWidgetManager, appWidgetId)
-        }
+
+    override fun onDisabled(context: Context) {
+        super.onDisabled(context)
     }
 
     override fun onEnabled(context: Context) {
-        // Enter relevant functionality for when the first widget is created
+        super.onEnabled(context)
     }
 
-    override fun onDisabled(context: Context) {
-        // Enter relevant functionality for when the last widget is disabled
-    }
-
-    private fun updateAppWidget(
-        context: Context,
-        appWidgetManager: AppWidgetManager,
-        appWidgetId: Int
-    ) {
-        val views = RemoteViews(context.packageName, R.layout.kc_class_widget)
-
-        appWidgetManager.updateAppWidget(appWidgetId, views)
-    }
-
-    private fun calTime(index : Int) : String{
-        return when(index){
-            0 -> "08:15"
-            1 -> "10:05"
-            2 -> "14:00"
-            3 -> "15:50"
-            4 -> "18:30"
-            else -> "0:00"
-        }
+    override fun onReceive(context: Context, intent: Intent) {
+        super.onReceive(context, intent)
+        KcClassUtil.reloadWidget(context)
     }
 }

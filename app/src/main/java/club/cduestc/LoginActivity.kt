@@ -13,9 +13,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import club.cduestc.util.NetManager
-import com.gargoylesoftware.htmlunit.BrowserVersion
-import com.gargoylesoftware.htmlunit.WebClient
-import com.gargoylesoftware.htmlunit.html.HtmlPage
+import android.content.IntentFilter
+import club.cduestc.ui.kc.widget.KcClassWidget
 
 
 class LoginActivity : AppCompatActivity() {

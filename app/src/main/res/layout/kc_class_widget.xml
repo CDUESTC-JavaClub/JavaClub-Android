@@ -15,7 +15,74 @@
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:layout_height="wrap_content">
-
+        <LinearLayout
+            android:id="@+id/widget_class_day_1"
+            android:layout_width="match_parent"
+            android:layout_marginVertical="5dp"
+            android:visibility="gone"
+            android:layout_height="40dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="08:05"/>
+            <LinearLayout
+                android:id="@+id/widget_class_color_1"
+                android:layout_width="3dp"
+                android:layout_height="match_parent"
+                android:layout_marginVertical="2dp"
+                android:layout_marginHorizontal="10dp"
+                android:background="@color/main"
+                android:orientation="horizontal" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/widget_class_name_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/widget_class_desc_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp" />
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/widget_class_day_2"
+            android:layout_width="match_parent"
+            android:layout_marginVertical="2dp"
+            android:layout_height="40dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="10:05"/>
+            <LinearLayout
+                android:id="@+id/widget_class_color_2"
+                android:layout_width="3dp"
+                android:layout_height="match_parent"
+                android:layout_marginVertical="5dp"
+                android:layout_marginHorizontal="10dp"
+                android:background="@color/main"
+                android:orientation="horizontal" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/widget_class_name_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/widget_class_desc_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp" />
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 
 
@@ -29,7 +96,76 @@
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:layout_height="wrap_content">
-
+        <LinearLayout
+            android:id="@+id/widget_class_day_3"
+            android:layout_width="match_parent"
+            android:layout_marginVertical="5dp"
+            android:visibility="gone"
+            android:layout_height="40dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="14:00"/>
+            <LinearLayout
+                android:id="@+id/widget_class_color_3"
+                android:layout_width="3dp"
+                android:layout_height="match_parent"
+                android:layout_marginVertical="2dp"
+                android:layout_marginHorizontal="10dp"
+                android:background="@color/main"
+                android:orientation="horizontal" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/widget_class_name_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/widget_class_desc_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp" />
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/widget_class_day_4"
+            android:layout_width="match_parent"
+            android:layout_marginVertical="5dp"
+            android:layout_height="40dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="15:50"/>
+            <LinearLayout
+                android:id="@+id/widget_class_color_4"
+                android:layout_width="3dp"
+                android:layout_height="match_parent"
+                android:layout_marginVertical="2dp"
+                android:layout_marginHorizontal="10dp"
+                android:background="@color/main"
+                android:orientation="horizontal" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/widget_class_name_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="程序设计II（数据结构与算法）"/>
+                <TextView
+                    android:id="@+id/widget_class_desc_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:text="二教504（杨铸）"/>
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 
 
@@ -43,6 +179,41 @@
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:layout_height="wrap_content">
-
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/widget_class_day_5"
+            android:layout_width="match_parent"
+            android:layout_marginVertical="5dp"
+            android:layout_height="40dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="18:30"/>
+            <LinearLayout
+                android:id="@+id/widget_class_color_5"
+                android:layout_width="3dp"
+                android:layout_height="match_parent"
+                android:layout_marginVertical="2dp"
+                android:layout_marginHorizontal="10dp"
+                android:background="@color/main"
+                android:orientation="horizontal" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/widget_class_name_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="程序设计II（数据结构与算法）"/>
+                <TextView
+                    android:id="@+id/widget_class_desc_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:text="二教504（杨铸）"/>
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>

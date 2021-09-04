@@ -2,6 +2,7 @@ package club.cduestc.ui.kc.sub
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
+import android.appwidget.AppWidgetManager
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -21,6 +22,15 @@ import android.widget.Toast
 import android.content.DialogInterface
 import java.text.SimpleDateFormat
 import kotlin.collections.ArrayList
+import android.widget.RemoteViews
+
+import android.content.ComponentName
+import club.cduestc.ui.kc.widget.KcClassUtil
+import club.cduestc.ui.kc.widget.KcClassWidget
+import android.content.Intent
+
+
+
 
 
 class KcTableActivity : AppCompatActivity() {
@@ -30,7 +40,7 @@ class KcTableActivity : AppCompatActivity() {
 
         window.navigationBarColor = Color.TRANSPARENT
 
-        val sharedPreference = getSharedPreferences("data", MODE_PRIVATE)
+        val sharedPreference = getSharedPreferences("class_table", MODE_PRIVATE)
         this.initClassTable(sharedPreference.getInt("class_term", 1))
     }
 
@@ -39,7 +49,7 @@ class KcTableActivity : AppCompatActivity() {
         builder.setTitle("请选择学期")
         val cities = this.genTerms().toTypedArray()
         builder.setItems(cities) { _, which ->
-            val sharedPreference = getSharedPreferences("data", MODE_PRIVATE)
+            val sharedPreference = getSharedPreferences("class_table", MODE_PRIVATE)
             sharedPreference.edit().remove("class_table").apply()
             initClassTable(which + 1)
         }
@@ -67,7 +77,7 @@ class KcTableActivity : AppCompatActivity() {
 
     private fun initClassTable(term : Int){
         findViewById<ProgressBar>(R.id.class_loading).visibility = View.VISIBLE
-        val sharedPreference = getSharedPreferences("data", MODE_PRIVATE)
+        val sharedPreference = getSharedPreferences("class_table", MODE_PRIVATE)
         val btn = findViewById<Button>(R.id.kc_class_switch)
         btn.setOnClickListener(this::switchTerm)
         sharedPreference.edit().putInt("class_term", term).apply()
@@ -110,6 +120,7 @@ class KcTableActivity : AppCompatActivity() {
             }
         }
         findViewById<ProgressBar>(R.id.class_loading).visibility = View.GONE
+        KcClassUtil.reloadWidget(this)
     }
 
     private fun addCards(arr: JSONArray, rows: List<TableRow>, matrix: Array<Array<ClassCard?>>){
