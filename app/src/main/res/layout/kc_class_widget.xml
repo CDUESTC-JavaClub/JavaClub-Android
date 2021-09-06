@@ -25,7 +25,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:text="08:05"/>
+                android:text="08:15"/>
             <LinearLayout
                 android:id="@+id/widget_class_color_1"
                 android:layout_width="3dp"
