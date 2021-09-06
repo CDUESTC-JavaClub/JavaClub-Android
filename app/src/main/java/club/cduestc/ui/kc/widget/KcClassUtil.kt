@@ -28,7 +28,8 @@ object KcClassUtil {
         arr.forEach {
             val obj = JSONObject.parseObject(it.toString())
             if(ignore.contains(obj.getString("name"))) return@forEach
-            if(obj.getIntValue("day") == getWeek(Date())){
+            if(!isThisWeekClass(obj, applicationContext)) return@forEach
+            if(obj.getIntValue("day") == getDay(Date())){
                 var index = obj.getJSONArray("indexSet").getIntValue(0)
                 index /= 2
                 when(index){
@@ -50,11 +51,41 @@ object KcClassUtil {
         views.setTextViewText(id3, obj.getString("local")+" ("+obj.getString("teacher")+")")
     }
 
-    private fun getWeek(date: Date): Int {
+    private fun getDay(date: Date): Int {
         val cal = Calendar.getInstance()
         cal.time = date
         var weekIndex = cal[Calendar.DAY_OF_WEEK] - 1
         if (weekIndex < 0) weekIndex = 0
         return weekIndex
+    }
+
+    fun isThisWeekClass(clazz : JSONObject?, context: Context) : Boolean{
+        if(clazz == null) return false
+        val sharedPreference = context.getSharedPreferences("class_table", AppCompatActivity.MODE_PRIVATE)
+        val type = convertWeek(clazz.getJSONArray("weekSet"))
+        if(type == 0) return true
+        val c = getCurrentWeek() - sharedPreference.getInt("single_week", getCurrentWeek())
+        if(c % 2 == 0 && type == 1) return true
+        if(c % 2 == 1 && type == 2) return true
+        return false
+    }
+
+    private fun convertWeek(week : JSONArray) : Int{
+        val f = week[0] as Int
+        return if(week.contains(f+1)) {
+            0
+        }else{
+            if(f % 2 == 0){
+                2
+            }else{
+                1
+            }
+        }
+    }
+
+    private fun getCurrentWeek(): Int {
+        val g = GregorianCalendar()
+        g.time = Date()
+        return g[Calendar.WEEK_OF_YEAR]
     }
 }

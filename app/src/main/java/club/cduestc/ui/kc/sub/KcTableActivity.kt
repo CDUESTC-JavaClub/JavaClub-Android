@@ -18,6 +18,7 @@ import com.alibaba.fastjson.JSONArray
 import com.alibaba.fastjson.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.math.abs
 
 class KcTableActivity : AppCompatActivity() {
@@ -29,6 +30,22 @@ class KcTableActivity : AppCompatActivity() {
 
         val sharedPreference = getSharedPreferences("class_table", MODE_PRIVATE)
         this.initClassTable(sharedPreference.getInt("class_term", 1))
+    }
+
+    /**
+     * 切换单双周
+     */
+    private fun switchWeek(it : View){
+        val builder: AlertDialog.Builder = AlertDialog.Builder(this, android.R.style.ThemeOverlay_Material_Dialog)
+        builder.setTitle("请选择本周为单/双周")
+        builder.setItems(arrayOf("单周", "双周")) { _, which ->
+            var week = getCurrentWeek()
+            if(which != 0) week -= 1
+            val sharedPreference = getSharedPreferences("class_table", MODE_PRIVATE)
+            sharedPreference.edit().putInt("single_week", week).apply()
+            initClassTable(sharedPreference.getInt("class_term", 1))
+        }
+        builder.show()
     }
 
     private fun switchTerm(it : View){
@@ -70,7 +87,15 @@ class KcTableActivity : AppCompatActivity() {
         sharedPreference.edit().putInt("class_term", term).apply()
         btn.text = genTerms()[sharedPreference.getInt("class_term", term) - 1]
 
-        val matrix : Array<Array<ClassCard?>> = Array(5) { Array(7){null} }
+        val btn2 = findViewById<Button>(R.id.kc_week_switch)
+        btn2.setOnClickListener(this::switchWeek)
+        btn2.text = if((sharedPreference.getInt("single_week", getCurrentWeek()) - getCurrentWeek()) % 2 == 0){
+            "单周"
+        }else{
+            "双周"
+        }
+
+        val matrix : Array<Array<ArrayList<ClassCard>>> = Array(5) { Array(7){ArrayList()} }
         val rows = listOf(
             findViewById<TableRow>(R.id.row1),
             findViewById(R.id.row2),
@@ -95,14 +120,18 @@ class KcTableActivity : AppCompatActivity() {
         }
     }
 
-    private fun fillTable(rows : List<TableRow>,  matrix: Array<Array<ClassCard?>>){
+    private fun fillTable(rows : List<TableRow>,  matrix : Array<Array<ArrayList<ClassCard>>>){
         for (i in 0..4){
             val row = rows[i]
             for (j in 0..6){
-                if(matrix[i][j] == null){
+                if(matrix[i][j].isEmpty()){
                     row.addView(ClassCard(this, null, null, null, this), j)
                 }else{
-                    row.addView(matrix[i][j], j)
+                    var clazz = ClassCard(this, null, null, null, this)
+                    matrix[i][j].forEach {
+                        if(KcClassUtil.isThisWeekClass(it.clazz, this)) clazz = it
+                    }
+                    row.addView(clazz, j)
                 }
             }
         }
@@ -110,7 +139,7 @@ class KcTableActivity : AppCompatActivity() {
         KcClassUtil.reloadWidget(this)
     }
 
-    private fun addCards(arr: JSONArray, rows: List<TableRow>, matrix: Array<Array<ClassCard?>>){
+    private fun addCards(arr: JSONArray, rows: List<TableRow>, matrix: Array<Array<ArrayList<ClassCard>>>){
         val sharedPreference = getSharedPreferences("class_table", MODE_PRIVATE)
         val ignore = JSONArray.parseArray(sharedPreference.getString("ignore", "[]"))
         arr.forEach {
@@ -120,8 +149,14 @@ class KcTableActivity : AppCompatActivity() {
             val day = item.getIntValue("day")
             val name = item.getString("name")
             if(ignore.contains(name)) return@forEach
-            matrix[index][day - 1] = ClassCard(this, item, calTime(index), colorSelect(name), this)
+            matrix[index][day - 1].add(ClassCard(this, item, calTime(index), colorSelect(name), this))
         }
+    }
+
+    private fun getCurrentWeek(): Int {
+        val g = GregorianCalendar()
+        g.time = Date()
+        return g[Calendar.WEEK_OF_YEAR]
     }
 
     /**

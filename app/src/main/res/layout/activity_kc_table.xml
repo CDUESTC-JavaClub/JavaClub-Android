@@ -8,15 +8,36 @@
     android:clipToPadding="true"
     tools:context=".ui.kc.sub.KcTableActivity">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/kc_class_switch"
-        style="@style/FunctionButtonBai"
-        android:text="2021-2022 学年（上）"
-        app:icon="@drawable/icon_kc"
-        app:iconSize="30dp"
+    <LinearLayout
+        android:id="@+id/topCard"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/kc_class_switch"
+            android:layout_width="300dp"
+            style="@style/FunctionButtonBai"
+            android:text="2021-2022 学年（上）"
+            app:icon="@drawable/icon_kc"
+            app:iconSize="30dp" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/main"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/kc_week_switch"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            style="@style/FunctionButtonBai"
+            android:text="单周"
+            app:iconSize="30dp" />
+    </LinearLayout>
+
 
     <ProgressBar
         android:id="@+id/class_loading"
@@ -36,7 +57,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/kc_class_switch">
+        app:layout_constraintTop_toBottomOf="@+id/topCard">
 
         <ScrollView
             android:layout_width="match_parent"

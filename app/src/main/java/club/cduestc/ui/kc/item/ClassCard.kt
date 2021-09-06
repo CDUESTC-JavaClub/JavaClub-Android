@@ -30,7 +30,7 @@ import club.cduestc.ui.kc.sub.KcTableActivity
 
 class ClassCard(
     context: Context?,
-    private val clazz: JSONObject?,
+    val clazz: JSONObject?,
     private val time : String?,
     private val color: String?,
     private val activity: AppCompatActivity
@@ -46,7 +46,7 @@ class ClassCard(
                     "\n${this.clazz.getString("teacher")}"
         val body = view.findViewById<CardView>(card_body)
         if(color != null) {
-            body.backgroundTintList = ColorStateList.valueOf(Color.parseColor(this.color))
+            body.setCardBackgroundColor(Color.parseColor(this.color))
         }else{
             view.findViewById<View>(R.id.card_empty).visibility = View.VISIBLE
             view.findViewById<CardView>(card_body).visibility = View.GONE
