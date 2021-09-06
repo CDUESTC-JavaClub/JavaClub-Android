@@ -3,7 +3,7 @@
     package="club.cduestc">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:allowBackup="true"
@@ -13,16 +13,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.JavaClub"
         android:usesCleartextTraffic="true">
+        <activity
+            android:name=".ui.kc.sub.KcStudentActivity"
+            android:exported="true" />
 
         <receiver
             android:name=".ui.kc.widget.KcClassWidget"
-            android:label="课程表"
             android:enabled="true"
-            android:exported="true">
+            android:exported="true"
+            android:label="课程表">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
-                <action android:name="class.update"/>
+                <action android:name="class.update" />
             </intent-filter>
 
             <meta-data
