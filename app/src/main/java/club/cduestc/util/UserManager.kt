@@ -46,6 +46,10 @@ object UserManager {
         return data.getString("bindId")
     }
 
+    fun setBindId(id : String){
+        data.put("bindId", id)
+    }
+
     fun getBackground() : Bitmap?{
         return background
     }

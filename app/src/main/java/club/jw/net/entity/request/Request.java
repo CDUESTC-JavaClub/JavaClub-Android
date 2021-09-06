@@ -14,7 +14,7 @@ public abstract class Request {
                 RequestParam param = field.getAnnotation(RequestParam.class);
                 if(param == null) continue;
                 if(param.value() == null || param.value().isEmpty()) continue;
-                consumer.accept(new String[]{param.value(), field.get(this).toString()});
+                consumer.accept(new String[]{param.value(), field.get(this) == null ? "" : field.get(this).toString()});
             }
         } catch (IllegalAccessException e) {
             e.printStackTrace();
@@ -29,7 +29,7 @@ public abstract class Request {
                 RequestParam param = field.getAnnotation(RequestParam.class);
                 if(param == null) continue;
                 if(param.value() == null || param.value().isEmpty()) continue;
-                object.put(param.value(), field.get(this).toString());
+                object.put(param.value(), field.get(this) == null ? "" : field.get(this).toString());
             }
         } catch (IllegalAccessException e) {
             e.printStackTrace();

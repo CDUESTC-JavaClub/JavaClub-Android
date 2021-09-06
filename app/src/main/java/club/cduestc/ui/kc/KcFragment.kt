@@ -66,6 +66,7 @@ class KcFragment : Fragment() {
         NetManager.createTask{
             if(NetManager.bind(id, pwd)){
                 performance.edit().putString("kc_password", pwd).apply()
+                UserManager.setBindId(id)
                 requireActivity().runOnUiThread { displayMenu(performance) }
                 return@createTask
             }else{
@@ -106,6 +107,8 @@ class KcFragment : Fragment() {
                     binding.kcMenu.visibility = View.GONE
                     binding.kcLoading.visibility = View.GONE
                     binding.tipBind.visibility = View.VISIBLE
+                    endSave()
+                    Toast.makeText(context, "错误，无法连接到教务系统！", Toast.LENGTH_SHORT).show()
                 }
             }
         }
