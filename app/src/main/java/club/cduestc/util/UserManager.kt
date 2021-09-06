@@ -14,16 +14,15 @@ object UserManager {
     private lateinit var data : JSONObject
     private var header : Bitmap? = null
     private var background : Bitmap? = null
+    private var index : String? = null
     lateinit var kcAccount : KcAccount
 
     fun init(data : JSONObject) {
         this.data = data
-        header = getHttpBitmap(data.getString("headerUrl"))
-        background = getHttpBitmap(data.getString("backgroundUrl"))
     }
 
-    fun getIndex() : String{
-        return data.getString("index")
+    fun getIndex() : String?{
+        return index
     }
 
     fun getUserName(): String {
@@ -31,7 +30,7 @@ object UserManager {
     }
 
     fun getEmail(): String {
-        return data.getString("bindEmail")
+        return data.getString("email")
     }
 
     fun getHeader() : Bitmap?{

@@ -35,7 +35,7 @@ class HomeFragment : Fragment() {
                 web.visibility = View.VISIBLE
             }
         }
-        web.loadUrl(UserManager.getIndex())
+        web.loadUrl(UserManager.getIndex() ?: "www.bilibili.com")
 
         return binding.root
     }

@@ -29,11 +29,14 @@ object NetManager {
         cookies = null  //清理缓存
         val getRes = get("/auth/public-key") ?: return false
         val key = getRes.getString("data")
-        val req = mapOf("id" to name, "password" to encrypt(pwd, key), "remember-me" to "true")
+        val req = mapOf("id" to name, "password" to encrypt(pwd, key), "remember-me" to "false")
         val res = post("/auth/login", req) ?: return false
         if (res.getIntValue("status") != 200) return false
-        UserManager.init(res.getJSONObject("data"))
-        return true
+        if(res.getBoolean("data")){
+            val getResp = get("/auth/info") ?: return false
+            UserManager.init(getResp.getJSONObject("data"))
+        }
+        return res.getBoolean("data")
     }
 
     fun bind(id: String, pwd : String) : Boolean {
