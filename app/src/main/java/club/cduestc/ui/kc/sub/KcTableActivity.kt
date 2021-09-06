@@ -1,37 +1,24 @@
 package club.cduestc.ui.kc.sub
 
-import android.annotation.SuppressLint
 import android.app.AlertDialog
-import android.appwidget.AppWidgetManager
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.*
+import android.widget.Button
+import android.widget.ProgressBar
+import android.widget.TableRow
+import androidx.appcompat.app.AppCompatActivity
 import club.cduestc.R
 import club.cduestc.ui.kc.item.ClassCard
+import club.cduestc.ui.kc.widget.KcClassUtil
 import club.cduestc.util.NetManager
 import club.cduestc.util.UserManager
 import com.alibaba.fastjson.JSON
 import com.alibaba.fastjson.JSONArray
 import com.alibaba.fastjson.JSONObject
+import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.math.abs
-import android.widget.Toast
-
-import android.content.DialogInterface
-import java.text.SimpleDateFormat
-import kotlin.collections.ArrayList
-import android.widget.RemoteViews
-
-import android.content.ComponentName
-import club.cduestc.ui.kc.widget.KcClassUtil
-import club.cduestc.ui.kc.widget.KcClassWidget
-import android.content.Intent
-
-
-
-
 
 class KcTableActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,7 +37,7 @@ class KcTableActivity : AppCompatActivity() {
         val cities = this.genTerms().toTypedArray()
         builder.setItems(cities) { _, which ->
             val sharedPreference = getSharedPreferences("class_table", MODE_PRIVATE)
-            sharedPreference.edit().remove("class_table").apply()
+            sharedPreference.edit().remove("class_table").remove("ignore").apply()
             initClassTable(which + 1)
         }
         builder.show()
@@ -113,7 +100,7 @@ class KcTableActivity : AppCompatActivity() {
             val row = rows[i]
             for (j in 0..6){
                 if(matrix[i][j] == null){
-                    row.addView(ClassCard(this, null, null, null), j)
+                    row.addView(ClassCard(this, null, null, null, this), j)
                 }else{
                     row.addView(matrix[i][j], j)
                 }
@@ -124,13 +111,16 @@ class KcTableActivity : AppCompatActivity() {
     }
 
     private fun addCards(arr: JSONArray, rows: List<TableRow>, matrix: Array<Array<ClassCard?>>){
+        val sharedPreference = getSharedPreferences("class_table", MODE_PRIVATE)
+        val ignore = JSONArray.parseArray(sharedPreference.getString("ignore", "[]"))
         arr.forEach {
             val item = JSONObject.parseObject(it.toString())
             var index = item.getJSONArray("indexSet").getIntValue(0)
             index /= 2
             val day = item.getIntValue("day")
             val name = item.getString("name")
-            matrix[index][day - 1] = ClassCard(this, item, calTime(index), colorSelect(name))
+            if(ignore.contains(name)) return@forEach
+            matrix[index][day - 1] = ClassCard(this, item, calTime(index), colorSelect(name), this)
         }
     }
 

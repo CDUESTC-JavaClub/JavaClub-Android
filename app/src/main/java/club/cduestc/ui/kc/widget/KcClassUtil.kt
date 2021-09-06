@@ -8,16 +8,16 @@ import android.widget.RemoteViews
 import androidx.appcompat.app.AppCompatActivity
 import club.cduestc.R
 import com.alibaba.fastjson.JSON
+import com.alibaba.fastjson.JSONArray
 import com.alibaba.fastjson.JSONObject
 import java.util.*
 
 object KcClassUtil {
 
     fun reloadWidget(applicationContext : Context){
-        val sharedPreference = applicationContext.getSharedPreferences("class_table",
-            AppCompatActivity.MODE_PRIVATE
-        )
+        val sharedPreference = applicationContext.getSharedPreferences("class_table", AppCompatActivity.MODE_PRIVATE)
         val arr = JSON.parseArray(sharedPreference.getString("class_table", "[]"))
+        val ignore = JSONArray.parseArray(sharedPreference.getString("ignore", "[]"))
         val views = RemoteViews(applicationContext.packageName, R.layout.kc_class_widget)
 
         val appWidgetManager = AppWidgetManager.getInstance(applicationContext)
@@ -27,7 +27,8 @@ object KcClassUtil {
         days.forEach{ views.setViewVisibility(it, View.GONE) }
         arr.forEach {
             val obj = JSONObject.parseObject(it.toString())
-            if(obj.getIntValue("day") == 1){
+            if(ignore.contains(obj.getString("name"))) return@forEach
+            if(obj.getIntValue("day") == getWeek(Date())){
                 var index = obj.getJSONArray("indexSet").getIntValue(0)
                 index /= 2
                 when(index){

@@ -17,14 +17,23 @@ import club.cduestc.R
 import club.cduestc.R.id.card_body
 import com.alibaba.fastjson.JSONObject
 import android.view.WindowManager
+import androidx.appcompat.app.AppCompatActivity
 import com.alibaba.fastjson.JSONArray
+import androidx.core.content.ContextCompat.startActivity
+
+import club.cduestc.MainActivity
+
+import android.content.Intent
+import androidx.core.content.ContextCompat
+import club.cduestc.ui.kc.sub.KcTableActivity
 
 
 class ClassCard(
     context: Context?,
     private val clazz: JSONObject?,
     private val time : String?,
-    private val color: String?
+    private val color: String?,
+    private val activity: AppCompatActivity
 ) : LinearLayout(context) {
 
     init {
@@ -57,11 +66,22 @@ class ClassCard(
                 "周数：${convertWeek(this.clazz.getJSONArray("weekSet"))}\n"
         val dialog = builder.setView(view).create()
         view.findViewById<Button>(R.id.class_ok).setOnClickListener { dialog.dismiss() }
+        view.findViewById<Button>(R.id.class_hide).setOnClickListener { this.hideClass(this.clazz.getString("name")) }
         val layoutParams: WindowManager.LayoutParams = dialog.window?.attributes!!
         layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT
         layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT
         dialog.window?.attributes = layoutParams
         dialog.show()
+    }
+
+    private fun hideClass(name : String){
+        val sharedPreference = context.getSharedPreferences("class_table", AppCompatActivity.MODE_PRIVATE)
+        val list = JSONArray.parseArray(sharedPreference.getString("ignore", "[]"))
+        list.add(name)
+        sharedPreference.edit().putString("ignore", list.toString()).apply()
+        activity.finish()
+        val intent = Intent(context, KcTableActivity::class.java)
+        context.startActivity(intent)
     }
 
     private fun convertWeek(week : JSONArray) : String{

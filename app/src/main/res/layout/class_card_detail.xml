@@ -27,6 +27,7 @@
                 android:layout_height="50dp"
                 android:text="确定"/>
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/class_hide"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:layout_marginStart="20dp"
