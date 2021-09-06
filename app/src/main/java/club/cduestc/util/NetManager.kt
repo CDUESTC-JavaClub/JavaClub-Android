@@ -39,6 +39,11 @@ object NetManager {
         return res.getBoolean("data")
     }
 
+    fun initForum() : JSONObject?{
+        val getResp = get("/auth/forum") ?: return null
+        return getResp.getJSONObject("data")
+    }
+
     fun bind(id: String, pwd : String) : Boolean {
         val getRes = get("/auth/public-key") ?: return false
         val key = getRes.getString("data")

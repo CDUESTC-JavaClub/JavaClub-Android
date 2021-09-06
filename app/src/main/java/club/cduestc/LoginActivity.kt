@@ -15,6 +15,8 @@ import androidx.appcompat.app.AppCompatDelegate
 import club.cduestc.util.NetManager
 import android.content.IntentFilter
 import club.cduestc.ui.kc.widget.KcClassWidget
+import club.cduestc.util.UserManager
+import com.alibaba.fastjson.JSONObject
 
 
 class LoginActivity : AppCompatActivity() {
@@ -64,6 +66,15 @@ class LoginActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.link_register).setOnClickListener(this::linkRegister)
     }
 
+    /**
+     * 初始化用户图片（头像、背景）
+     */
+    private fun initUserImage(){
+        val s = getSharedPreferences("data", MODE_PRIVATE)
+        UserManager.initImage(s.getString("base_avatar_url", null),
+            s.getString("base_background_url", null))
+    }
+
     private fun autoLogin(success : Boolean, baseName : String, basePassword : String, sharedPreference : SharedPreferences){
         NetManager.createTask{
             if(success){
@@ -79,6 +90,7 @@ class LoginActivity : AppCompatActivity() {
                         mask.visibility = View.GONE
                     }
                 }else{
+                    initUserImage()
                     val intent = Intent(this, MainActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                     intent.setClass(this@LoginActivity, MainActivity::class.java)
@@ -107,17 +119,24 @@ class LoginActivity : AppCompatActivity() {
         editor.putString("base_password", password.text.toString())
 
         NetManager.createTask{
-            if(!NetManager.login(username.text.toString(), password.text.toString())){
-                runOnUiThread {
-                    it.isEnabled = true
-                    it.text = "登录"
-                    Toast.makeText(this, "登陆失败，可能是用户名或密码填写错误！", Toast.LENGTH_SHORT).show()
+            if(NetManager.login(username.text.toString(), password.text.toString())){
+                val data = NetManager.initForum()
+                if(data != null){
+                    UserManager.index = data.getString("index")
+                    editor.putString("base_avatar_url", data.getString("urlAvatar"))
+                    editor.putString("base_background_url", data.getString("urlBackground"))
+                    editor.putBoolean("base_last", true)
+                    editor.apply()
+                    initUserImage()
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                    return@createTask
                 }
-            }else{
-                editor.putBoolean("base_last", true)
-                editor.apply()
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
+            }
+            runOnUiThread {
+                it.isEnabled = true
+                it.text = "登录"
+                Toast.makeText(this, "登陆失败，可能是用户名或密码填写错误！", Toast.LENGTH_SHORT).show()
             }
         }
     }

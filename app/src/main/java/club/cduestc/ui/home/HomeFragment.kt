@@ -25,7 +25,7 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
         val web = binding.forumWebView
-        web.clearCache(true)
+        if(UserManager.index != null) web.clearCache(true)
         web.visibility = View.GONE
         web.settings.javaScriptEnabled = true
         web.webViewClient = object : WebViewClient() {
@@ -35,7 +35,7 @@ class HomeFragment : Fragment() {
                 web.visibility = View.VISIBLE
             }
         }
-        web.loadUrl(UserManager.getIndex() ?: "www.bilibili.com")
+        web.loadUrl(UserManager.index ?: "https://study.cduestc.club/index.php")
 
         return binding.root
     }
