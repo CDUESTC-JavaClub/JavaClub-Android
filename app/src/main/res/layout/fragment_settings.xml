@@ -94,13 +94,13 @@
             app:layout_constraintTop_toBottomOf="@id/setting_info">
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp">
+                android:layout_height="40dp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="10dp"
-                    android:textSize="17sp"
+                    android:textSize="15sp"
                     style="@style/TextColor"
                     android:text="@string/settings_user_id"/>
                 <TextView
@@ -111,26 +111,26 @@
                     android:gravity="end"
                     android:layout_gravity="center_vertical"
                     android:layout_marginEnd="10dp"
-                    android:textSize="17sp" />
+                    android:textSize="15sp" />
             </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="40dp"
                 android:layout_height="1dp"
                 android:background="@color/gray"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_marginTop="50dp"
-                android:layout_height="50dp">
+                android:layout_marginTop="40dp"
+                android:layout_height="40dp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="10dp"
-                    android:textSize="17sp"
+                    android:textSize="15sp"
                     style="@style/TextColor"
                     android:text="@string/settings_user_email"/>
                 <TextView
@@ -141,7 +141,7 @@
                     android:gravity="end"
                     android:layout_gravity="center_vertical"
                     android:layout_marginEnd="10dp"
-                    android:textSize="17sp" />
+                    android:textSize="15sp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -157,24 +157,24 @@
             app:layout_constraintTop_toBottomOf="@id/card1">
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp">
+                android:layout_height="40dp">
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="10dp"
                     android:layout_weight="1"
-                    android:textSize="17sp"
+                    android:textSize="15sp"
                     style="@style/TextColor"
                     android:text="@string/settings_dark_mode"/>
 
                 <club.cduestc.ui.settings.OnOffView
                     android:id="@+id/switch_dark"
-                    android:layout_width="50dp"
-                    android:layout_height="30dp"
+                    android:layout_width="45dp"
+                    android:layout_height="28dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginEnd="10dp"
-                    app:iconSize="30dp"
+                    app:iconSize="28dp"
                     style="@style/SwitchColor"
                     app:onColor="#4CAF50"
                     app:paddingSize="1dp" />
@@ -183,31 +183,31 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="40dp"
                 android:layout_height="1dp"
                 android:background="@color/gray"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_marginTop="50dp"
-                android:layout_height="50dp">
+                android:layout_marginTop="40dp"
+                android:layout_height="40dp">
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="10dp"
                     android:layout_weight="1"
-                    android:textSize="17sp"
+                    android:textSize="15sp"
                     style="@style/TextColor"
                     android:text="@string/settings_auto_dark"/>
 
                 <club.cduestc.ui.settings.OnOffView
                     android:id="@+id/switch_auto"
-                    android:layout_width="50dp"
-                    android:layout_height="30dp"
+                    android:layout_width="45dp"
+                    android:layout_height="28dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginEnd="10dp"
-                    app:iconSize="30dp"
+                    app:iconSize="28dp"
                     style="@style/SwitchColor"
                     app:onColor="#4CAF50"
                     app:paddingSize="1dp" />
@@ -216,16 +216,17 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="100dp"
+                android:layout_marginTop="80dp"
                 android:layout_height="1dp"
                 android:background="@color/gray"/>
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_marginTop="105dp"
+                android:layout_marginTop="85dp"
                 android:layout_marginBottom="10dp"
                 android:layout_marginStart="10dp"
                 android:layout_height="wrap_content"
+                android:textSize="13sp"
                 android:text="@string/settings_dark_info"/>
         </androidx.cardview.widget.CardView>
 
@@ -246,8 +247,9 @@
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/update"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="40dp"
                     android:text="@string/settings_btn_update"
+                    android:textSize="15sp"
                     app:icon="@drawable/settings_update"
                     app:iconSize="20dp"
                     style="@style/FunctionButtonKc"/>
@@ -259,8 +261,9 @@
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/exit"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="40dp"
                     android:text="@string/settings_btn_exit"
+                    android:textSize="15sp"
                     app:icon="@drawable/settings_exit"
                     app:iconSize="20dp"
                     style="@style/FunctionButtonKc"/>

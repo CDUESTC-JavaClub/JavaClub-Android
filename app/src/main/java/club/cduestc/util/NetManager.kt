@@ -18,6 +18,7 @@ import kotlin.collections.ArrayList
 
 object NetManager {
 
+    private val version = "0.0.1"
     private var ip = "http://api.cduestc.club/api"
     private var executorService = Executors.newFixedThreadPool(10)
 
@@ -57,8 +58,12 @@ object NetManager {
         get("/auth/logout")
     }
 
-    fun update() : Boolean{
-        return true
+    fun getVersion() : String{
+        return version
+    }
+
+    fun update() : JSONObject?{
+        return get("/check/update")
     }
 
     private var cookies : List<HttpCookie>? = null

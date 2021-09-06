@@ -2,11 +2,13 @@ package club.cduestc.ui.settings
 
 import android.app.AlertDialog
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -72,10 +74,21 @@ class SettingsFragment : Fragment() {
     }
 
     private fun update(view: View){
+        view.isEnabled = false
+        (view as Button).text = "正在检查更新..."
         NetManager.createTask{
-            if(NetManager.update()){
+            val data = NetManager.update();
+            if(data != null){
+                val version = data.getString("data")
+                if(NetManager.getVersion() != version){
+                    requireActivity().runOnUiThread {
+                        showDialog()
+                    }
+                }
                 requireActivity().runOnUiThread {
-                    showDialog()
+                    view.isEnabled = true
+                    view.text = "检查更新"
+                    Toast.makeText(context, "已经是最新版本啦！", Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -103,6 +116,9 @@ class SettingsFragment : Fragment() {
         val dialog = builder.setView(view).create()
         btn.setOnClickListener {
             dialog.dismiss()
+            val uri: Uri = Uri.parse("https://hub.fastgit.org/CDUESTC-JavaClub/JavaClub-Android")
+            val intent = Intent(Intent.ACTION_VIEW, uri)
+            startActivity(intent)
         }
         dialog.show()
     }
