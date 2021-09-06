@@ -5,39 +5,39 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <androidx.cardview.widget.CardView
         android:id="@+id/score_background"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:backgroundTint="@color/green"
-        app:cardCornerRadius="10dp"
-        android:layout_margin="10dp">
+        app:cardCornerRadius="5dp"
+        android:layout_margin="5dp">
         <TextView
             android:id="@+id/score_number"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textColor="@color/white"
             android:gravity="center"
-            android:textSize="18sp"/>
+            android:textSize="15sp"/>
     </androidx.cardview.widget.CardView>
     <TextView
         android:id="@+id/score_name"
-        android:layout_marginTop="7dp"
-        android:layout_marginStart="65dp"
-        android:textSize="18sp"
+        android:layout_marginTop="3dp"
+        android:layout_marginStart="45dp"
+        android:textSize="15sp"
         android:layout_width="wrap_content"
         android:layout_height="20dp"
         android:maxWidth="250sp"/>
     <TextView
         android:id="@+id/score_desc"
-        android:layout_marginTop="30dp"
-        android:layout_marginStart="65dp"
-        android:textSize="15sp"
+        android:layout_marginTop="21dp"
+        android:layout_marginStart="45dp"
+        android:textSize="12sp"
         android:layout_width="wrap_content"
         android:layout_height="20dp"
         android:maxWidth="250sp"/>
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="45dp"
         android:layout_marginHorizontal="10dp"
         android:background="@color/gray"/>
 </RelativeLayout>

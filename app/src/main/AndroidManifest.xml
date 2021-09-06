@@ -16,6 +16,7 @@
 
         <receiver
             android:name=".ui.kc.widget.KcClassWidget"
+            android:label="课程表"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
