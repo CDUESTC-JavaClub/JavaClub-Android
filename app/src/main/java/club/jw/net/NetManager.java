@@ -134,7 +134,7 @@ public class NetManager {
         char[] chars = ids.substring(index, index + 20).toCharArray();
         while (chars[i] != '\"') i++;
         ids = new String(chars).substring(0, i);
-        int semester = (2035 - grade) * 2 + term;
+        int semester = (grade - 2003) * 2 + term;
         ClassesRequest request = new ClassesRequest(1, "class", 1, semester, ids, "");
         HtmlPage page = requestAsClient("/courseTableForStd!courseTable.action", Method.POST, cookie, request);
         if(page == null) return new ErrorResponse("网络错误！", 404);

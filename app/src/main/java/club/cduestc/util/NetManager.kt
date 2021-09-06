@@ -1,7 +1,6 @@
 package club.cduestc.util
 
 import com.alibaba.fastjson.JSONObject
-import org.apache.commons.codec.binary.Base64
 import org.jsoup.Jsoup
 import java.io.ByteArrayOutputStream
 import java.io.IOException
@@ -11,6 +10,7 @@ import java.security.GeneralSecurityException
 import java.security.KeyFactory
 import java.security.interfaces.RSAPublicKey
 import java.security.spec.X509EncodedKeySpec
+import java.util.*
 import java.util.concurrent.Executors
 import javax.crypto.Cipher
 import kotlin.collections.ArrayList
@@ -99,7 +99,7 @@ object NetManager {
 
     private fun encrypt(str: String, publicKey: String?): String {
         try {
-            val decoded = Base64.decodeBase64(publicKey)
+            val decoded = Base64.getDecoder().decode(publicKey)
             val pubKey = KeyFactory.getInstance("RSA")
                 .generatePublic(X509EncodedKeySpec(decoded)) as RSAPublicKey
             val cipher = Cipher.getInstance("RSA/None/PKCS1Padding")
@@ -123,7 +123,7 @@ object NetManager {
             }
             bops.close()
             val encryptedData: ByteArray = bops.toByteArray()
-            return Base64.encodeBase64String(encryptedData)
+            return Base64.getEncoder().encodeToString(encryptedData)
         } catch (e: GeneralSecurityException) {
             throw RuntimeException(e.message)
         }

@@ -34,8 +34,8 @@ class KcScoreActivity : AppCompatActivity() {
                     findViewById<View>(R.id.score_menu).visibility = View.VISIBLE
                 }
             }catch (e : Exception){
-                e.printStackTrace()
                 this.runOnUiThread {
+                    e.printStackTrace()
                     Toast.makeText(this, "未知错误，无法获取成绩信息！", Toast.LENGTH_SHORT).show()
                     this.finish()
                 }
@@ -48,14 +48,14 @@ class KcScoreActivity : AppCompatActivity() {
         scoreList.terms.forEach {
             if(scoreList.getScore(it, 2).isNotEmpty()){
                 val term2 = scoreList.getScore(it, 2).stream().map { inner ->
-                    ScoreLine(this, "学分 "+inner.credits+"（绩点"+inner.points+"）", inner.name, inner.score_all.toString())
+                    ScoreLine(this, "学分 "+inner.credits+"（绩点"+inner.points+"）", inner.name, inner.finalScore.toString())
                 }.toList()
                 val list2 = TermScoreList(this, it+"学年 第2学期", term2)
                 menu.addView(list2)
             }
 
             val term1 = scoreList.getScore(it, 1).stream().map { inner ->
-                ScoreLine(this, "学分 "+inner.credits+"（绩点"+inner.points+"）", inner.name, inner.score_all.toString())
+                ScoreLine(this, "学分 "+inner.credits+"（绩点"+inner.points+"）", inner.name, inner.finalScore.toString())
             }.toList()
             val list = TermScoreList(this, it+"学年 第1学期", term1)
             menu.addView(list)

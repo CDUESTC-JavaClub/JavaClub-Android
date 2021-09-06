@@ -110,12 +110,12 @@ class KcTableActivity : AppCompatActivity() {
             NetManager.createTask{
                 val arr =  UserManager.kcAccount.getClassTable(term).toJSONArray()
                 sharedPreference.edit().putString("class_table", arr.toString()).apply()
-                addCards(arr, rows, matrix)
+                addCards(arr, matrix)
                 runOnUiThread { fillTable(rows, matrix) }
             }
         }else{
             val arr = JSON.parseArray(sharedPreference.getString("class_table", "[]"))
-            addCards(arr, rows, matrix)
+            addCards(arr, matrix)
             fillTable(rows, matrix)
         }
     }
@@ -139,7 +139,7 @@ class KcTableActivity : AppCompatActivity() {
         KcClassUtil.reloadWidget(this)
     }
 
-    private fun addCards(arr: JSONArray, rows: List<TableRow>, matrix: Array<Array<ArrayList<ClassCard>>>){
+    private fun addCards(arr: JSONArray, matrix: Array<Array<ArrayList<ClassCard>>>){
         val sharedPreference = getSharedPreferences("class_table", MODE_PRIVATE)
         val ignore = JSONArray.parseArray(sharedPreference.getString("ignore", "[]"))
         arr.forEach {
