@@ -1,5 +1,7 @@
 package club.jw.score;
 
+import com.alibaba.fastjson.JSONObject;
+
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.BiConsumer;
@@ -9,10 +11,16 @@ public class ScoreList implements Iterable<List<Score>>{
 
     private final Map<String, List<Score>> scoreMap;
     private final Set<String> terms;
+    private final JSONObject statistic;
 
-    public ScoreList(Map<String, List<Score>> scoreMap, Set<String> terms) {
+    public ScoreList(Map<String, List<Score>> scoreMap, Set<String> terms, JSONObject statistic) {
         this.scoreMap = scoreMap;
+        this.statistic = statistic;
         this.terms = terms;
+    }
+
+    public JSONObject getStatistic() {
+        return statistic;
     }
 
     /**

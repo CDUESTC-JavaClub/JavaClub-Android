@@ -1,5 +1,7 @@
 package club.jw.auth;
 
+import com.alibaba.fastjson.JSONObject;
+
 import club.jw.auth.func.AuthFunction;
 import club.jw.auth.func.ClazzFunction;
 import club.jw.auth.func.ScoreFunction;
@@ -136,7 +138,6 @@ public class KcAccount implements AuthFunction, ScoreFunction, ClazzFunction {
     @Override
     public ScoreList getScore() {
         if(info == null) throw new AuthorizationException("账户未登录！");
-        Integer grade = (Integer) info.get("年级");
         Response response = NetManager.score(cookie);
         if(response.getCode() == 401){
             ErrorResponse err = (ErrorResponse) response;
@@ -151,7 +152,7 @@ public class KcAccount implements AuthFunction, ScoreFunction, ClazzFunction {
                 if(!scoreMap.containsKey(key)) scoreMap.put(key, new ArrayList<>());
                 scoreMap.get(key).add(new Score(score));
             });
-            return new ScoreList(scoreMap, terms);
+            return new ScoreList(scoreMap, terms, scoreResponse.getStatistics());
         }else {
             ErrorResponse err = (ErrorResponse) response;
             throw new NetworkException(err.getReason());

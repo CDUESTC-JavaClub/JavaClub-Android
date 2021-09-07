@@ -39,5 +39,5 @@
         android:layout_height="1dp"
         android:layout_marginTop="45dp"
         android:layout_marginHorizontal="10dp"
-        android:background="@color/gray"/>
+        style="@style/SettingBackground"/>
 </RelativeLayout>

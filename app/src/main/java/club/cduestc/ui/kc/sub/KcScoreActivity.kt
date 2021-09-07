@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.ScrollView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import club.cduestc.R
@@ -60,5 +61,8 @@ class KcScoreActivity : AppCompatActivity() {
             val list = TermScoreList(this, it+"学年 第1学期", term1)
             menu.addView(list)
         }
+        findViewById<TextView>(R.id.kc_statistic_count).text = scoreList.statistic.getString("门数")
+        findViewById<TextView>(R.id.kc_statistic_cridet).text = scoreList.statistic.getString("总学分")
+        findViewById<TextView>(R.id.kc_statistic_points).text = scoreList.statistic.getString("平均绩点")
     }
 }

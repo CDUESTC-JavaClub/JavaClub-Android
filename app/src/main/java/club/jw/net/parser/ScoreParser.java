@@ -1,7 +1,10 @@
 package club.jw.net.parser;
 
+import com.alibaba.fastjson.JSONObject;
+
 import club.jw.net.entity.response.ScoreResponse;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
@@ -11,6 +14,13 @@ public class ScoreParser implements Parser<ScoreResponse>{
     @Override
     public ScoreResponse parse(Document document) {
         List<ScoreResponse.SingleScoreResponse> list = new ArrayList<>();
+        Elements sta = document.getElementsByTag("tbody").get(0).getElementsByTag("tr");
+        Elements stb = sta.get(sta.size() - 2).getElementsByTag("th");
+        JSONObject object = new JSONObject();
+        object.put("门数", stb.get(1).text());
+        object.put("总学分", stb.get(2).text());
+        object.put("平均绩点", stb.get(3).text());
+
         Elements elements = document.getElementsByTag("tbody").get(1).getElementsByTag("tr");
         Elements attrs = document.getElementsByTag("thead").get(1).getElementsByTag("th");
         List<String> arr = new ArrayList<>();
@@ -30,6 +40,6 @@ public class ScoreParser implements Parser<ScoreResponse>{
             }
             list.add(single);
         });
-        return new ScoreResponse(list);
+        return new ScoreResponse(list, object);
     }
 }

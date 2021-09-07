@@ -1,6 +1,8 @@
 package club.jw.net.entity.response;
 
 import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+
 import club.jw.net.anno.Info;
 
 import java.util.List;
@@ -9,15 +11,21 @@ import java.util.function.Consumer;
 public class ScoreResponse extends Response{
 
     private final List<SingleScoreResponse> scores;
+    private final JSONObject statistics;
 
-    public ScoreResponse(List<SingleScoreResponse> scores){
+    public ScoreResponse(List<SingleScoreResponse> scores, JSONObject statistics){
         this.scores = scores;
+        this.statistics = statistics;
     }
 
     public JSONArray asJSONArray(){
         JSONArray array = new JSONArray();
         scores.forEach(s -> array.add(s.asJSON()));
         return array;
+    }
+
+    public JSONObject getStatistics() {
+        return statistics;
     }
 
     public void forEach(Consumer<SingleScoreResponse> consumer){

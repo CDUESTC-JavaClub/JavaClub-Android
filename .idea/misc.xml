@@ -4,15 +4,19 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.4578125" />
+        <entry key="app/src/main/res/drawable-v21/app_widget_background.xml" value="0.4041666666666667" />
+        <entry key="app/src/main/res/drawable-v21/app_widget_inner_view_background.xml" value="0.4041666666666667" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.27239583333333334" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.27239583333333334" />
         <entry key="app/src/main/res/drawable/translucent.xml" value="0.4588541666666667" />
         <entry key="app/src/main/res/layout/activity_kc_score.xml" value="0.26856884057971014" />
-        <entry key="app/src/main/res/layout/activity_kc_table.xml" value="0.25625" />
+        <entry key="app/src/main/res/layout/activity_kc_student.xml" value="0.29347826086956524" />
+        <entry key="app/src/main/res/layout/activity_kc_table.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.26856884057971014" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2050925925925926" />
-        <entry key="app/src/main/res/layout/class_card.xml" value="0.25625" />
-        <entry key="app/src/main/res/layout/class_card_detail.xml" value="0.25625" />
+        <entry key="app/src/main/res/layout/class_card.xml" value="0.30932971014492755" />
+        <entry key="app/src/main/res/layout/class_card_detail.xml" value="0.30932971014492755" />
+        <entry key="app/src/main/res/layout/class_line.xml" value="0.3016304347826087" />
         <entry key="app/src/main/res/layout/dialog.xml" value="0.2848731884057971" />
         <entry key="app/src/main/res/layout/fragment_bai.xml" value="0.31657608695652173" />
         <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.25625" />
@@ -20,7 +24,7 @@
         <entry key="app/src/main/res/layout/fragment_kc.xml" value="0.32971014492753625" />
         <entry key="app/src/main/res/layout/fragment_notifications.xml" value="0.25625" />
         <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.25625" />
-        <entry key="app/src/main/res/layout/kc_class_widget.xml" value="0.432518115942029" />
+        <entry key="app/src/main/res/layout/kc_class_widget.xml" value="0.21979166666666666" />
         <entry key="app/src/main/res/layout/score_line.xml" value="0.25625" />
         <entry key="app/src/main/res/layout/score_list.xml" value="0.276268115942029" />
         <entry key="app/src/main/res/layout/update_dialog.xml" value="0.4427083333333333" />
