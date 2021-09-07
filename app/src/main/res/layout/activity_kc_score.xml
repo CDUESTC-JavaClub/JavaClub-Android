@@ -4,8 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    android:clipToPadding="true"
     style="@style/SettingBackground"
     tools:context=".ui.kc.sub.KcScoreActivity">
 
@@ -132,7 +130,8 @@
         app:layout_constraintTop_toBottomOf="@+id/top_all">
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginBottom="70dp">
             <LinearLayout
                 android:id="@+id/score_menu"
                 android:layout_width="match_parent"

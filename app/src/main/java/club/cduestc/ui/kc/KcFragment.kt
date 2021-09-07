@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import club.cduestc.MainActivity
 import club.cduestc.databinding.FragmentKcBinding
 import club.cduestc.ui.kc.sub.KcScoreActivity
+import club.cduestc.ui.kc.sub.KcStudentActivity
 import club.cduestc.ui.kc.sub.KcTableActivity
 import club.cduestc.util.KcManager
 import club.cduestc.util.NetManager
@@ -37,6 +38,7 @@ class KcFragment : Fragment() {
 
         binding.btnKcScore.setOnClickListener(this::displayScore)
         binding.btnKcClass.setOnClickListener(this::displayClass)
+        binding.btnKcUser.setOnClickListener(this::displayInfo)
 
         return binding.root
     }
@@ -46,6 +48,11 @@ class KcFragment : Fragment() {
         binding.kcInfoDepartment.text = "${UserManager.kcAccount.info.get("年级")}级 ${UserManager.kcAccount.info.get("专业")}"
         binding.kcInfoId.text = "学号：${UserManager.kcAccount.id}"
         binding.kcInfoEmail.text = "所属：${UserManager.kcAccount.info.get("院系")} (${UserManager.kcAccount.info.get("学历层次")})"
+    }
+
+    private fun displayInfo(it : View){
+        val intent = Intent(context, KcStudentActivity::class.java)
+        startActivity(intent)
     }
 
     private fun displayClass(it : View){
