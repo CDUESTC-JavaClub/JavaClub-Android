@@ -69,7 +69,7 @@ public class ClassParser implements Parser<Response> {
             while (chars[i++] != ',') builder.append(chars[i - 1]);
             String week = builder.toString();
             builder.setLength(0);
-            while (chars[i++] != '(') builder.append(chars[i - 1]);
+            while (chars[i++] != ')') builder.append(chars[i - 1]);
             String local = builder.toString();
 
             while (i < chars.length && chars[i] != ')') i++;
