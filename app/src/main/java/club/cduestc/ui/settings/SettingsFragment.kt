@@ -116,7 +116,7 @@ class SettingsFragment : Fragment() {
         val dialog = builder.setView(view).create()
         btn.setOnClickListener {
             dialog.dismiss()
-            val uri: Uri = Uri.parse("https://hub.fastgit.org/CDUESTC-JavaClub/JavaClub-Android")
+            val uri: Uri = Uri.parse("https://github.com/CDUESTC-JavaClub/JavaClub-Android/releases")
             val intent = Intent(Intent.ACTION_VIEW, uri)
             startActivity(intent)
         }

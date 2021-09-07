@@ -41,6 +41,13 @@ class KcFragment : Fragment() {
         return binding.root
     }
 
+    private fun initInfoCard(){
+        binding.kcInfoName.text = UserManager.kcAccount.name
+        binding.kcInfoDepartment.text = "${UserManager.kcAccount.info.get("年级")}级 ${UserManager.kcAccount.info.get("专业")}"
+        binding.kcInfoId.text = "学号：${UserManager.kcAccount.id}"
+        binding.kcInfoEmail.text = "所属：${UserManager.kcAccount.info.get("院系")} (${UserManager.kcAccount.info.get("学历层次")})"
+    }
+
     private fun displayClass(it : View){
         val intent = Intent(context, KcTableActivity::class.java)
         startActivity(intent)
@@ -100,6 +107,7 @@ class KcFragment : Fragment() {
                     Toast.makeText(context, "已连接到教务系统！", Toast.LENGTH_SHORT).show()
                     binding.kcMenu.visibility = View.VISIBLE
                     binding.kcLoading.visibility = View.GONE
+                    initInfoCard()
                 }
             }catch (e : Exception){
                 e.printStackTrace()
