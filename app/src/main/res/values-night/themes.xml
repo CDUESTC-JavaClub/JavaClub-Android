@@ -35,7 +35,7 @@
     </style>
 
     <style name="NavColor">
-        <item name="android:background">#131313</item>
+        <item name="android:background">@color/black</item>
     </style>
 
     <style name="Theme.JavaClub.AppWidgetContainer" parent="Theme.JavaClub.AppWidgetContainerParent">

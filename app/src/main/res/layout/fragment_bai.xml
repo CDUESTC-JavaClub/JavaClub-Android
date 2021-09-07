@@ -4,139 +4,408 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     style="@style/SettingBackground"
     tools:context=".ui.dashboard.BaiFragment">
 
     <androidx.cardview.widget.CardView
+        android:visibility="visible"
+        android:id="@+id/tip_bind"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginHorizontal="10dp"
+        android:layout_height="240dp"
+        android:layout_marginHorizontal="30dp"
         app:cardCornerRadius="10dp"
-        app:cardElevation="10dp">
+        android:layout_gravity="center">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:textSize="11sp"
-            android:text="@string/model_kc_note"
-            android:textColor="@color/dark_gray"/>
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginHorizontal="10dp"
-        app:cardCornerRadius="10dp"
-        app:cardBackgroundColor="@color/blue"
-        app:cardElevation="10dp">
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_margin="5dp"
-            app:cardCornerRadius="10dp">
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/bai"/>
-        </com.google.android.material.card.MaterialCardView>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="25dp"
-            android:layout_marginTop="5dp"
+            android:text="绑定您的学号"
             android:textSize="20sp"
-            android:layout_marginStart="55dp"
-            android:text="@string/model_bai"
-            android:textColor="@color/white"
-            android:gravity="center_vertical"/>
-        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginHorizontal="10dp"/>
+        <View
             android:layout_width="match_parent"
-            android:layout_height="20dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="40dp"
+            android:background="@color/gray"
+            android:layout_marginHorizontal="30dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="需要绑定学号之后才能使用百叶计划功能哦，我们注重个人隐私，不会在远端保留您的密码和个人信息，敏感内容只会保存在本地"
+            android:layout_marginTop="45dp"
+            android:layout_gravity="center_horizontal"
             android:textSize="11sp"
-            android:layout_marginStart="55dp"
-            android:layout_marginTop="28dp"
-            android:text="@string/model_bai_desc"
-            android:textColor="@color/light_gray"
-            android:gravity="center_vertical"/>
+            android:layout_marginHorizontal="10dp"/>
+        <EditText
+            android:id="@+id/kc_id"
+            android:layout_width="match_parent"
+            android:layout_marginTop="100dp"
+            android:layout_marginHorizontal="20dp"
+            android:lines="1"
+            android:maxLength="20"
+            android:hint="学号"
+            android:layout_height="40dp"/>
+        <EditText
+            android:id="@+id/kc_password"
+            android:layout_width="match_parent"
+            android:layout_marginTop="140dp"
+            android:lines="1"
+            android:maxLength="20"
+            android:layout_marginHorizontal="20dp"
+            android:inputType="textPassword"
+            android:hint="密码"
+            android:layout_height="40dp"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/save_kc_btn"
+            android:layout_width="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_gravity="center_horizontal|bottom"
+            android:text="保存"
+            android:layout_height="50dp"/>
     </androidx.cardview.widget.CardView>
 
-    <androidx.cardview.widget.CardView
+    <LinearLayout
+        android:visibility="gone"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginHorizontal="10dp"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="10dp">
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_height="match_parent">
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/net_error"
+            app:tint="#8D8C8C8C" />
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bai_no_net"/>
+    </LinearLayout>
 
-        <LinearLayout
+    <LinearLayout
+        android:visibility="gone"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="10dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:textSize="11sp"
+                android:text="@string/model_kc_note"
+                android:textColor="@color/dark_gray"/>
+        </androidx.cardview.widget.CardView>
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_kc_score1"
-                style="@style/FunctionButtonBai"
-                android:text="@string/btn_bai_join_bx"
-                app:cornerRadius="0dp"
-                app:icon="@drawable/icon_kc_user"
-                app:iconSize="20dp" />
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="10dp"
+            app:cardCornerRadius="10dp"
+            app:cardBackgroundColor="@color/blue"
+            app:cardElevation="10dp">
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="5dp"
+                app:cardCornerRadius="10dp">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/bai"/>
+            </com.google.android.material.card.MaterialCardView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_marginTop="5dp"
+                android:textSize="20sp"
+                android:layout_marginStart="55dp"
+                android:text="@string/model_bai"
+                android:textColor="@color/white"
+                android:gravity="center_vertical"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:textSize="11sp"
+                android:layout_marginStart="55dp"
+                android:layout_marginTop="28dp"
+                android:text="@string/model_bai_desc"
+                android:textColor="@color/light_gray"
+                android:gravity="center_vertical"/>
+        </androidx.cardview.widget.CardView>
 
-            <View style="@style/SpiltLine"
-                android:background="@color/gray"/>
+        <androidx.cardview.widget.CardView
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="10dp"
+            app:cardCornerRadius="10dp"
+            android:layout_height="120dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:layout_width="160dp"
+                        android:layout_height="120dp"
+                        android:src="@drawable/bai_score"
+                        android:layout_gravity="center"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+                            <LinearLayout
+                                android:layout_marginTop="10dp"
+                                android:layout_gravity="center_horizontal"
+                                android:orientation="horizontal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <ImageView
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:layout_marginEnd="5dp"
+                                    android:src="@drawable/bai_icon_bx"
+                                    app:tint="@color/red" />
+                                <TextView
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/red"
+                                    android:textSize="20sp"
+                                    android:text="20"/>
+                            </LinearLayout>
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_kc_class1"
-                style="@style/FunctionButtonBai"
-                android:text="@string/btn_bai_join_dx"
-                app:cornerRadius="0dp"
-                app:icon="@drawable/icon_kc_user"
-                app:iconSize="20dp" />
+                            <TextView
+                                android:layout_gravity="center_horizontal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12sp"
+                                android:text="博学"/>
+                        </LinearLayout>
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="45dp"
+                            android:layout_margin="5dp"
+                            style="@style/SettingBackground"/>
+                        <LinearLayout
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+                            <LinearLayout
+                                android:layout_marginTop="10dp"
+                                android:layout_gravity="center_horizontal"
+                                android:orientation="horizontal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <ImageView
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:layout_marginEnd="5dp"
+                                    android:src="@drawable/bai_icon_jm"
+                                    app:tint="@color/yellow" />
+                                <TextView
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/yellow"
+                                    android:textSize="20sp"
+                                    android:text="45"/>
+                            </LinearLayout>
+                            <TextView
+                                android:layout_gravity="center_horizontal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12sp"
+                                android:text="尽美"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginHorizontal="5dp"
+                        android:layout_marginTop="5dp"
+                        style="@style/SettingBackground"/>
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+                            <LinearLayout
+                                android:layout_marginTop="10dp"
+                                android:layout_gravity="center_horizontal"
+                                android:orientation="horizontal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <ImageView
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:layout_marginEnd="5dp"
+                                    android:src="@drawable/bai_icon_dx"
+                                    app:tint="@color/green" />
+                                <TextView
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/green"
+                                    android:textSize="20sp"
+                                    android:text="10"/>
+                            </LinearLayout>
+                            <TextView
+                                android:layout_gravity="center_horizontal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12sp"
+                                android:text="笃行"/>
+                        </LinearLayout>
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="45dp"
+                            android:layout_margin="5dp"
+                            style="@style/SettingBackground"/>
+                        <LinearLayout
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+                            <LinearLayout
+                                android:layout_marginTop="10dp"
+                                android:layout_gravity="center_horizontal"
+                                android:orientation="horizontal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <ImageView
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:layout_marginEnd="10dp"
+                                    android:src="@drawable/bai_icon_md"
+                                    app:tint="@color/blue" />
+                                <TextView
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/blue"
+                                    android:textSize="20sp"
+                                    android:text="10"/>
+                            </LinearLayout>
+                            <TextView
+                                android:layout_gravity="center_horizontal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12sp"
+                                android:text="明德"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
-            <View style="@style/SpiltLine"
-                android:background="@color/gray"/>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="10dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="10dp">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_kc_user1"
-                style="@style/FunctionButtonBai"
-                android:text="@string/btn_bai_join_jm"
-                app:cornerRadius="0dp"
-                app:icon="@drawable/icon_kc_user"
-                app:iconSize="20dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-            <View style="@style/SpiltLine"
-                android:background="@color/gray"/>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_kc_score1"
+                    style="@style/FunctionButtonBai"
+                    android:text="@string/btn_bai_join_bx"
+                    app:cornerRadius="0dp"
+                    app:icon="@drawable/icon_kc_user"
+                    app:iconSize="20dp" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_kc_user2"
-                style="@style/FunctionButtonBai"
-                android:text="@string/btn_bai_join_md"
-                app:cornerRadius="0dp"
-                app:icon="@drawable/icon_kc_user"
-                app:iconSize="20dp" />
+                <View style="@style/SpiltLine"
+                    android:background="@color/gray"/>
 
-            <View style="@style/SpiltLine"
-                android:background="@color/gray"/>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_kc_class1"
+                    style="@style/FunctionButtonBai"
+                    android:text="@string/btn_bai_join_dx"
+                    app:cornerRadius="0dp"
+                    app:icon="@drawable/icon_kc_user"
+                    app:iconSize="20dp" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_kc_user3"
-                style="@style/FunctionButtonBai"
-                android:text="@string/btn_bai_manage"
-                app:cornerRadius="0dp"
-                app:icon="@drawable/icon_class_table"
-                app:iconSize="20dp" />
+                <View style="@style/SpiltLine"
+                    android:background="@color/gray"/>
 
-            <View style="@style/SpiltLine"
-                android:background="@color/gray"/>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_kc_user1"
+                    style="@style/FunctionButtonBai"
+                    android:text="@string/btn_bai_join_jm"
+                    app:cornerRadius="0dp"
+                    app:icon="@drawable/icon_kc_user"
+                    app:iconSize="20dp" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_kc_user4"
-                style="@style/FunctionButtonBai"
-                android:text="@string/btn_bai_score"
-                app:cornerRadius="0dp"
-                app:icon="@drawable/icon_kc"
-                app:iconSize="20dp" />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
+                <View style="@style/SpiltLine"
+                    android:background="@color/gray"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_kc_user2"
+                    style="@style/FunctionButtonBai"
+                    android:text="@string/btn_bai_join_md"
+                    app:cornerRadius="0dp"
+                    app:icon="@drawable/icon_kc_user"
+                    app:iconSize="20dp" />
+
+                <View style="@style/SpiltLine"
+                    android:background="@color/gray"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_kc_user3"
+                    style="@style/FunctionButtonBai"
+                    android:text="@string/btn_bai_manage"
+                    app:cornerRadius="0dp"
+                    app:icon="@drawable/icon_class_table"
+                    app:iconSize="20dp" />
+
+                <View style="@style/SpiltLine"
+                    android:background="@color/gray"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_kc_user4"
+                    style="@style/FunctionButtonBai"
+                    android:text="@string/btn_bai_score"
+                    app:cornerRadius="0dp"
+                    app:icon="@drawable/icon_kc"
+                    app:iconSize="20dp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
+
 </LinearLayout>
