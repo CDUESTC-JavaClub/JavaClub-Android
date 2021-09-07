@@ -72,9 +72,6 @@ public class ClassParser implements Parser<Response> {
             while (chars[i++] != ')') builder.append(chars[i - 1]);
             String local = builder.toString();
 
-            while (i < chars.length && chars[i] != ')') i++;
-            while (i < chars.length - 1 && chars[i] == ')') i++;
-
             clazzSet.add(new ClassesResponse.Clazz(name, id, teacher, local, day+1,
                     toWeeks(week), new HashSet<Integer>(){{this.add(index > 3 ? index - offset() : index);}}));
         }

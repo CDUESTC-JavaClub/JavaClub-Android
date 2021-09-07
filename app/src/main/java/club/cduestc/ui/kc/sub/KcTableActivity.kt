@@ -149,7 +149,7 @@ class KcTableActivity : AppCompatActivity() {
             val day = item.getIntValue("day")
             val name = item.getString("name")
             if(ignore.contains(name)) return@forEach
-            matrix[index][day - 1].add(ClassCard(this, item, calTime(index), colorSelect(name), this))
+            if(index < 5) matrix[index][day - 1].add(ClassCard(this, item, calTime(index), colorSelect(name), this))
         }
     }
 
