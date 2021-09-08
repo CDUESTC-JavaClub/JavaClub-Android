@@ -52,7 +52,7 @@
         <item name="materialThemeOverlay">@style/MainColor</item>
     </style>
 
-    <style name="SpiltLine">
+    <style name="SpiltLine" parent="@style/SettingBackground">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">1dp</item>
         <item name="android:layout_marginHorizontal">10dp</item>

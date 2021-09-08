@@ -23,6 +23,7 @@
 
     <string name="model_bai">百叶计划功能</string>
     <string name="model_bai_desc">包含活动报名、活动取消、积分查询等功能。</string>
+    <string name="btn_bai_join">所有活动</string>
     <string name="btn_bai_join_md">明德活动</string>
     <string name="btn_bai_join_dx">笃行活动</string>
     <string name="btn_bai_join_bx">博学活动</string>

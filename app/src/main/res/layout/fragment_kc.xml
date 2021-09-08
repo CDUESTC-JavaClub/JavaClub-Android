@@ -245,8 +245,7 @@
                     app:icon="@drawable/icon_kc"
                     app:iconSize="20dp" />
 
-                <View style="@style/SpiltLine"
-                    android:background="@color/gray"/>
+                <View style="@style/SpiltLine"/>
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_kc_class"
@@ -256,8 +255,7 @@
                     app:icon="@drawable/icon_class_table"
                     app:iconSize="20dp" />
 
-                <View style="@style/SpiltLine"
-                    android:background="@color/gray"/>
+                <View style="@style/SpiltLine"/>
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_kc_user"

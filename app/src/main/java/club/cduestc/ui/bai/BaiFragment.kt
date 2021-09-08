@@ -29,12 +29,29 @@ class BaiFragment : Fragment() {
         baiViewModel = ViewModelProvider(this).get(BaiViewModel::class.java)
         _binding = FragmentBaiBinding.inflate(inflater, container, false)
 
+        main()
         val performance = requireActivity().getSharedPreferences("data", AppCompatActivity.MODE_PRIVATE)
-        if(UserManager.getBindId() != null && performance.contains("bai_password")) displayMenu(performance)
-        if(UserManager.getBindId() != null) initEdit(performance)
         binding.saveKcBtn.setOnClickListener { savePassword(performance, binding.kcPassword.text.toString(), binding.kcId.text.toString()) }
 
         return binding.root
+    }
+
+    private fun main(){
+        NetManager.createTask{
+            if(NetManager.isBaiNetwork()){
+                requireActivity().runOnUiThread{
+                    binding.baiTipBind.visibility = View.VISIBLE
+                    val performance = requireActivity().getSharedPreferences("data", AppCompatActivity.MODE_PRIVATE)
+                    if(UserManager.getBindId() != null && performance.contains("bai_password")) displayMenu(performance)
+                    if(UserManager.getBindId() != null) initEdit(performance)
+                }
+            }else{
+                requireActivity().runOnUiThread{
+                    binding.baiTipBind.visibility = View.GONE
+                    binding.baiNetErr.visibility = View.VISIBLE
+                }
+            }
+        }
     }
 
     private fun initEdit(performance: SharedPreferences){
@@ -102,9 +119,11 @@ class BaiFragment : Fragment() {
                     binding.baiUserIndent.text = account.identity
                 }
             }catch (e : ByjhAssistantException){
-                binding.baiMenu.visibility = View.GONE
-                binding.baiLoading.visibility = View.GONE
-                binding.baiTipBind.visibility = View.VISIBLE
+                requireActivity().runOnUiThread {
+                    binding.baiMenu.visibility = View.GONE
+                    binding.baiLoading.visibility = View.GONE
+                    binding.baiTipBind.visibility = View.VISIBLE
+                }
                 Toast.makeText(context, "登陆失败，请检查你的学号和密码！", Toast.LENGTH_SHORT).show();
             }
         }

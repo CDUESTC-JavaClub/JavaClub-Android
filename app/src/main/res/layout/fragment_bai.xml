@@ -20,7 +20,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="正在连接到教务系统..."/>
+            android:text="正在连接到百叶计划..."/>
     </LinearLayout>
 
     <androidx.cardview.widget.CardView
@@ -102,7 +102,7 @@
 
     <LinearLayout
         android:id="@+id/bai_menu"
-        android:visibility="visible"
+        android:visibility="gone"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -443,46 +443,12 @@
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_kc_score1"
                     style="@style/FunctionButtonBai"
-                    android:text="@string/btn_bai_join_bx"
+                    android:text="@string/btn_bai_join"
                     app:cornerRadius="0dp"
                     app:icon="@drawable/icon_kc_user"
                     app:iconSize="20dp" />
 
-                <View style="@style/SpiltLine"
-                    android:background="@color/gray"/>
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_kc_class1"
-                    style="@style/FunctionButtonBai"
-                    android:text="@string/btn_bai_join_dx"
-                    app:cornerRadius="0dp"
-                    app:icon="@drawable/icon_kc_user"
-                    app:iconSize="20dp" />
-
-                <View style="@style/SpiltLine"
-                    android:background="@color/gray"/>
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_kc_user1"
-                    style="@style/FunctionButtonBai"
-                    android:text="@string/btn_bai_join_jm"
-                    app:cornerRadius="0dp"
-                    app:icon="@drawable/icon_kc_user"
-                    app:iconSize="20dp" />
-
-                <View style="@style/SpiltLine"
-                    android:background="@color/gray"/>
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_kc_user2"
-                    style="@style/FunctionButtonBai"
-                    android:text="@string/btn_bai_join_md"
-                    app:cornerRadius="0dp"
-                    app:icon="@drawable/icon_kc_user"
-                    app:iconSize="20dp" />
-
-                <View style="@style/SpiltLine"
-                    android:background="@color/gray"/>
+                <View style="@style/SpiltLine" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_kc_user3"
@@ -492,8 +458,7 @@
                     app:icon="@drawable/icon_class_table"
                     app:iconSize="20dp" />
 
-                <View style="@style/SpiltLine"
-                    android:background="@color/gray"/>
+                <View style="@style/SpiltLine"/>
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_kc_user4"

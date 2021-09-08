@@ -22,6 +22,15 @@ object NetManager {
     private var ip = "http://api.cduestc.club/api"
     private var executorService = Executors.newFixedThreadPool(10)
 
+    fun isBaiNetwork() : Boolean{
+        try {
+            val resp = Jsoup.connect("http://byjh.cduestc.cn/").get()
+            return !resp.body().text().contains("403")
+        }catch (e : Exception){
+            return false
+        }
+    }
+
     fun createTask(task : Runnable){
         executorService.execute(task)
     }

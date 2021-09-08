@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
  * @since 1.0
  */
 public class WebManager {
-    private static String ip = "http://byjh.cduestc.cn:1356";
+    private static String ip = "http://byjh.cduestc.cn";
 
     /**
      * 切换是否为内网访问接口
