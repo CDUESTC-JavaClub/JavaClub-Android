@@ -1,5 +1,6 @@
 package club.cduestc.ui.bai
 
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,7 +12,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import club.byjh.entity.account.BaiAccount
 import club.byjh.exception.ByjhAssistantException
+import club.byjh.net.WebManager
+import club.byjh.net.enums.StatusType
 import club.cduestc.databinding.FragmentBaiBinding
+import club.cduestc.ui.bai.sub.BaiListActivity
+import club.cduestc.ui.kc.sub.KcStudentActivity
 import club.cduestc.util.NetManager
 import club.cduestc.util.UserManager
 
@@ -33,7 +38,14 @@ class BaiFragment : Fragment() {
         val performance = requireActivity().getSharedPreferences("data", AppCompatActivity.MODE_PRIVATE)
         binding.saveKcBtn.setOnClickListener { savePassword(performance, binding.kcPassword.text.toString(), binding.kcId.text.toString()) }
 
+        //binding.btnBaiAll.setOnClickListener(this::listAllActivity)
+
         return binding.root
+    }
+
+    private fun listAllActivity(v : View){
+        val intent = Intent(context, BaiListActivity::class.java)
+        startActivity(intent)
     }
 
     private fun main(){
@@ -98,10 +110,10 @@ class BaiFragment : Fragment() {
         binding.baiLoading.visibility = View.VISIBLE
         NetManager.createTask{
             try {
-                val account = BaiAccount.createAccount(UserManager.getBindId(), performance.getString("bai_password", ""))
-                account.login()
-                val score = account.score
-                val header = UserManager.getHttpBitmap(account.headImgUrl)
+                UserManager.baiAccount = BaiAccount.createAccount(UserManager.getBindId(), performance.getString("bai_password", ""))
+                UserManager.baiAccount.login()
+                val score = UserManager.baiAccount.score
+                val header = UserManager.getHttpBitmap(UserManager.baiAccount.headImgUrl)
                 requireActivity().runOnUiThread {
                     binding.baiLoading.visibility = View.GONE
                     binding.baiMenu.visibility = View.VISIBLE
@@ -114,9 +126,9 @@ class BaiFragment : Fragment() {
                     binding.baiScoreAllStatus.text = if(score.allScore >= 60) "已达标" else "继续努力"
 
                     binding.baiUserHead.setImageBitmap(header)
-                    binding.baiUserName.text = account.userName
-                    binding.baiUserInfo.text = "${account.major} ${account.clazz}"
-                    binding.baiUserIndent.text = account.identity
+                    binding.baiUserName.text = UserManager.baiAccount.userName
+                    binding.baiUserInfo.text = "${UserManager.baiAccount.major} ${UserManager.baiAccount.clazz}"
+                    binding.baiUserIndent.text = UserManager.baiAccount.identity
                 }
             }catch (e : ByjhAssistantException){
                 requireActivity().runOnUiThread {

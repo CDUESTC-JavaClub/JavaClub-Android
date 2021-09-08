@@ -441,7 +441,7 @@
                 android:orientation="vertical">
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_kc_score1"
+                    android:id="@+id/btn_bai_all"
                     style="@style/FunctionButtonBai"
                     android:text="@string/btn_bai_join"
                     app:cornerRadius="0dp"

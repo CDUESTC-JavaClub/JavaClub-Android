@@ -2,6 +2,7 @@ package club.cduestc.util
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import club.byjh.entity.account.BaiAccount
 import club.jw.auth.KcAccount
 import com.alibaba.fastjson.JSONObject
 import java.io.InputStream
@@ -16,6 +17,7 @@ object UserManager {
     private var background : Bitmap? = null
     var index : String? = null
     lateinit var kcAccount : KcAccount
+    lateinit var baiAccount : BaiAccount
 
     fun init(data : JSONObject) {
         this.data = data
