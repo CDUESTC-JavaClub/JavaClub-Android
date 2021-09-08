@@ -16,6 +16,10 @@
         <item name="android:windowLightStatusBar">false</item>
     </style>
 
+    <style name="IconColor">
+        <item name="android:tint">@color/white</item>
+    </style>
+
     <style name="BaiColor">
         <item name="colorPrimary">@color/white</item>
         <item name="colorPrimaryVariant">@color/white</item>

@@ -1,4 +1,5 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <!-- Base application theme. -->
     <style name="Theme.JavaClub" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
@@ -60,6 +61,10 @@
 
     <style name="TextColor">
         <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="IconColor">
+        <item name="android:tint">@color/black</item>
     </style>
 
     <style name="SettingBackground">

@@ -4,34 +4,37 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="5dp"/>
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="10dp"
-        app:cardCornerRadius="10dp"
-        android:layout_height="40dp">
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/score_fold"
-            style="@style/FunctionButtonBai"
-            android:layout_width="match_parent"
-            app:icon="@drawable/icon_kc"
-            app:iconSize="30dp"
-            android:layout_height="match_parent"/>
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="10dp"
         app:cardCornerRadius="10dp"
         android:layout_height="wrap_content">
         <LinearLayout
-            android:id="@+id/score_list"
-            android:layout_width="match_parent"
             android:orientation="vertical"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
+            <com.google.android.material.button.MaterialButton
+                android:layout_gravity="top"
+                android:id="@+id/score_fold"
+                style="@style/FunctionButtonBai"
+                android:layout_width="match_parent"
+                app:icon="@drawable/icon_kc"
+                app:iconSize="30dp"
+                android:layout_height="match_parent"/>
 
+            <LinearLayout
+                android:id="@+id/score_list"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+
+            </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="5dp"/>
 </LinearLayout>

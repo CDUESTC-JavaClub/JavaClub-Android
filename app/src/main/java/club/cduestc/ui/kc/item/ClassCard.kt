@@ -25,6 +25,7 @@ import club.cduestc.MainActivity
 
 import android.content.Intent
 import androidx.core.content.ContextCompat
+import club.cduestc.R.id.card_body_parent
 import club.cduestc.ui.kc.sub.KcTableActivity
 
 
@@ -44,12 +45,12 @@ class ClassCard(
                     "\n${this.clazz.getString("name")}" +
                     "\n${this.clazz.getString("local")}" +
                     "\n${this.clazz.getString("teacher")}"
-        val body = view.findViewById<CardView>(card_body)
+        val body = view.findViewById<LinearLayout>(card_body)
         if(color != null) {
-            body.setCardBackgroundColor(Color.parseColor(this.color))
+            body.setBackgroundColor(Color.parseColor(this.color))
         }else{
             view.findViewById<View>(R.id.card_empty).visibility = View.VISIBLE
-            view.findViewById<CardView>(card_body).visibility = View.GONE
+            view.findViewById<CardView>(card_body_parent).visibility = View.GONE
         }
         this.setOnClickListener(this::onClick)
     }

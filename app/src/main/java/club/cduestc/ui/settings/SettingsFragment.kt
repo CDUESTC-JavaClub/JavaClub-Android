@@ -40,6 +40,8 @@ class SettingsFragment : Fragment() {
         binding.userId.text = UserManager.getBindId() ?: "未绑定"
         binding.userEmail.text = UserManager.getEmail()
 
+        binding.version.text = NetManager.getVersion()
+
         val sharedPreference = requireActivity().getSharedPreferences("settings", AppCompatActivity.MODE_PRIVATE)
         val auto = sharedPreference.getBoolean("settings_auto_dark", false)
         if (auto) {

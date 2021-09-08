@@ -23,7 +23,7 @@
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.25625" />
         <entry key="app/src/main/res/layout/fragment_kc.xml" value="0.32971014492753625" />
         <entry key="app/src/main/res/layout/fragment_notifications.xml" value="0.25625" />
-        <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.25625" />
+        <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.335" />
         <entry key="app/src/main/res/layout/info_line.xml" value="0.4427083333333333" />
         <entry key="app/src/main/res/layout/kc_class_widget.xml" value="0.432518115942029" />
         <entry key="app/src/main/res/layout/score_line.xml" value="0.25625" />
