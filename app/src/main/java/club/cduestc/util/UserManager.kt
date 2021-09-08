@@ -54,7 +54,7 @@ object UserManager {
         return background
     }
 
-    private fun getHttpBitmap(url: String?): Bitmap? {
+    fun getHttpBitmap(url: String?): Bitmap? {
         val myFileURL: URL
         var bitmap: Bitmap? = null
         try {

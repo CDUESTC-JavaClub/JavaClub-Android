@@ -1,4 +1,4 @@
-package club.cduestc.ui.dashboard
+package club.cduestc.ui.bai
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

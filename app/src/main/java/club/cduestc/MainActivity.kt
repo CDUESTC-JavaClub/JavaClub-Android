@@ -4,13 +4,12 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.NavGraph
 import androidx.navigation.NavGraphNavigator
 import androidx.navigation.NavigatorProvider
 import androidx.navigation.fragment.NavHostFragment
 import club.cduestc.databinding.ActivityMainBinding
-import club.cduestc.ui.dashboard.BaiFragment
+import club.cduestc.ui.bai.BaiFragment
 import club.cduestc.ui.home.HomeFragment
 import club.cduestc.ui.kc.KcFragment
 import club.cduestc.ui.nav.FixFragmentNavigator

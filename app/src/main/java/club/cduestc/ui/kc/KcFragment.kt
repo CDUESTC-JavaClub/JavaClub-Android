@@ -33,7 +33,7 @@ class KcFragment : Fragment() {
 
         val performance = requireActivity().getSharedPreferences("data", AppCompatActivity.MODE_PRIVATE)
         if(UserManager.getBindId() != null && performance.contains("kc_password")) displayMenu(performance)
-        if(UserManager.getBindId() != null) initEdit()
+        if(UserManager.getBindId() != null) initEdit(performance)
         binding.saveKcBtn.setOnClickListener { savePassword(performance, binding.kcPassword.text.toString(), binding.kcId.text.toString()) }
 
         binding.btnKcScore.setOnClickListener(this::displayScore)
@@ -70,7 +70,8 @@ class KcFragment : Fragment() {
         _binding = null
     }
 
-    private fun initEdit(){
+    private fun initEdit(performance: SharedPreferences){
+        binding.kcPassword.setText(performance.getString("kc_password", ""))
         binding.kcId.setText(UserManager.getBindId())
         binding.kcId.isEnabled = false
     }
@@ -111,7 +112,6 @@ class KcFragment : Fragment() {
                 UserManager.kcAccount = KcAccount.create(UserManager.getBindId(), pwd)
                 UserManager.kcAccount.login()
                 requireActivity().runOnUiThread {
-                    Toast.makeText(context, "已连接到教务系统！", Toast.LENGTH_SHORT).show()
                     binding.kcMenu.visibility = View.VISIBLE
                     binding.kcLoading.visibility = View.GONE
                     initInfoCard()
