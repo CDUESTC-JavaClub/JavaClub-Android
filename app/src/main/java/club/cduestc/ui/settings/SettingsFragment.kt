@@ -86,6 +86,9 @@ class SettingsFragment : Fragment() {
                     requireActivity().runOnUiThread {
                         showDialog()
                     }
+                    view.isEnabled = true
+                    view.text = "检查更新"
+                    return@createTask
                 }
                 requireActivity().runOnUiThread {
                     view.isEnabled = true
