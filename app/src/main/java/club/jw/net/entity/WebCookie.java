@@ -18,4 +18,10 @@ public class WebCookie {
     public String toString() {
         return cookies.toString();
     }
+
+    public String toCookieString() {
+        StringBuilder builder = new StringBuilder();
+        cookies.forEach((k, v) -> builder.append(k).append("=").append(v).append("; "));
+        return builder.toString();
+    }
 }

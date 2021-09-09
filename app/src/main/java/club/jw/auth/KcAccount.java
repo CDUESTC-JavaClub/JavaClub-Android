@@ -17,6 +17,8 @@ import club.jw.net.enums.Language;
 import club.jw.score.Score;
 import club.jw.score.ScoreList;
 
+import java.io.InputStream;
+import java.nio.Buffer;
 import java.util.*;
 
 /**
