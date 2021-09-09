@@ -115,7 +115,6 @@ class KcFragment : Fragment() {
                         binding.kcCaptchaImage.visibility = View.VISIBLE
                         val imm = requireContext().getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
                         imm.showSoftInput(binding.kcCaptchaInput, InputMethodManager.SHOW_IMPLICIT)
-                        it.close()
                         binding.btnKcCaptcha.setOnClickListener {
                             str = binding.kcCaptchaInput.text.toString()
                             if(str.isEmpty()) {
@@ -130,6 +129,7 @@ class KcFragment : Fragment() {
                         }
                     }
                     latch.await()
+                    it.close()
                     str
                 }
                 UserManager.kcAccount = KcAccount.create(UserManager.getBindId(), pwd)
