@@ -9,7 +9,7 @@
     tools:context=".ui.home.HomeFragment">
 
     <androidx.cardview.widget.CardView
-        android:visibility="gone"
+        android:visibility="visible"
         android:id="@+id/tip_captcha"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -19,40 +19,55 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_kc_captcha"
-            android:layout_width="80dp"
-            android:layout_marginEnd="5dp"
-            android:layout_gravity="end"
-            android:layout_height="match_parent"
-            android:text="验证码"/>
-        <EditText
-            android:id="@+id/kc_captcha_input"
-            android:layout_marginEnd="85dp"
-            android:layout_gravity="end"
-            android:layout_width="120dp"
-            android:layout_height="match_parent"/>
-        <androidx.cardview.widget.CardView
-            android:layout_width="100dp"
-            android:layout_margin="5dp"
-            app:cardCornerRadius="10dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <ProgressBar
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="30dp"
-                android:layout_gravity="center_vertical"/>
-            <ImageView
-                android:id="@+id/kc_captcha_image"
-                android:scaleType="fitXY"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
-        </androidx.cardview.widget.CardView>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_kc_captcha"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:text="验证码"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/kc_captcha_input" />
+
+            <EditText
+                android:layout_marginStart="10dp"
+                android:id="@+id/kc_captcha_input"
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                app:layout_constraintStart_toEndOf="@+id/cardView4" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView4"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                app:cardCornerRadius="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="5dp">
+
+                <ProgressBar
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="30dp" />
+
+                <ImageView
+                    android:id="@+id/kc_captcha_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY" />
+            </androidx.cardview.widget.CardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:visibility="visible"
+        android:visibility="gone"
         android:id="@+id/tip_bind"
         android:layout_width="match_parent"
         android:layout_height="240dp"
