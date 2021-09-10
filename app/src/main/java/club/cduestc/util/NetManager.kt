@@ -1,5 +1,6 @@
 package club.cduestc.util
 
+import android.util.Log
 import com.alibaba.fastjson.JSONObject
 import org.jsoup.Jsoup
 import java.io.ByteArrayOutputStream
@@ -29,6 +30,13 @@ object NetManager {
         }catch (e : Exception){
             return false
         }
+    }
+
+    fun ocr(image : String) : String{
+        val resp = post("/auth/ocr", mapOf("image" to image))
+        val str = resp!!.getString("data");
+        Log.i("OCR", "自动识别到验证码：$str")
+        return str
     }
 
     fun createTask(task : Runnable){
