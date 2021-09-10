@@ -1,12 +1,15 @@
 package club.cduestc.ui.kc
 
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -19,8 +22,10 @@ import club.cduestc.util.NetManager
 import club.cduestc.util.UserManager
 import club.jw.auth.KcAccount
 import org.apache.commons.io.IOUtils
+import java.io.ByteArrayInputStream
 import java.io.InputStream
 import java.util.*
+import java.util.concurrent.CountDownLatch
 
 
 class KcFragment : Fragment() {
@@ -33,10 +38,44 @@ class KcFragment : Fragment() {
         kcViewModel = ViewModelProvider(this).get(KcViewModel::class.java)
         _binding = FragmentKcBinding.inflate(inflater, container, false)
 
-        club.jw.net.NetManager.setCaptcha { NetManager.ocr(toBase64(it)) }
+        club.jw.net.NetManager.setCaptcha {
+            val base64 = toBase64(it)
+            val ocrResult = NetManager.ocr(base64)
+            if(ocrResult == "failed"){
+                val latch = CountDownLatch(1)
+                var str = ""
+                requireActivity().runOnUiThread {
+                    binding.tipCaptcha.visibility = View.VISIBLE
+                    binding.kcLoading.visibility = View.GONE
+                    binding.kcCaptchaInput.setText("")
+                    binding.kcCaptchaImage.setImageBitmap(BitmapFactory.decodeStream(toStream(base64)))
+                    binding.kcCaptchaInput.requestFocus()
+                    binding.kcCaptchaImage.visibility = View.VISIBLE
+                    val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                    imm.showSoftInput(binding.kcCaptchaInput, InputMethodManager.SHOW_IMPLICIT)
+                    binding.btnKcCaptcha.setOnClickListener {
+                        str = binding.kcCaptchaInput.text.toString()
+                        if(str.isEmpty()) {
+                            Toast.makeText(context, "请输入验证码!", Toast.LENGTH_SHORT).show()
+                        }else{
+                            val v: View = requireActivity().window.peekDecorView()
+                            imm.hideSoftInputFromWindow(v.windowToken, 0)
+                            binding.kcLoading.visibility = View.VISIBLE
+                            binding.tipCaptcha.visibility = View.GONE
+                            latch.countDown()
+                        }
+                    }
+                }
+                latch.await()
+                it.close()
+                str
+            }else{
+                ocrResult
+            }
+        }
 
         val performance = requireActivity().getSharedPreferences("data", AppCompatActivity.MODE_PRIVATE)
-        if(UserManager.getBindId() != null && performance.contains("kc_password")) displayMenu(performance, false)
+        if(UserManager.getBindId() != null && performance.contains("kc_password")) displayMenu(performance, false, 0)
         if(UserManager.getBindId() != null) initEdit(performance)
         binding.saveKcBtn.setOnClickListener { savePassword(performance, binding.kcPassword.text.toString(), binding.kcId.text.toString()) }
 
@@ -82,9 +121,19 @@ class KcFragment : Fragment() {
 
     private fun savePassword(performance: SharedPreferences, pwd : String, id : String){
         postSave()
-        performance.edit().putString("kc_password", pwd).apply()
-        UserManager.setBindId(id)
-        displayMenu(performance, true, id, pwd)
+        NetManager.createTask{
+            if(NetManager.bind(id, pwd)){
+                performance.edit().putString("kc_password", pwd).apply()
+                UserManager.setBindId(id)
+                requireActivity().runOnUiThread { displayMenu(performance, false, 0) }
+                return@createTask
+            }else{
+                requireActivity().runOnUiThread {
+                    endSave()
+                    Toast.makeText(context, "登陆失败，账号或密码错误！", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
     }
 
     private fun postSave(){
@@ -97,7 +146,7 @@ class KcFragment : Fragment() {
         binding.saveKcBtn.text = "保存"
     }
 
-    private fun displayMenu(performance: SharedPreferences, first : Boolean, vararg args: String){
+    private fun displayMenu(performance: SharedPreferences, first : Boolean, limit : Int ){
         binding.tipBind.visibility = View.GONE
         binding.kcLoading.visibility = View.VISIBLE
         val pwd = performance.getString("kc_password", "")
@@ -105,7 +154,6 @@ class KcFragment : Fragment() {
             try {
                 UserManager.kcAccount = KcAccount.create(UserManager.getBindId(), pwd)
                 UserManager.kcAccount.login()
-                if(first) NetManager.bind(args[0], args[1])
                 requireActivity().runOnUiThread {
                     binding.kcMenu.visibility = View.VISIBLE
                     binding.kcLoading.visibility = View.GONE
@@ -113,9 +161,11 @@ class KcFragment : Fragment() {
                 }
             }catch (e : Exception){
                 if(e.message == "验证码错误！"){
-                    Log.i("OCR", "识别失败，正在重新请求...")
-                    displayMenu(performance, first, *args)
-                    return@createTask
+                    if(limit < 10) {
+                        Log.i("OCR", "识别失败，正在重新请求...")
+                        displayMenu(performance, first, limit + 1)
+                        return@createTask
+                    }
                 }
                 requireActivity().runOnUiThread {
                     binding.kcMenu.visibility = View.GONE
@@ -130,7 +180,18 @@ class KcFragment : Fragment() {
 
     private fun toBase64(inputStream: InputStream): String {
         val bytes: ByteArray = IOUtils.toByteArray(inputStream)
-        val encoded: String = Base64.getEncoder().encodeToString(bytes)
-        return encoded
+        return Base64.getEncoder().encodeToString(bytes)
+    }
+
+    private fun toStream(base64string: String): InputStream? {
+        var stream: ByteArrayInputStream? = null
+        try {
+            val decoder = Base64.getDecoder()
+            val bytes1: ByteArray = decoder.decode(base64string)
+            stream = ByteArrayInputStream(bytes1)
+        } catch (e: Exception) {
+            // TODO: handle exception
+        }
+        return stream
     }
 }

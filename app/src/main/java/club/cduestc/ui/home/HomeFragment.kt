@@ -44,14 +44,9 @@ class HomeFragment : Fragment() {
                 super.onPageFinished(view, url)
                 binding.webLoad.visibility = View.GONE
                 web.visibility = View.VISIBLE
-                binding.webTitle.text = web.title
             }
         }
         web.loadUrl(UserManager.index ?: "https://study.cduestc.club/index.php")
-
-        binding.webBack.setOnClickListener {
-            web.goBack()
-        }
 
         return binding.root
     }

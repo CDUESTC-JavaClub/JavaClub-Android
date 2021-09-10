@@ -19,7 +19,7 @@ import kotlin.collections.ArrayList
 
 object NetManager {
 
-    private const val version = "0.0.5"
+    private const val version = "0.0.6"
     private var ip = "http://api.cduestc.club/api"
     private var executorService = Executors.newFixedThreadPool(10)
 
