@@ -34,6 +34,10 @@
         <item name="android:background">#232323</item>
     </style>
 
+    <style name="CardColor">
+        <item name="cardBackgroundColor">#88000000</item>
+    </style>
+
     <style name="SwitchColor">
         <item name="offColor">#717171</item>
     </style>
