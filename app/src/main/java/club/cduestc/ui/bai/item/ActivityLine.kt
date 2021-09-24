@@ -19,9 +19,11 @@ import java.util.*
 
 class ActivityLine(context: Context,
                    private val app : AppCompatActivity,
-                   private val activity : Activity
+                   val activity : Activity,
+                   private val onClick : OnClickListener
 ) : LinearLayout(context) {
     init {
+        this.setOnClickListener(onClick)
         val format = SimpleDateFormat("yyyy-MM-dd", Locale.CHINA)
         val view: View = LayoutInflater.from(context).inflate(R.layout.bai_activity_line, this)
         view.findViewById<TextView>(R.id.bai_activity_name).text = activity.name

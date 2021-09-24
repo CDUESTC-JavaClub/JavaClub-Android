@@ -7,17 +7,68 @@
     style="@style/SettingBackground"
     tools:context=".ui.bai.sub.BaiListActivity">
 
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="center"
+        android:src="@drawable/bai_backimg" />
+
+    <ProgressBar
+        android:id="@+id/loadActivity"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         app:layout_constraintTop_toTopOf="parent">
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             style="@style/NavColor"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        </LinearLayout>
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/bai_leaf"
+                android:layout_marginStart="5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                style="@style/TextColor"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="百叶计划活动列表"
+                android:textSize="20sp"
+                app:layout_constraintStart_toEndOf="@+id/imageView2" />
+
+            <View
+                style="@style/SpiltLine"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_marginVertical="5dp"
+                app:layout_constraintEnd_toStartOf="@+id/btnFilterActivity" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnFilterActivity"
+                style="@style/FunctionButtonBai"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                app:icon="@drawable/bai_filter"
+                app:iconSize="20dp"
+                android:text="全部"
+                app:layout_constraintEnd_toEndOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
     <LinearLayout
@@ -25,7 +76,9 @@
         android:layout_height="match_parent"
         android:layout_marginTop="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="-67dp">
 
         <ScrollView
             android:layout_width="match_parent"

@@ -38,7 +38,7 @@ class BaiFragment : Fragment() {
         val performance = requireActivity().getSharedPreferences("data", AppCompatActivity.MODE_PRIVATE)
         binding.saveKcBtn.setOnClickListener { savePassword(performance, binding.kcPassword.text.toString(), binding.kcId.text.toString()) }
 
-        //binding.btnBaiAll.setOnClickListener(this::listAllActivity)
+        binding.btnBaiAll.setOnClickListener(this::listAllActivity)
 
         return binding.root
     }
