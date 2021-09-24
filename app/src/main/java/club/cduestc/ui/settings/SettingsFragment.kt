@@ -84,10 +84,10 @@ class SettingsFragment : Fragment() {
                 val version = data.getString("data")
                 if(NetManager.getVersion() != version){
                     requireActivity().runOnUiThread {
+                        view.isEnabled = true
+                        view.text = "检查更新"
                         showDialog()
                     }
-                    view.isEnabled = true
-                    view.text = "检查更新"
                     return@createTask
                 }
                 requireActivity().runOnUiThread {
