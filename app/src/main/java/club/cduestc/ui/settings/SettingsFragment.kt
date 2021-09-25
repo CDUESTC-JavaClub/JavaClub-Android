@@ -11,14 +11,13 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import club.cduestc.LoginActivity
 import club.cduestc.R
 import club.cduestc.databinding.FragmentSettingsBinding
-import club.cduestc.util.DisplayUtil
 import club.cduestc.util.NetManager
+import club.cduestc.util.UpdateUtil
 import club.cduestc.util.UserManager
 
 
@@ -43,7 +42,7 @@ class SettingsFragment : Fragment() {
         binding.userId.text = UserManager.getBindId() ?: "未绑定"
         binding.userEmail.text = UserManager.getEmail()
 
-        binding.version.text = NetManager.getVersion()
+        binding.version.text = UpdateUtil.getVersion()
 
         val sharedPreference = requireActivity().getSharedPreferences("settings", AppCompatActivity.MODE_PRIVATE)
         val auto = sharedPreference.getBoolean("settings_auto_dark", false)
@@ -51,12 +50,16 @@ class SettingsFragment : Fragment() {
             binding.switchDark.isEnabled = false
             binding.switchAuto.setDefOff(true)
         }
+        val auto2 = sharedPreference.getBoolean("settings_auto_update", true)
+        if (auto2) binding.switchUpdateAuto.setDefOff(true)
+
         if(sharedPreference.getBoolean("settings_dark_mode", false)) binding.switchDark.setDefOff(true)
 
         binding.switchDark.setOnClickListener {
             sharedPreference.edit().putBoolean("settings_dark_mode", binding.switchDark.animationCheck()).apply()
         }
         binding.switchAuto.setOnClickListener(this::switchAuto)
+        binding.switchUpdateAuto.setOnClickListener(this::switchAutoUpdate)
         binding.exit.setOnClickListener (this::exit)
         binding.update.setOnClickListener(this::update)
         return binding.root
@@ -65,6 +68,15 @@ class SettingsFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun switchAutoUpdate(view: View){
+        val sharedPreference = requireActivity().getSharedPreferences("settings", AppCompatActivity.MODE_PRIVATE)
+        if(binding.switchUpdateAuto.animationCheck()){
+            sharedPreference.edit().putBoolean("settings_auto_update", true).apply()
+        }else{
+            sharedPreference.edit().putBoolean("settings_auto_update", false).apply()
+        }
     }
 
     private fun switchAuto(view: View){
@@ -82,14 +94,14 @@ class SettingsFragment : Fragment() {
         view.isEnabled = false
         (view as Button).text = "正在检查更新..."
         NetManager.createTask{
-            val data = NetManager.update();
+            val data = NetManager.update()
             if(data != null){
                 val version = data.getJSONObject("data").getString("version")
-                if(NetManager.getVersion() != version){
+                if(UpdateUtil.getVersion() != version){
                     requireActivity().runOnUiThread {
                         view.isEnabled = true
                         view.text = "检查更新"
-                        showDialog(data.getJSONObject("data").getString("url"), version)
+                        UpdateUtil.showUpdateDialog(requireContext(), data.getJSONObject("data").getString("url"), version)
                     }
                     return@createTask
                 }
@@ -115,20 +127,5 @@ class SettingsFragment : Fragment() {
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
         intent.setClass(requireContext(), LoginActivity::class.java)
         startActivity(intent)
-    }
-
-    private fun showDialog(url : String, version : String) {
-        val builder: AlertDialog.Builder = AlertDialog.Builder(context, R.style.Translucent_NoTitle)
-        val view: View = LayoutInflater.from(context).inflate(R.layout.update_dialog, null)
-        val btn = view.findViewById<Button>(R.id.btn_update)
-        view.findViewById<TextView>(R.id.version_text).text = "当前版本：${NetManager.getVersion()}，最新版本：${version}"
-        val dialog = builder.setView(view).create()
-        btn.setOnClickListener {
-            dialog.dismiss()
-            val uri: Uri = Uri.parse(url)
-            val intent = Intent(Intent.ACTION_VIEW, uri)
-            startActivity(intent)
-        }
-        dialog.show()
     }
 }

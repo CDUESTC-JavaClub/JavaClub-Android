@@ -18,8 +18,6 @@ import kotlin.collections.ArrayList
 
 
 object NetManager {
-
-    private const val version = "0.0.8"
     private var ip = "https://api.cduestc.club/api"
     private var executorService = Executors.newFixedThreadPool(10)
 
@@ -73,10 +71,6 @@ object NetManager {
 
     fun logout(){
         get("/auth/logout")
-    }
-
-    fun getVersion() : String{
-        return version
     }
 
     fun update() : JSONObject?{

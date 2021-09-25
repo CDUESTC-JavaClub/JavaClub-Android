@@ -2,6 +2,7 @@
     <string name="app_name">科成JavaClub</string>
     <string name="title_home">俱乐部</string>
     <string name="title_kc">教务系统</string>
+    <string name="title_contest">竞赛挑战</string>
     <string name="title_bai">百叶计划</string>
     <string name="title_settings">个人设置</string>
 
@@ -45,6 +46,7 @@
     <string name="settings_user_email">已绑定邮箱</string>
     <string name="settings_dark_mode">使用深色模式</string>
     <string name="settings_auto_dark">颜色跟随系统变换</string>
+    <string name="settings_auto_update">自动检查更新</string>
     <string name="settings_dark_info">切换颜色配置后，需要重新启动APP生效</string>
     <string name="settings_btn_update">检查更新</string>
     <string name="settings_btn_exit">退出登陆</string>
@@ -53,4 +55,6 @@
 
     <string name="add_widget">添加小组件</string>
     <string name="app_widget_description">课程表小组件</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

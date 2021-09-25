@@ -12,6 +12,12 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
+        android:id="@+id/navigation_contest"
+        android:name="club.cduestc.ui.kc.KcFragment"
+        android:label="@string/title_contest"
+        tools:layout="@layout/fragment_contest" />
+
+    <fragment
         android:id="@+id/navigation_kc"
         android:name="club.cduestc.ui.kc.KcFragment"
         android:label="@string/title_kc"

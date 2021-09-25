@@ -28,13 +28,14 @@
             android:layout_height="wrap_content">
 
             <View
-                android:layout_marginTop="200dp"
+                android:id="@+id/view4"
+                style="@style/SettingBackground"
                 android:layout_width="match_parent"
                 android:layout_height="550dp"
-                style="@style/SettingBackground"
+                android:layout_marginTop="200dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardView3"
@@ -260,11 +261,49 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/card2">
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp">
+
+                        <ImageView
+                            style="@style/IconColor"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="5dp"
+                            android:src="@drawable/settings_auto_update"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            style="@style/TextColor"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="5dp"
+                            android:layout_weight="1"
+                            android:text="@string/settings_auto_update"
+                            android:textSize="15sp" />
+
+                        <club.cduestc.ui.settings.OnOffView
+                            android:id="@+id/switch_update_auto"
+                            style="@style/SwitchColor"
+                            android:layout_width="45dp"
+                            android:layout_height="28dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginEnd="10dp"
+                            app:iconSize="28dp"
+                            app:onColor="#4CAF50"
+                            app:paddingSize="1dp" />
+                    </LinearLayout>
+
+                    <View style="@style/SpiltLine" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/update"
@@ -274,18 +313,6 @@
                         android:text="@string/settings_btn_update"
                         android:textSize="15sp"
                         app:icon="@drawable/settings_update"
-                        app:iconSize="20dp" />
-
-                    <View style="@style/SpiltLine" />
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/exit"
-                        style="@style/FunctionButtonKc"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:text="@string/settings_btn_exit"
-                        android:textSize="15sp"
-                        app:icon="@drawable/settings_exit"
                         app:iconSize="20dp" />
 
                     <View style="@style/SpiltLine" />
@@ -332,6 +359,39 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="10dp"
+                app:cardCornerRadius="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/card3">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/exit"
+                        style="@style/FunctionButtonKc"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:text="@string/settings_btn_exit"
+                        android:textSize="15sp"
+                        app:icon="@drawable/settings_exit"
+                        app:iconSize="20dp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                app:layout_constraintTop_toBottomOf="@+id/card4"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
