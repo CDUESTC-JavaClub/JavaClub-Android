@@ -49,7 +49,7 @@ class BaiListActivity : AppCompatActivity() {
     private fun detail(v : View){
         val format = SimpleDateFormat("yyyy-MM-dd", Locale.CHINA)
         v as ActivityLine
-        val builder: AlertDialog.Builder = AlertDialog.Builder(this,R.style.Translucent_NoTitle);
+        val builder: AlertDialog.Builder = AlertDialog.Builder(this,R.style.Translucent_NoTitle)
         val view: View = LayoutInflater.from(this).inflate(R.layout.bai_activity_line_detail, null)
         NetManager.createTask{
             val bitmap = UserManager.getHttpBitmap(v.activity.coverUrl)

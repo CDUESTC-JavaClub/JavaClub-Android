@@ -8,13 +8,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import club.cduestc.LoginActivity
 import club.cduestc.R
 import club.cduestc.databinding.FragmentSettingsBinding
+import club.cduestc.util.DisplayUtil
 import club.cduestc.util.NetManager
 import club.cduestc.util.UserManager
 
@@ -81,12 +84,12 @@ class SettingsFragment : Fragment() {
         NetManager.createTask{
             val data = NetManager.update();
             if(data != null){
-                val version = data.getString("data")
+                val version = data.getJSONObject("data").getString("version")
                 if(NetManager.getVersion() != version){
                     requireActivity().runOnUiThread {
                         view.isEnabled = true
                         view.text = "检查更新"
-                        showDialog()
+                        showDialog(data.getJSONObject("data").getString("url"), version)
                     }
                     return@createTask
                 }
@@ -114,14 +117,15 @@ class SettingsFragment : Fragment() {
         startActivity(intent)
     }
 
-    private fun showDialog() {
-        val builder: AlertDialog.Builder = AlertDialog.Builder(context)
+    private fun showDialog(url : String, version : String) {
+        val builder: AlertDialog.Builder = AlertDialog.Builder(context, R.style.Translucent_NoTitle)
         val view: View = LayoutInflater.from(context).inflate(R.layout.update_dialog, null)
         val btn = view.findViewById<Button>(R.id.btn_update)
+        view.findViewById<TextView>(R.id.version_text).text = "当前版本：${NetManager.getVersion()}，最新版本：${version}"
         val dialog = builder.setView(view).create()
         btn.setOnClickListener {
             dialog.dismiss()
-            val uri: Uri = Uri.parse("https://github.com/CDUESTC-JavaClub/JavaClub-Android/releases")
+            val uri: Uri = Uri.parse(url)
             val intent = Intent(Intent.ACTION_VIEW, uri)
             startActivity(intent)
         }

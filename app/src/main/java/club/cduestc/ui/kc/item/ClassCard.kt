@@ -57,14 +57,13 @@ class ClassCard(
 
     private fun onClick(it : View){
         if(clazz == null) return
-        val builder: AlertDialog.Builder = AlertDialog.Builder(context)
+        val builder: AlertDialog.Builder = AlertDialog.Builder(context,R.style.Translucent_NoTitle)
         val view: View = LayoutInflater.from(context).inflate(R.layout.class_card_detail, null)
-        val text = view.findViewById<TextView>(R.id.class_info)
-        text.text = "课程名称：${this.clazz.getString("name")}\n" +
-                "任课老师：${this.clazz.getString("teacher")}\n" +
-                "上课时间：周 ${this.clazz.getString("day")} 第 ${this.clazz.getJSONArray("indexSet")} 节\n" +
-                "上课地点：${this.clazz.getString("local")}\n" +
-                "周数：${convertWeek(this.clazz.getJSONArray("weekSet"))}\n"
+        view.findViewById<TextView>(R.id.class_info_name).text = this.clazz.getString("name")
+        view.findViewById<TextView>(R.id.class_info_teacher).text = "任课老师：${this.clazz.getString("teacher")}"
+        view.findViewById<TextView>(R.id.class_info_time).text = "上课时间：周 ${this.clazz.getString("day")} 第 ${this.clazz.getJSONArray("indexSet")} 节"
+        view.findViewById<TextView>(R.id.class_info_local).text = "上课地点：${this.clazz.getString("local")}"
+        view.findViewById<TextView>(R.id.class_info_week).text = "周数：${convertWeek(this.clazz.getJSONArray("weekSet"))}"
         val dialog = builder.setView(view).create()
         view.findViewById<Button>(R.id.class_ok).setOnClickListener { dialog.dismiss() }
         view.findViewById<Button>(R.id.class_hide).setOnClickListener { this.hideClass(this.clazz.getString("name")) }

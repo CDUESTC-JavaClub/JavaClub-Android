@@ -38,7 +38,7 @@ public class ClassParser implements Parser<Response> {
                 while (index - x >= 0 && (clazz = clazzMap.get(index - x)) == null) x++;
                 if(clazz != null) {
                     int finalJ = j + 1;
-                    clazz.forEach(c -> c.indexSet.add(finalJ > 3 ? finalJ - offset() : finalJ));
+                    clazz.forEach(c -> c.indexSet.add(finalJ > 4 ? finalJ - offset() : finalJ));
                 }
                 continue;
             }
@@ -73,7 +73,7 @@ public class ClassParser implements Parser<Response> {
             String local = builder.toString();
 
             clazzSet.add(new ClassesResponse.Clazz(name, id, teacher, local, day+1,
-                    toWeeks(week), new HashSet<Integer>(){{this.add(index > 3 ? index - offset() : index);}}));
+                    toWeeks(week), new HashSet<Integer>(){{this.add(index > 4 ? index - offset() : index);}}));
         }
         return clazzSet;
     }
