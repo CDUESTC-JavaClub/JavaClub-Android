@@ -16,6 +16,7 @@ import club.byjh.net.WebManager
 import club.byjh.net.enums.StatusType
 import club.cduestc.databinding.FragmentBaiBinding
 import club.cduestc.ui.bai.sub.BaiListActivity
+import club.cduestc.ui.bai.sub.BaiMyActivity
 import club.cduestc.ui.kc.sub.KcStudentActivity
 import club.cduestc.util.NetManager
 import club.cduestc.util.UserManager
@@ -39,8 +40,14 @@ class BaiFragment : Fragment() {
         binding.saveKcBtn.setOnClickListener { savePassword(performance, binding.kcPassword.text.toString(), binding.kcId.text.toString()) }
 
         binding.btnBaiAll.setOnClickListener(this::listAllActivity)
+        binding.btnBaiMy.setOnClickListener(this::listMyActivity)
 
         return binding.root
+    }
+
+    private fun listMyActivity(v : View){
+        val intent = Intent(context, BaiMyActivity::class.java)
+        startActivity(intent)
     }
 
     private fun listAllActivity(v : View){

@@ -61,9 +61,9 @@ class ActivityLine(context: Context,
 
     private fun statusColor(status : String) : Int{
         return when(status){
-            "报名中" -> Color.GREEN
-            "活动中" -> Color.YELLOW
-            "报名结束" -> Color.RED
+            "报名中" -> Color.parseColor("#4CAF50")
+            "活动中" -> Color.parseColor("#FFC107")
+            "报名结束" -> Color.parseColor("#F44336")
             else -> Color.GRAY
         }
     }

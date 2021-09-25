@@ -9,7 +9,7 @@
     <androidx.cardview.widget.CardView
         app:cardCornerRadius="10dp"
         android:layout_marginHorizontal="10dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         app:cardElevation="0dp"
         style="@style/CardColor"
         android:layout_width="match_parent"
@@ -116,7 +116,6 @@
                         android:id="@+id/bai_image_type"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:layout_marginTop="5dp"
                         android:src="@drawable/bai_icon_dx"
                         android:layout_marginHorizontal="15dp"
                         app:tint="#54FF0000" />
@@ -131,7 +130,7 @@
                         android:id="@+id/bai_text_status"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="12sp"
+                        android:textSize="11sp"
                         android:layout_gravity="center" />
                 </LinearLayout>
             </LinearLayout>

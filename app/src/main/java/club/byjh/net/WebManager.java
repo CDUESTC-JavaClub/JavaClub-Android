@@ -165,6 +165,16 @@ public class WebManager {
         return getHttpResult("/Api/During/integral", "token="+token);
     }
 
+    public static Result getActivityDetails(String token, int id){
+        try {
+            JSONObject detail = JSONObject.parseObject(createHttpPost("/Api/During/details", "token="+token+"&url="+id));
+            return new Result(10000, "", detail.getJSONObject("data"));
+        } catch (IOException e) {
+            e.printStackTrace();
+            return new Result(10003, e.getMessage(), null);
+        }
+    }
+
     /**
      * 获取用户的加分记录信息
      * @param token token

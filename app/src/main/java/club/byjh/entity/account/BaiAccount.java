@@ -147,6 +147,11 @@ public class BaiAccount implements LoginAccount, OperableAccount {
         return WebManager.getAccountActivities(token);
     }
 
+    public String getActivityDesc(int activityId){
+        if (token == null) throw new ActivityOprException(10009, "此用户未登录！");
+        return WebManager.getActivityDetails(token, activityId).getOriginData().getString("details");
+    }
+
     /**
      * 获取得分信息
      * @return 得分信息
