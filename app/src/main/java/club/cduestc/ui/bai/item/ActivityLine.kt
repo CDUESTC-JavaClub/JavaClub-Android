@@ -28,6 +28,10 @@ class ActivityLine(context: Context,
         val view: View = LayoutInflater.from(context).inflate(R.layout.bai_activity_line, this)
         view.findViewById<TextView>(R.id.bai_activity_name).text = activity.name
         view.findViewById<TextView>(R.id.bai_activity_local).text = activity.place
+        val statusText = view.findViewById<TextView>(R.id.bai_text_status)
+        statusText.text = "(${activity.status})"
+        statusText.setTextColor(statusColor(activity.status))
+
         view.findViewById<TextView>(R.id.bai_activity_time).text = format.format(activity.start)
         view.findViewById<TextView>(R.id.bai_text_type).text = activity.type
         val image = when(activity.type){
@@ -52,6 +56,15 @@ class ActivityLine(context: Context,
             app.runOnUiThread {
                 view.findViewById<ImageView>(R.id.bai_activity_header).setImageBitmap(bitmap)
             }
+        }
+    }
+
+    private fun statusColor(status : String) : Int{
+        return when(status){
+            "报名中" -> Color.GREEN
+            "活动中" -> Color.YELLOW
+            "报名结束" -> Color.RED
+            else -> Color.GRAY
         }
     }
 }

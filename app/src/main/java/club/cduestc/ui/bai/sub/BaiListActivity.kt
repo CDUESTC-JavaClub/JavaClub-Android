@@ -41,7 +41,7 @@ class BaiListActivity : AppCompatActivity() {
                 .collect(Collectors.toList())
             this.runOnUiThread{
                 list.forEach{menu.addView(ActivityLine(this, this, it, this::detail))}
-                findViewById<ProgressBar>(R.id.loadActivity).visibility = View.GONE
+                findViewById<View>(R.id.loadActivity).visibility = View.GONE
             }
         }
     }
@@ -59,7 +59,7 @@ class BaiListActivity : AppCompatActivity() {
         }
         view.findViewById<TextView>(R.id.activity_name).text = v.activity.name
         view.findViewById<TextView>(R.id.bai_activity_local).text = "活动地点："+v.activity.place
-        view.findViewById<TextView>(R.id.bai_activity_local).text = "当前状态："+v.activity.status
+        view.findViewById<TextView>(R.id.activity_status).text = "当前状态："+v.activity.status
         view.findViewById<TextView>(R.id.activity_count).text = "报名人数：${v.activity.reg}/${v.activity.max}"
         view.findViewById<TextView>(R.id.bai_activity_time).text = "活动时间："+format.format(v.activity.start)
         val dialog = builder.setView(view).create()

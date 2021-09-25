@@ -120,12 +120,18 @@
                         android:src="@drawable/bai_icon_dx"
                         android:layout_marginHorizontal="15dp"
                         app:tint="#54FF0000" />
-
                     <TextView
                         android:id="@+id/bai_text_type"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
+                        android:textSize="12sp"
+                        android:layout_gravity="center" />
+                    <TextView
+                        android:id="@+id/bai_text_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
                         android:layout_gravity="center" />
                 </LinearLayout>
             </LinearLayout>
