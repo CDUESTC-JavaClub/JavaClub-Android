@@ -5,7 +5,6 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import android.widget.ProgressBar
 import android.widget.TableRow
 import androidx.appcompat.app.AppCompatActivity
 import club.cduestc.R
@@ -80,7 +79,7 @@ class KcTableActivity : AppCompatActivity() {
     }
 
     private fun initClassTable(term : Int){
-        findViewById<ProgressBar>(R.id.class_loading).visibility = View.VISIBLE
+        findViewById<View>(R.id.class_loading).visibility = View.VISIBLE
         val sharedPreference = getSharedPreferences("class_table", MODE_PRIVATE)
         val btn = findViewById<Button>(R.id.kc_class_switch)
         btn.setOnClickListener(this::switchTerm)
@@ -135,7 +134,7 @@ class KcTableActivity : AppCompatActivity() {
                 }
             }
         }
-        findViewById<ProgressBar>(R.id.class_loading).visibility = View.GONE
+        findViewById<View>(R.id.class_loading).visibility = View.GONE
         KcClassUtil.reloadWidget(this)
     }
 

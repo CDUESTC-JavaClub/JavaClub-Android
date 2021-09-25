@@ -14,7 +14,7 @@
         android:scaleType="center"
         android:src="@drawable/bai_backimg" />
 
-    <ProgressBar
+    <club.cduestc.ui.LoadingView
         android:id="@+id/loadActivity"
         android:layout_width="50dp"
         android:layout_height="50dp"

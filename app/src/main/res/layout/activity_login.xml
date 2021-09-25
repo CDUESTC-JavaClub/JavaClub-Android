@@ -112,7 +112,7 @@
             android:layout_height="match_parent"
             android:background="#61000000"/>
 
-        <ProgressBar
+        <club.cduestc.ui.LoadingView
             android:layout_width="50dp"
             android:layout_height="50dp"
             app:layout_constraintBottom_toBottomOf="parent"

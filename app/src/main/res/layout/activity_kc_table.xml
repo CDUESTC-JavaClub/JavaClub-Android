@@ -38,17 +38,25 @@
             app:iconSize="30dp" />
     </LinearLayout>
 
-
-    <ProgressBar
+    <LinearLayout
         android:id="@+id/class_loading"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
-    </ProgressBar>
+        <club.cduestc.ui.LoadingView
+            android:layout_gravity="center"
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
+        <TextView
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="正在拉取课程表信息..."/>
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout"

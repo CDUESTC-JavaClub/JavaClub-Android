@@ -132,7 +132,7 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical">
-        <ProgressBar
+        <club.cduestc.ui.LoadingView
             android:layout_width="50dp"
             android:layout_height="50dp"/>
         <TextView

@@ -5,6 +5,8 @@
     <string name="title_bai">百叶计划</string>
     <string name="title_settings">个人设置</string>
 
+    <string name="home_loading">正在进入俱乐部…</string>
+
     <string name="model_kc">教务系统功能</string>
     <string name="model_kc_desc">含教务系统的全部功能，包括成绩查询、课程表查询等。</string>
     <string name="btn_kc_score">学期成绩查询</string>
