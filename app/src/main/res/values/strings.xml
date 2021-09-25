@@ -2,11 +2,14 @@
     <string name="app_name">科成JavaClub</string>
     <string name="title_home">俱乐部</string>
     <string name="title_kc">教务系统</string>
-    <string name="title_contest">竞赛挑战</string>
+    <string name="title_contest">竞赛</string>
     <string name="title_bai">百叶计划</string>
     <string name="title_settings">个人设置</string>
 
     <string name="home_loading">正在进入俱乐部…</string>
+
+    <string name="contest_unknown">获取最新竞赛消息，敬请期待！</string>
+    <string name="contest_loading">正在获取最新赛事…</string>
 
     <string name="model_kc">教务系统功能</string>
     <string name="model_kc_desc">含教务系统的全部功能，包括成绩查询、课程表查询等。</string>
