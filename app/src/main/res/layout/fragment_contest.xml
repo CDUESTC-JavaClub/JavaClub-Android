@@ -7,23 +7,50 @@
     style="@style/SettingBackground"
     tools:context=".ui.contest.ContestFragment">
 
+
     <LinearLayout
-        android:id="@+id/bai_net_err"
-        android:visibility="visible"
-        android:layout_width="match_parent"
         android:orientation="vertical"
-        android:gravity="center"
+        android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <club.cduestc.ui.CollapseCardView
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            app:collapseHeight="50dp"
+            android:layout_marginHorizontal="10dp"
+            app:cardCornerRadius="10dp"
+            app:expandedHeight="300dp"/>
+
+        <club.cduestc.ui.CollapseCardView
+            app:collapse="true"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            app:collapseHeight="50dp"
+            android:layout_marginHorizontal="10dp"
+            app:cardCornerRadius="10dp"
+            app:expandedHeight="300dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/contest_nothing"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="visible">
+
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:src="@drawable/nav_contest"
             app:tint="#8D8C8C8C" />
+
         <TextView
-            android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/contest_unknown"/>
+            android:layout_marginTop="20dp"
+            android:text="@string/contest_unknown" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

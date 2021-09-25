@@ -14,4 +14,9 @@
         <attr name="appWidgetInnerRadius" format="dimension" />
         <attr name="appWidgetRadius" format="dimension" />
     </declare-styleable>
+    <declare-styleable name="CollapseCardView">
+        <attr name="collapse" format="boolean" />
+        <attr name="collapseHeight" format="dimension" />
+        <attr name="expandedHeight" format="dimension" />
+    </declare-styleable>
 </resources>
