@@ -18,6 +18,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class ActivityLine(context: Context,
+                   var signed : Boolean,
                    private val app : AppCompatActivity,
                    val activity : Activity,
                    private val onClick : OnClickListener

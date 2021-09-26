@@ -7,7 +7,9 @@
     <androidx.cardview.widget.CardView
         android:layout_marginHorizontal="10dp"
         android:layout_marginVertical="5dp"
+        style="@style/CardColor"
         app:cardCornerRadius="10dp"
+        app:cardElevation="0dp"
         android:layout_width="match_parent"
         android:layout_height="60dp">
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -36,21 +38,49 @@
                 app:layout_constraintEnd_toStartOf="@+id/qrcode_img"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <RelativeLayout
-                android:layout_width="0dp"
+            <TextView
+                android:id="@+id/type_text"
+                android:layout_marginHorizontal="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:layout_marginBottom="5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageView
+                android:id="@+id/type_img"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="5dp"
+                app:layout_constraintEnd_toStartOf="@+id/view4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/view4"
+                android:layout_width="1dp"
                 android:layout_height="match_parent"
                 android:layout_marginVertical="5dp"
                 android:layout_marginHorizontal="10dp"
+                android:background="@color/gray"
+                app:layout_constraintStart_toEndOf="@+id/type_text"/>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="5dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/view3"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/view4"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
                     android:id="@+id/bai_activity_name"
+                    style="@style/TextColor"
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
-                    style="@style/TextColor"
                     android:textSize="14sp" />
 
                 <LinearLayout

@@ -1,19 +1,15 @@
 package club.cduestc.ui
 
 import android.content.Context
-import android.content.res.TypedArray
 import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AccelerateInterpolator
 import android.view.animation.Animation
 import android.view.animation.DecelerateInterpolator
 import android.view.animation.Transformation
 import androidx.cardview.widget.CardView
-import androidx.interpolator.view.animation.FastOutLinearInInterpolator
 import club.cduestc.R
 import kotlin.math.max
-import kotlin.math.min
 
 class CollapseCardView(context: Context, attrs: AttributeSet) : CardView(context, attrs) {
 

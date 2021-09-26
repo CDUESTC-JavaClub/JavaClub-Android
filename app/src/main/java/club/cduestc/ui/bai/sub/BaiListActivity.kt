@@ -20,6 +20,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import java.util.function.Predicate
 import java.util.stream.Collectors
+import kotlin.streams.toList
 
 class BaiListActivity : AppCompatActivity() {
 
@@ -36,6 +37,7 @@ class BaiListActivity : AppCompatActivity() {
         val menu = findViewById<LinearLayout>(R.id.bai_activity_list)
         menu.removeAllViews()
         NetManager.createTask{
+            val myList = UserManager.baiAccount.activities.stream().map { it.id }.toList()
             val list = WebManager
                 .getAllActivities(StatusType.ALL)
                 .stream()
@@ -43,7 +45,7 @@ class BaiListActivity : AppCompatActivity() {
                 .limit(50)
                 .collect(Collectors.toList())
             this.runOnUiThread{
-                list.forEach{menu.addView(ActivityLine(this, this, it, this::detail))}
+                list.forEach{menu.addView(ActivityLine(this, myList.contains(it.id),this, it, this::detail))}
                 findViewById<View>(R.id.loadActivity).visibility = View.GONE
             }
         }
@@ -73,7 +75,7 @@ class BaiListActivity : AppCompatActivity() {
         view.findViewById<TextView>(R.id.bai_activity_time).text = "活动时间："+format.format(v.activity.start)
         val btn = view.findViewById<Button>(R.id.activity_btn)
         btn.setTextColor(Color.parseColor("#A8A8A8"))
-        if(v.activity is SignedActivity){
+        if(v.signed){
             btn.isEnabled = true
             btn.setTextColor(Color.parseColor("#F44336"))
             btn.text = "取消参加此活动"
@@ -82,7 +84,10 @@ class BaiListActivity : AppCompatActivity() {
                 NetManager.createTask{
                     try{
                         UserManager.baiAccount.cancelActivity(v.activity.id)
-                        this.runOnUiThread{ Toast.makeText(this, "取消报名成功！", Toast.LENGTH_LONG).show() }
+                        this.runOnUiThread{
+                            Toast.makeText(this, "取消报名成功！", Toast.LENGTH_LONG).show()
+                            v.signed = false
+                        }
                     }catch (e : ActivityOprException){
                         this.runOnUiThread{ Toast.makeText(this, e.message, Toast.LENGTH_LONG).show() }
                     }
@@ -99,7 +104,10 @@ class BaiListActivity : AppCompatActivity() {
                         NetManager.createTask{
                             try{
                                 UserManager.baiAccount.signActivity(v.activity.id)
-                                this.runOnUiThread{ Toast.makeText(this, "报名成功！", Toast.LENGTH_LONG).show() }
+                                this.runOnUiThread{
+                                    Toast.makeText(this, "报名成功！", Toast.LENGTH_LONG).show()
+                                    v.signed = true
+                                }
                             }catch (e : ActivityOprException){
                                 this.runOnUiThread{ Toast.makeText(this, e.message, Toast.LENGTH_LONG).show() }
                             }

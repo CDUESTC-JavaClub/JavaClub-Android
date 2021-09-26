@@ -1,14 +1,14 @@
 package club.cduestc.ui.bai.sub
 
 import android.app.AlertDialog
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
+import android.widget.*
 import club.byjh.entity.activity.SignedActivity
+import club.byjh.exception.ActivityOprException
 import club.cduestc.R
 import club.cduestc.ui.bai.item.MyActivityLine
 import club.cduestc.util.NetManager
@@ -26,18 +26,28 @@ class BaiMyActivity : AppCompatActivity() {
     private fun init(){
         val list1 = findViewById<LinearLayout>(R.id.myActivityList1)
         val list2 = findViewById<LinearLayout>(R.id.myActivityList2)
+        val list3 = findViewById<LinearLayout>(R.id.myActivityList3)
+        list1.removeAllViews()
+        list2.removeAllViews()
+        list3.removeAllViews()
         var signed = 0
         var wait = 0
         NetManager.createTask{
             val acts = UserManager.baiAccount.activities
             this.runOnUiThread {
                 acts.forEach {
-                    if(it.stat.equals("已参加")){
-                        signed++
-                        list2.addView(MyActivityLine(this, this, it, this::showCode))
-                    } else {
-                        wait++
-                        list1.addView(MyActivityLine(this, this, it, this::showCode))
+                    when {
+                        it.stat.equals("已参加") -> {
+                            signed++
+                            list2.addView(MyActivityLine(this, this, it, this::showCode))
+                        }
+                        it.stat.equals("缺席") -> {
+                            list3.addView(MyActivityLine(this, this, it, this::showCode))
+                        }
+                        else -> {
+                            wait++
+                            list1.addView(MyActivityLine(this, this, it, this::showCode))
+                        }
                     }
                 }
                 findViewById<TextView>(R.id.count_signed).text = signed.toString()
@@ -57,6 +67,27 @@ class BaiMyActivity : AppCompatActivity() {
         NetManager.createTask{
             val map = UserManager.getHttpBitmap(p.activity.checkCode)
             this.runOnUiThread {
+                if(p.activity.stat.equals("已报名")) {
+                    val btn = view.findViewById<Button>(R.id.cancel_activity)
+                    btn.setTextColor(Color.parseColor("#F44336"))
+                    btn.isEnabled = true
+                    btn.setOnClickListener {
+                        NetManager.createTask{
+                            try{
+                                UserManager.baiAccount.cancelActivity(p.activity.id)
+                                dialog.dismiss()
+                                this.runOnUiThread{
+                                    findViewById<View>(R.id.loadActivity).visibility = View.VISIBLE
+                                    findViewById<View>(R.id.my_activity_menu).visibility = View.GONE
+                                    Toast.makeText(this, "取消报名成功！", Toast.LENGTH_LONG).show()
+                                    init()
+                                }
+                            }catch (e : ActivityOprException){
+                                this.runOnUiThread{ Toast.makeText(this, e.message, Toast.LENGTH_LONG).show() }
+                            }
+                        }
+                    }
+                }
                 view.findViewById<TextView>(R.id.qrcode_text).text = "核验码："+p.activity.qrCode
                 view.findViewById<ImageView>(R.id.qrcode_img_src).setImageBitmap(map)
                 dialog.show()

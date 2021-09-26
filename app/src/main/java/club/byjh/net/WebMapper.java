@@ -56,9 +56,9 @@ public class WebMapper {
         switch (stat){
             case 4:
                 return "已参加";
-            case 3:
-                return "已报名";
             case 2:
+                return "已报名";
+            case 3:
                 return "缺席";
             default:
                 return "未知";
