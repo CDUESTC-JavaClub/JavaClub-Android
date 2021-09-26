@@ -88,6 +88,10 @@
         <item name="android:background">@color/white</item>
     </style>
 
+    <style name="TimeLineColor">
+        <item name="android:background">@color/white</item>
+    </style>
+
     <style name="Theme.JavaClub.AppWidgetContainerParent">
         <item name="appWidgetRadius">10dp</item>
         <item name="appWidgetPadding">10dp</item>
