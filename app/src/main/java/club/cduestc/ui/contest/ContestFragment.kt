@@ -8,6 +8,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import club.cduestc.databinding.FragmentContestBinding
+import club.cduestc.ui.contest.item.ContestLine
+import club.cduestc.util.NetManager
+import com.alibaba.fastjson.JSONObject
 
 class ContestFragment : Fragment() {
 
@@ -20,7 +23,27 @@ class ContestFragment : Fragment() {
         contestViewModel = ViewModelProvider(this).get(ContestViewModel::class.java)
         _binding = FragmentContestBinding.inflate(inflater, container, false)
 
+        init()
+
         return binding.root
+    }
+
+    private fun init(){
+        val timeLine = binding.contestTimeLine
+        val lineList = ArrayList<ContestLine>()
+        NetManager.createTask{
+            val list = NetManager.allContest()
+            requireActivity().runOnUiThread{
+                list?.forEach{
+                    it as JSONObject
+                    val line = ContestLine(requireActivity(), it, lineList)
+                    lineList.add(line)
+                    timeLine.addView(line)
+                }
+                binding.contestLoad.visibility = View.GONE
+                binding.contestMenu.visibility = View.VISIBLE
+            }
+        }
     }
 
     override fun onDestroyView() {

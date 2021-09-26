@@ -34,6 +34,13 @@ class CollapseCardView : CardView {
         collapse = typedArray.getBoolean(R.styleable.CollapseCardView_collapse, false)
     }
 
+    fun collapse(){
+        if(!collapse){
+            collapse(this)
+            collapse = true
+        }
+    }
+
     fun toggle(){
         collapse = if(collapse){
             expand(this)

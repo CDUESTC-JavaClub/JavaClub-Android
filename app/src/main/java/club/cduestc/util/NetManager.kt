@@ -1,6 +1,7 @@
 package club.cduestc.util
 
 import android.util.Log
+import com.alibaba.fastjson.JSONArray
 import com.alibaba.fastjson.JSONObject
 import org.jsoup.Jsoup
 import java.io.ByteArrayOutputStream
@@ -58,6 +59,13 @@ object NetManager {
     fun initForum() : JSONObject?{
         val getResp = get("/auth/forum") ?: return null
         return getResp.getJSONObject("data")
+    }
+
+    fun allContest() : JSONArray?{
+        val getResp = get("/contest/all") ?: return null
+        return if(getResp.getInteger("status") == 200){
+            getResp.getJSONArray("data")
+        } else null
     }
 
     fun bind(id: String, pwd : String) : Boolean {

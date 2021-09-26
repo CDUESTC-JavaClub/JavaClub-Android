@@ -96,6 +96,7 @@ class SettingsFragment : Fragment() {
         NetManager.createTask{
             val data = NetManager.update()
             if(data != null){
+                if(data.getInteger("status") != 200) return@createTask
                 val version = data.getJSONObject("data").getString("version")
                 if(UpdateUtil.getVersion() != version){
                     requireActivity().runOnUiThread {
