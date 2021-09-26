@@ -21,13 +21,13 @@ import java.util.*
 
 class ContestLine(context: Activity, data : JSONObject, other : List<ContestLine>) : LinearLayout(context) {
     init {
-        println(data)
         val format = SimpleDateFormat("yyyy-MM-dd", Locale.CHINA)
         val view: View = LayoutInflater.from(context).inflate(R.layout.contest_line, this)
         setOnClickListener { findViewById<CollapseCardView>(R.id.time_line_card).toggle() }
         view.findViewById<TextView>(R.id.contest_name).text = data.getString("name")
         view.findViewById<TextView>(R.id.contest_time).text = format.format(data.getDate("time"))
         view.findViewById<TextView>(R.id.contest_depart).text = data.getString("depart")
+        view.findViewById<TextView>(R.id.contest_type).text = data.getString("type")
         view.findViewById<TextView>(R.id.contest_desc).text = Html.fromHtml(data.getString("desc"))
         view.findViewById<Button>(R.id.btn_detail).setOnClickListener{
             val uri: Uri = Uri.parse(data.getString("url"))
