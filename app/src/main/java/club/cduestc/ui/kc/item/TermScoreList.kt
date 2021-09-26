@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import club.cduestc.R
+import club.cduestc.ui.CollapseCardView
 
 class TermScoreList(context: Context?,
                     title : String,
@@ -21,15 +22,8 @@ class TermScoreList(context: Context?,
         scoreList.forEach(list::addView)
     }
 
-    private var state = false
     private fun fldList(it : View){
-        val list = findViewById<LinearLayout>(R.id.score_list)
-        if (state){
-            list.visibility = View.VISIBLE
-            state = false
-        }else{
-            list.visibility = View.GONE
-            state = true
-        }
+        val list = findViewById<CollapseCardView>(R.id.score_card)
+        list.toggle()
     }
 }
