@@ -7,6 +7,7 @@
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.27239583333333334" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.27239583333333334" />
         <entry key="app/src/main/res/drawable/translucent.xml" value="0.4588541666666667" />
+        <entry key="app/src/main/res/layout/activity_bai_info.xml" value="0.3138586956521739" />
         <entry key="app/src/main/res/layout/activity_bai_list.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_bai_my.xml" value="0.32472826086956524" />
         <entry key="app/src/main/res/layout/activity_kc_score.xml" value="0.26856884057971014" />
@@ -14,6 +15,7 @@
         <entry key="app/src/main/res/layout/activity_kc_table.xml" value="0.25625" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.26856884057971014" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2050925925925926" />
+        <entry key="app/src/main/res/layout/bai_activity_add_line.xml" value="0.3138586956521739" />
         <entry key="app/src/main/res/layout/bai_activity_line.xml" value="0.375" />
         <entry key="app/src/main/res/layout/bai_activity_line_detail.xml" value="0.32472826086956524" />
         <entry key="app/src/main/res/layout/bai_activity_my_line.xml" value="0.32472826086956524" />

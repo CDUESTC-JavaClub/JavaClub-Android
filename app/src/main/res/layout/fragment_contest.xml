@@ -79,8 +79,7 @@
             android:layout_marginHorizontal="10dp"
             android:layout_marginTop="10dp"
             app:cardCornerRadius="10dp"
-            app:collapseHeight="50dp"
-            app:expandedHeight="300dp" />
+            app:collapseHeight="50dp"/>
 
         <club.cduestc.ui.CollapseCardView
             android:layout_width="match_parent"
@@ -89,8 +88,7 @@
             android:layout_marginTop="10dp"
             app:cardCornerRadius="10dp"
             app:collapse="true"
-            app:collapseHeight="50dp"
-            app:expandedHeight="300dp" />
+            app:collapseHeight="50dp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

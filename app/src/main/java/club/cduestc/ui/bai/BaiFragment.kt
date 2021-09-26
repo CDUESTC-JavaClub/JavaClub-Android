@@ -15,6 +15,7 @@ import club.byjh.exception.ByjhAssistantException
 import club.byjh.net.WebManager
 import club.byjh.net.enums.StatusType
 import club.cduestc.databinding.FragmentBaiBinding
+import club.cduestc.ui.bai.sub.BaiInfoActivity
 import club.cduestc.ui.bai.sub.BaiListActivity
 import club.cduestc.ui.bai.sub.BaiMyActivity
 import club.cduestc.ui.kc.sub.KcStudentActivity
@@ -41,8 +42,14 @@ class BaiFragment : Fragment() {
 
         binding.btnBaiAll.setOnClickListener(this::listAllActivity)
         binding.btnBaiMy.setOnClickListener(this::listMyActivity)
+        binding.btnBaiInfo.setOnClickListener(this::infoActivity)
 
         return binding.root
+    }
+
+    private fun infoActivity(v : View){
+        val intent = Intent(context, BaiInfoActivity::class.java)
+        startActivity(intent)
     }
 
     private fun listMyActivity(v : View){

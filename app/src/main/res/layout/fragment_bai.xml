@@ -468,7 +468,7 @@
                 <View style="@style/SpiltLine"/>
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_kc_user4"
+                    android:id="@+id/btn_bai_info"
                     style="@style/FunctionButtonBai"
                     android:text="@string/btn_bai_score"
                     app:cornerRadius="0dp"

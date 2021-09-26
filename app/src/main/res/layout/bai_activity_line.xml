@@ -113,9 +113,10 @@
                     android:orientation="vertical"
                     android:layout_height="match_parent">
                     <ImageView
+                        android:layout_marginTop="5dp"
                         android:id="@+id/bai_image_type"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
                         android:src="@drawable/bai_icon_dx"
                         android:layout_marginHorizontal="15dp"
                         app:tint="#54FF0000" />
