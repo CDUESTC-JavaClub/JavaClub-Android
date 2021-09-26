@@ -1,6 +1,7 @@
 package club.cduestc.ui.home
 
 import android.annotation.SuppressLint
+import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
@@ -8,13 +9,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.*
-import android.webkit.WebChromeClient.FileChooserParams
+import android.webkit.ValueCallback
+import android.webkit.WebChromeClient
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import club.cduestc.databinding.FragmentHomeBinding
 import club.cduestc.util.UserManager
-import java.lang.RuntimeException
+
 
 class HomeFragment : Fragment() {
 
@@ -46,9 +49,32 @@ class HomeFragment : Fragment() {
                 web.visibility = View.VISIBLE
             }
         }
+        web.webChromeClient = object : WebChromeClient(){
+            override fun onShowFileChooser(
+                webView: WebView?,
+                filePathCallback: ValueCallback<Array<Uri>>?,
+                fileChooserParams: FileChooserParams?
+            ): Boolean {
+                mFilePathCallback = filePathCallback
+                val intent = Intent(Intent.ACTION_GET_CONTENT)
+                intent.type = "*/*"
+                startActivityForResult(intent, 1)
+                return true
+            }
+        }
         web.loadUrl(UserManager.index ?: "https://study.cduestc.club/index.php")
-
         return binding.root
+    }
+
+    var mFilePathCallback : ValueCallback<Array<Uri>>? = null
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == 1) {
+            val result: Uri? = if (resultCode != RESULT_OK) null else data?.data
+            if (result != null) {
+                val resultsArray = arrayOf(result)
+                mFilePathCallback!!.onReceiveValue(resultsArray)
+            } else mFilePathCallback!!.onReceiveValue(null)
+        }
     }
 
     override fun onDestroyView() {
