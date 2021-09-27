@@ -12,14 +12,16 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import club.cduestc.databinding.ActivityLoginBinding
+import club.cduestc.databinding.ActivityMainBinding
+import club.cduestc.databinding.FragmentHomeBinding
 import club.cduestc.util.NetManager
-import android.content.IntentFilter
-import club.cduestc.ui.kc.widget.KcClassWidget
 import club.cduestc.util.UserManager
-import com.alibaba.fastjson.JSONObject
 
 
 class LoginActivity : AppCompatActivity() {
+
+    private lateinit var binding : ActivityLoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
@@ -38,9 +40,10 @@ class LoginActivity : AppCompatActivity() {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
         }
 
+        binding = ActivityLoginBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         window.navigationBarColor = Color.TRANSPARENT
-        setContentView(R.layout.activity_login)
+        setContentView(binding.root)
 
         val sharedPreference = getSharedPreferences("data", MODE_PRIVATE)
         val success = sharedPreference.getBoolean("base_last", false)
@@ -145,14 +148,18 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun linkForget(view: View){
-        val uri: Uri = Uri.parse("https://study.cduestc.club/index.php?lost-password/")
-        val intent = Intent(Intent.ACTION_VIEW, uri)
-        startActivity(intent)
+        if(binding.loginMask.visibility == View.GONE){
+            val uri: Uri = Uri.parse("https://study.cduestc.club/index.php?lost-password/")
+            val intent = Intent(Intent.ACTION_VIEW, uri)
+            startActivity(intent)
+        }
     }
 
     private fun linkRegister(view: View){
-        val uri: Uri = Uri.parse("https://study.cduestc.club/index.php?register/")
-        val intent = Intent(Intent.ACTION_VIEW, uri)
-        startActivity(intent)
+        if(binding.loginMask.visibility == View.GONE){
+            val uri: Uri = Uri.parse("https://study.cduestc.club/index.php?register/")
+            val intent = Intent(Intent.ACTION_VIEW, uri)
+            startActivity(intent)
+        }
     }
 }
