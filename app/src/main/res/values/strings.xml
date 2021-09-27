@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">科成JavaClub</string>
+
+    <string name="nav_home">俱乐部</string>
+    <string name="nav_contest">竞赛和活动</string>
+
+    <string name="home_loading">正在进入俱乐部…</string>
+
+    <string name="contest_loading">正在获取最新竞赛信息…</string>
+    <string name="contest_title">竞赛和活动</string>
+    <string name="contest_title_desc">你可以在这里快速了解当下热门赛事和活动，为自己争得荣誉！</string>
+    <string name="contest_title_note">以下功能模块的数据由科成JavaClub提供，我们旨在为同学们提供最新最有含金量的赛事信息和活动。</string>
 </resources>
