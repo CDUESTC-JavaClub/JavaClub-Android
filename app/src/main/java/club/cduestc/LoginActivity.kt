@@ -22,6 +22,8 @@ import com.alibaba.fastjson.JSONObject
 class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+
         val settingsPreference = getSharedPreferences("settings", MODE_PRIVATE)
         if(!settingsPreference.contains("settings_auto_dark")) settingsPreference.edit().putBoolean("settings_auto_dark", true).apply()
         val auto = settingsPreference.getBoolean("settings_auto_dark", false)
@@ -71,8 +73,7 @@ class LoginActivity : AppCompatActivity() {
      */
     private fun initUserImage(){
         val s = getSharedPreferences("data", MODE_PRIVATE)
-        UserManager.initImage(s.getString("base_avatar_url", null),
-            s.getString("base_background_url", null))
+        UserManager.initImage(s.getString("base_avatar_url", null), s.getString("base_background_url", null))
     }
 
     private fun autoLogin(success : Boolean, baseName : String, basePassword : String, sharedPreference : SharedPreferences){

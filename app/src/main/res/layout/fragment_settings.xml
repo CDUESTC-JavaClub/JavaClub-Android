@@ -10,7 +10,7 @@
     <ImageView
         android:id="@+id/user_background"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="230dp"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:src="@drawable/login_bg"
@@ -28,8 +28,8 @@
             android:layout_height="wrap_content">
 
             <View
+                style="@style/SettingCardBackground"
                 android:id="@+id/view4"
-                style="@style/SettingBackground"
                 android:layout_width="match_parent"
                 android:layout_height="550dp"
                 android:layout_marginTop="200dp"

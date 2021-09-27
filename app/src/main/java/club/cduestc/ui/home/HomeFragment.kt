@@ -6,6 +6,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -42,7 +43,6 @@ class HomeFragment : Fragment() {
                     web.goBack()
                 }
             }
-
             override fun onPageFinished(view: WebView?, url: String?) {
                 super.onPageFinished(view, url)
                 binding.webLoad.visibility = View.GONE
@@ -61,6 +61,17 @@ class HomeFragment : Fragment() {
                 startActivityForResult(intent, 1)
                 return true
             }
+        }
+        web.setOnKeyListener { _, i, keyEvent ->
+            if(i == KeyEvent.KEYCODE_BACK){
+                if(web.canGoBack()){
+                    if(keyEvent.action == KeyEvent.ACTION_DOWN) web.goBack()
+                }else{
+                    if(keyEvent.action == KeyEvent.ACTION_DOWN) requireActivity().onBackPressed()
+                }
+                return@setOnKeyListener true
+            }
+            return@setOnKeyListener false
         }
         web.loadUrl(UserManager.index ?: "https://study.cduestc.club/index.php")
         return binding.root

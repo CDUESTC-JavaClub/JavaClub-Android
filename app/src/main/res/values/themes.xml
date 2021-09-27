@@ -76,6 +76,10 @@
         <item name="android:tint">@color/black</item>
     </style>
 
+    <style name="SettingCardBackground">
+        <item name="android:background">@drawable/shape_setting_card</item>
+    </style>
+
     <style name="SettingBackground">
         <item name="android:background">@color/gray</item>
     </style>
