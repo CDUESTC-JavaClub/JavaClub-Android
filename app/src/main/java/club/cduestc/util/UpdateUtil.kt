@@ -15,7 +15,7 @@ import club.cduestc.R
 
 object UpdateUtil {
 
-    private const val version = "0.9.0"
+    private const val version = "1.0.0"
 
     fun getVersion() : String{
         return version

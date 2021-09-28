@@ -3,6 +3,7 @@ package club.cduestc.ui.nav
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
+import android.view.animation.AlphaAnimation
 import androidx.annotation.IdRes
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -10,6 +11,7 @@ import androidx.navigation.NavDestination
 import androidx.navigation.NavOptions
 import androidx.navigation.Navigator
 import androidx.navigation.fragment.FragmentNavigator
+import club.cduestc.util.AnimUtil
 import java.lang.Exception
 import java.lang.reflect.Field
 import java.util.ArrayDeque
@@ -39,18 +41,6 @@ class FixFragmentNavigator(context: Context, manager: FragmentManager, container
         frag.arguments = args
         val ft = mFragmentManager.beginTransaction()
 
-        var enterAnim = navOptions?.enterAnim ?: -1
-        var exitAnim = navOptions?.exitAnim ?: -1
-        var popEnterAnim = navOptions?.popEnterAnim ?: -1
-        var popExitAnim = navOptions?.popExitAnim ?: -1
-        if (enterAnim != -1 || exitAnim != -1 || popEnterAnim != -1 || popExitAnim != -1) {
-            enterAnim = if (enterAnim != -1) enterAnim else 0
-            exitAnim = if (exitAnim != -1) exitAnim else 0
-            popEnterAnim = if (popEnterAnim != -1) popEnterAnim else 0
-            popExitAnim = if (popExitAnim != -1) popExitAnim else 0
-            ft.setCustomAnimations(enterAnim, exitAnim, popEnterAnim, popExitAnim)
-        }
-
         val fragments: List<Fragment> = mFragmentManager.fragments
         for (fragment in fragments) {
             ft.hide(fragment)
@@ -59,6 +49,7 @@ class FixFragmentNavigator(context: Context, manager: FragmentManager, container
             ft.add(mContainerId, frag, className)
         }
         ft.show(frag)
+        if(frag.view != null) AnimUtil.show(frag.requireView(), 0.6f, 1.0f)
         ft.setPrimaryNavigationFragment(frag)
 
         val mBackStack : ArrayDeque<Int> = try {

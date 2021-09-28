@@ -101,7 +101,8 @@
                     android:textColorHint="@color/gray"
                     android:textAlignment="center"
                     android:hint="@string/login_name"
-                    android:lines="1"
+                    android:maxLines="1"
+                    android:singleLine="true"
                     android:maxLength="20"
                     android:background="@drawable/translucent"/>
 
@@ -115,7 +116,7 @@
                     android:inputType="textPassword"
                     android:textAlignment="center"
                     android:hint="@string/login_password"
-                    android:lines="1"
+                    android:maxLines="1"
                     android:maxLength="20"
                     android:background="@drawable/translucent"/>
 

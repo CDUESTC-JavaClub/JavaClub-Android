@@ -1,10 +1,11 @@
 package club.cduestc
 
+import android.content.Context
 import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Bundle
 import android.view.MenuItem
-import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavGraph
@@ -40,13 +41,18 @@ class MainActivity : AppCompatActivity() {
         val baseName = sharedPreference.getString("base_id", "").toString()
         val basePassword = sharedPreference.getString("base_password", "").toString()
         binding.btnLogin.setOnClickListener{
+            val imm = this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(binding.root.windowToken, 0)
             saveLoginForm(sharedPreference)
             binding.loginCard.toggle()
             NetManager.createTask{ doLogin(sharedPreference) }
         }
         binding.inputPwd.setText(basePassword)
         binding.inputId.setText(baseName)
+
+        binding.loginMask.setOnClickListener {  }
         AnimUtil.show(binding.loginMask)
+
         login(sharedPreference)
     }
 
@@ -75,6 +81,10 @@ class MainActivity : AppCompatActivity() {
                 binding.loginCard.toggle()
             }
         }else{   //登陆完成
+            sharedPreference
+                .edit()
+                .putBoolean("base_last", true)
+                .apply()
             AnimUtil.hide(binding.loginMask)
             initUserImage()
             runOnUiThread {
@@ -122,7 +132,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun checkUpdate(){
-        val sharedPreference = this.getSharedPreferences("settings", AppCompatActivity.MODE_PRIVATE)
+        val sharedPreference = this.getSharedPreferences("settings", MODE_PRIVATE)
         val auto = sharedPreference.getBoolean("settings_auto_update", true)
         if (auto) {
             NetManager.createTask{

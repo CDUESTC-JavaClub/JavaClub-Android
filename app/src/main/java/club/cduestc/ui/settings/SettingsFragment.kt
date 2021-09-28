@@ -1,21 +1,16 @@
 package club.cduestc.ui.settings
 
-import android.app.AlertDialog
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import club.cduestc.LoginActivity
 import club.cduestc.MainActivity
-import club.cduestc.R
 import club.cduestc.databinding.FragmentSettingsBinding
 import club.cduestc.util.NetManager
 import club.cduestc.util.UpdateUtil
