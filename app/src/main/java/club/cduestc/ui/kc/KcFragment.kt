@@ -45,6 +45,7 @@ class KcFragment : Fragment() {
                 val latch = CountDownLatch(1)
                 var str = ""
                 requireActivity().runOnUiThread {
+                    binding.kcMenu.visibility = View.GONE
                     binding.tipCaptcha.visibility = View.VISIBLE
                     binding.kcLoading.visibility = View.GONE
                     binding.kcCaptchaInput.setText("")
