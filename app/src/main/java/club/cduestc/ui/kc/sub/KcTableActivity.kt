@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.TableRow
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import club.cduestc.R
 import club.cduestc.ui.kc.item.ClassCard
@@ -107,7 +108,20 @@ class KcTableActivity : AppCompatActivity() {
 
         if(!sharedPreference.contains("class_table")){
             NetManager.createTask{
-                val arr =  UserManager.kcAccount.getClassTable(term).toJSONArray()
+                var arr : JSONArray
+                try {
+                    arr =  UserManager.kcAccount.getClassTable(term).toJSONArray()
+                }catch (e : Exception){
+                    try {
+                        UserManager.kcAccount.login()
+                        arr =  UserManager.kcAccount.getClassTable(term).toJSONArray()
+                    }catch (e : Exception){
+                        arr = JSONArray()
+                        e.printStackTrace()
+                        Toast.makeText(this, "未知错误，无法获取课程表信息！", Toast.LENGTH_SHORT).show()
+                        this.finish()
+                    }
+                }
                 sharedPreference.edit().putString("class_table", arr.toString()).apply()
                 addCards(arr, matrix)
                 runOnUiThread { fillTable(rows, matrix) }

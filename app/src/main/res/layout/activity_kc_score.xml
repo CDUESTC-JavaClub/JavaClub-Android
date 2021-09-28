@@ -7,22 +7,6 @@
     style="@style/SettingBackground"
     tools:context=".ui.kc.sub.KcScoreActivity">
 
-    <LinearLayout
-        android:id="@+id/score_loading"
-        android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:layout_height="match_parent">
-        <club.cduestc.ui.LoadingView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"/>
-        <TextView
-            android:text="@string/kc_score_loading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
-
     <View
         android:id="@+id/top_all"
         android:layout_width="match_parent"
@@ -142,5 +126,20 @@
         </ScrollView>
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/score_loading"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_height="match_parent">
+        <club.cduestc.ui.LoadingView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"/>
+        <TextView
+            android:text="@string/kc_score_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

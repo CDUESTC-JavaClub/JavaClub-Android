@@ -8,9 +8,11 @@ import android.widget.ScrollView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentManager
 import club.cduestc.R
 import club.cduestc.ui.kc.item.ScoreLine
 import club.cduestc.ui.kc.item.TermScoreList
+import club.cduestc.util.AnimUtil
 import club.cduestc.util.NetManager
 import club.cduestc.util.UserManager
 import club.jw.score.ScoreList
@@ -28,19 +30,28 @@ class KcScoreActivity : AppCompatActivity() {
     private fun initScore(){
         NetManager.createTask{
             try {
-                val scoreList = UserManager.kcAccount.score
-                runOnUiThread {
-                    listScore(scoreList)
-                    findViewById<View>(R.id.score_loading).visibility = View.GONE
-                    findViewById<View>(R.id.score_menu).visibility = View.VISIBLE
-                }
+                this.doInitScore()
             }catch (e : Exception){
-                this.runOnUiThread {
+                try {
+                    UserManager.kcAccount.login()
+                    this.doInitScore()
+                }catch (e : Exception){
                     e.printStackTrace()
-                    Toast.makeText(this, "未知错误，无法获取成绩信息！", Toast.LENGTH_SHORT).show()
-                    this.finish()
+                    this.runOnUiThread {
+                        Toast.makeText(this, "未知错误，无法获取成绩信息！", Toast.LENGTH_SHORT).show()
+                        this.finish()
+                    }
                 }
             }
+        }
+    }
+
+    private fun doInitScore(){
+        val scoreList = UserManager.kcAccount.score
+        runOnUiThread {
+            listScore(scoreList)
+            AnimUtil.hide(findViewById(R.id.score_loading))
+            findViewById<View>(R.id.score_menu).visibility = View.VISIBLE
         }
     }
 

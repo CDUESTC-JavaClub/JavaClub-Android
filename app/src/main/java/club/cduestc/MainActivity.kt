@@ -134,7 +134,6 @@ class MainActivity : AppCompatActivity() {
             val s = getSharedPreferences("data", MODE_PRIVATE)
             UserManager.initImage(s.getString("base_avatar_url", null), s.getString("base_background_url", null))
         }
-
     }
 
     private fun initView(){
