@@ -24,6 +24,7 @@ import club.cduestc.util.NetManager
 import club.cduestc.util.UpdateUtil
 import club.cduestc.util.UserManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.bottomnavigation.LabelVisibilityMode
 
 
 class MainActivity : AppCompatActivity() {

@@ -3,7 +3,6 @@ package club.cduestc.ui.nav
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import android.view.animation.AlphaAnimation
 import androidx.annotation.IdRes
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -12,9 +11,8 @@ import androidx.navigation.NavOptions
 import androidx.navigation.Navigator
 import androidx.navigation.fragment.FragmentNavigator
 import club.cduestc.util.AnimUtil
-import java.lang.Exception
 import java.lang.reflect.Field
-import java.util.ArrayDeque
+import java.util.*
 
 
 @Navigator.Name("fixFragment")
