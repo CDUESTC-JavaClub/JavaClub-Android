@@ -23,6 +23,7 @@ class FixFragmentNavigator(context: Context, manager: FragmentManager, container
     private val mContainerId = containerId
     private var mFragmentManager: FragmentManager = manager
     private val _tag = "FragmentNavigator"
+    private var currentFragment : Fragment? = null
 
     override fun navigate(destination: Destination, args: Bundle?, navOptions: NavOptions?, navigatorExtras: Navigator.Extras?): NavDestination? {
         if (mFragmentManager.isStateSaved) {
@@ -47,7 +48,8 @@ class FixFragmentNavigator(context: Context, manager: FragmentManager, container
             ft.add(mContainerId, frag, className)
         }
         ft.show(frag)
-        if(frag.view != null) AnimUtil.show(frag.requireView(), 0.6f, 1.0f)
+        if(frag.view != null && currentFragment != frag) AnimUtil.show(frag.requireView(), 0.6f, 1.0f)
+        currentFragment = frag
         ft.setPrimaryNavigationFragment(frag)
 
         val mBackStack : ArrayDeque<Int> = try {

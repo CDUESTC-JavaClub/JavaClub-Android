@@ -90,9 +90,9 @@ class MainActivity : AppCompatActivity() {
                 .putBoolean("base_last", true)
                 .apply()
             if(first) this.firstLogin(sharedPreference)
-            AnimUtil.hide(binding.loginMask)
             initUserImage()
             runOnUiThread {
+                AnimUtil.hide(binding.loginMask)
                 AnimUtil.hide(binding.loginCardMain)
                 AnimUtil.hide(binding.loginLoading)
                 initView()
@@ -130,8 +130,11 @@ class MainActivity : AppCompatActivity() {
      * 初始化用户图片（头像、背景）
      */
     private fun initUserImage(){
-        val s = getSharedPreferences("data", MODE_PRIVATE)
-        UserManager.initImage(s.getString("base_avatar_url", null), s.getString("base_background_url", null))
+        NetManager.createTask{
+            val s = getSharedPreferences("data", MODE_PRIVATE)
+            UserManager.initImage(s.getString("base_avatar_url", null), s.getString("base_background_url", null))
+        }
+
     }
 
     private fun initView(){

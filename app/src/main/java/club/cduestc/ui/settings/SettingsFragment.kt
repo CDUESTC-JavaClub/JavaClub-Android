@@ -31,8 +31,8 @@ class SettingsFragment : Fragment() {
         notificationsViewModel = ViewModelProvider(this).get(SettingsViewModel::class.java)
         _binding = FragmentSettingsBinding.inflate(inflater, container, false)
 
-        binding.userBackground.setImageBitmap(UserManager.getBackground())
-        binding.userHeader.setImageBitmap(UserManager.getHeader())
+        loadImageResource()
+
         binding.userName.text = UserManager.getUserName()
         binding.userSignature.text = UserManager.getSignature()
         binding.userId.text = UserManager.getBindId() ?: "未绑定"
@@ -64,6 +64,27 @@ class SettingsFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun loadImageResource(){
+        NetManager.createTask{
+            for (i in 1..10){
+                if(UserManager.getBackground() != null) {
+                    requireActivity().runOnUiThread { binding.userBackground.setImageBitmap(UserManager.getBackground()) }
+                    break
+                }
+                Thread.sleep(1000)
+            }
+        }
+        NetManager.createTask{
+            for (i in 1..10){
+                if(UserManager.getHeader() != null){
+                    requireActivity().runOnUiThread { binding.userHeader.setImageBitmap(UserManager.getHeader()) }
+                    break
+                }
+                Thread.sleep(1000)
+            }
+        }
     }
 
     private fun switchAutoUpdate(view: View){

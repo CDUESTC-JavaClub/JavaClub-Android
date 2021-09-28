@@ -24,8 +24,8 @@ object UserManager {
     }
 
     fun initImage(u1 : String?, u2 : String?){
-        NetManager.createTask{ header = getHttpBitmap(u1) }
-        NetManager.createTask{ background = getHttpBitmap(u2) }
+        header = getHttpBitmap(u1)
+        background = getHttpBitmap(u2)
     }
 
     fun getUserName(): String {

@@ -57,7 +57,7 @@ class HomeFragment : Fragment() {
             ): Boolean {
                 mFilePathCallback = filePathCallback
                 val intent = Intent(Intent.ACTION_GET_CONTENT)
-                intent.type = "*/image"
+                intent.type = "image/*"
                 startActivityForResult(intent, 1)
                 return true
             }
