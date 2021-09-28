@@ -2,18 +2,17 @@ package club.cduestc.ui.bai.sub
 
 import android.app.AlertDialog
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
-import club.byjh.entity.activity.SignedActivity
+import androidx.appcompat.app.AppCompatActivity
 import club.byjh.exception.ActivityOprException
 import club.cduestc.R
 import club.cduestc.ui.bai.item.MyActivityLine
+import club.cduestc.util.AnimUtil
 import club.cduestc.util.NetManager
 import club.cduestc.util.UserManager
-import org.w3c.dom.Text
 
 class BaiMyActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,7 +51,7 @@ class BaiMyActivity : AppCompatActivity() {
                 }
                 findViewById<TextView>(R.id.count_signed).text = signed.toString()
                 findViewById<TextView>(R.id.count_wait).text = wait.toString()
-                findViewById<View>(R.id.loadActivity).visibility = View.GONE
+                AnimUtil.hide(findViewById<View>(R.id.loadActivity))
                 findViewById<View>(R.id.my_activity_menu).visibility = View.VISIBLE
             }
         }

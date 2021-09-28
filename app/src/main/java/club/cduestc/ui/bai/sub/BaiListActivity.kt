@@ -14,6 +14,7 @@ import club.byjh.net.WebManager
 import club.byjh.net.enums.StatusType
 import club.cduestc.R
 import club.cduestc.ui.bai.item.ActivityLine
+import club.cduestc.util.AnimUtil
 import club.cduestc.util.NetManager
 import club.cduestc.util.UserManager
 import java.text.SimpleDateFormat
@@ -46,7 +47,7 @@ class BaiListActivity : AppCompatActivity() {
                 .collect(Collectors.toList())
             this.runOnUiThread{
                 list.forEach{menu.addView(ActivityLine(this, myList.contains(it.id),this, it, this::detail))}
-                findViewById<View>(R.id.loadActivity).visibility = View.GONE
+                AnimUtil.hide(findViewById(R.id.loadActivity))
             }
         }
     }
@@ -132,7 +133,9 @@ class BaiListActivity : AppCompatActivity() {
         val types = listOf("全部", "尽美", "博学" ,"明德", "笃行").toTypedArray()
         builder.setItems(types) { _, which ->
             type = if(which != 0) types[which] else ""
-            findViewById<View>(R.id.loadActivity).visibility = View.VISIBLE
+            val view = findViewById<View>(R.id.loadActivity)
+            view.alpha = 1f
+            AnimUtil.show(view)
             init()
         }
         builder.show()

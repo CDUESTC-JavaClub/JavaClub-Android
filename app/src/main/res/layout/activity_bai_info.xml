@@ -8,7 +8,7 @@
     tools:context=".ui.bai.sub.BaiInfoActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:visibility="visible"
+        android:visibility="gone"
         android:id="@+id/score_add_menu"
         android:layout_width="match_parent"
         android:layout_height="match_parent">

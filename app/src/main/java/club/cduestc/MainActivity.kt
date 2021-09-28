@@ -1,10 +1,13 @@
 package club.cduestc
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -24,8 +27,6 @@ import club.cduestc.util.NetManager
 import club.cduestc.util.UpdateUtil
 import club.cduestc.util.UserManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.bottomnavigation.LabelVisibilityMode
-
 
 class MainActivity : AppCompatActivity() {
 
@@ -46,11 +47,13 @@ class MainActivity : AppCompatActivity() {
             imm.hideSoftInputFromWindow(binding.root.windowToken, 0)
             saveLoginForm(sharedPreference)
             binding.loginCard.toggle()
-            NetManager.createTask{ doLogin(sharedPreference) }
+            NetManager.createTask{ doLogin(sharedPreference, true) }
         }
         binding.inputPwd.setText(basePassword)
         binding.inputId.setText(baseName)
 
+        binding.linkRegister.setOnClickListener { linkToWeb("https://study.cduestc.club/index.php?register/") }
+        binding.linkForget.setOnClickListener { linkToWeb("https://study.cduestc.club/index.php?lost-password/") }
         binding.loginMask.setOnClickListener {  }
         AnimUtil.show(binding.loginMask)
 
@@ -61,14 +64,14 @@ class MainActivity : AppCompatActivity() {
         val success = sharedPreference.getBoolean("base_last", false)
         NetManager.createTask{
             if(success){
-                doLogin(sharedPreference)
+                doLogin(sharedPreference, false)
             }else{
                 runOnUiThread { binding.loginCard.toggle() }
             }
         }
     }
 
-    private fun doLogin(sharedPreference : SharedPreferences){
+    private fun doLogin(sharedPreference : SharedPreferences, first : Boolean){
         val baseName = sharedPreference.getString("base_id", "").toString()
         val basePassword = sharedPreference.getString("base_password", "").toString()
         runOnUiThread { AnimUtil.show(binding.loginLoading) }
@@ -86,6 +89,7 @@ class MainActivity : AppCompatActivity() {
                 .edit()
                 .putBoolean("base_last", true)
                 .apply()
+            if(first) this.firstLogin(sharedPreference)
             AnimUtil.hide(binding.loginMask)
             initUserImage()
             runOnUiThread {
@@ -93,6 +97,21 @@ class MainActivity : AppCompatActivity() {
                 AnimUtil.hide(binding.loginLoading)
                 initView()
             }
+        }
+    }
+
+    /**
+     * 首次登陆
+     */
+    private fun firstLogin(sharedPreference: SharedPreferences){
+        val data = NetManager.initForum()
+        if(data != null){
+            UserManager.index = data.getString("index")
+            sharedPreference
+                .edit()
+                .putString("base_avatar_url", data.getString("urlAvatar"))
+                .putString("base_background_url", data.getString("urlBackground"))
+                .apply()
         }
     }
 
@@ -197,5 +216,13 @@ class MainActivity : AppCompatActivity() {
 
         navGraph.startDestination = R.id.navigation_home
         return navGraph
+    }
+
+    private fun linkToWeb(url : String){
+        if(binding.loginMask.visibility == View.GONE){
+            val uri: Uri = Uri.parse(url)
+            val intent = Intent(Intent.ACTION_VIEW, uri)
+            startActivity(intent)
+        }
     }
 }

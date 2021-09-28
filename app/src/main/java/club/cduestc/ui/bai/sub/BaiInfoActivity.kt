@@ -9,15 +9,18 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import club.cduestc.R
+import club.cduestc.databinding.ActivityBaiInfoBinding
+import club.cduestc.databinding.ActivityMainBinding
 import club.cduestc.ui.bai.item.ScoreLine
+import club.cduestc.util.AnimUtil
 import club.cduestc.util.NetManager
 import club.cduestc.util.UserManager
 
 class BaiInfoActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bai_info)
-
         init()
     }
 
@@ -37,8 +40,8 @@ class BaiInfoActivity : AppCompatActivity() {
                     findViewById<CardView>(R.id.finish_back).backgroundTintList = ColorStateList.valueOf(Color.parseColor("#4CAF50"))
                     findViewById<TextView>(R.id.finish_text).text = "已达标"
                 }
+                AnimUtil.hide(findViewById(R.id.loadActivity))
                 findViewById<View>(R.id.score_add_menu).visibility = View.VISIBLE
-                findViewById<View>(R.id.loadActivity).visibility = View.GONE
             }
         }
     }
