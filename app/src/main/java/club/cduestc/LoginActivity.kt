@@ -13,8 +13,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import club.cduestc.databinding.ActivityLoginBinding
-import club.cduestc.databinding.ActivityMainBinding
-import club.cduestc.databinding.FragmentHomeBinding
 import club.cduestc.util.NetManager
 import club.cduestc.util.UserManager
 

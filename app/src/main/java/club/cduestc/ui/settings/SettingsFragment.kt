@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import club.cduestc.LoginActivity
+import club.cduestc.MainActivity
 import club.cduestc.R
 import club.cduestc.databinding.FragmentSettingsBinding
 import club.cduestc.util.NetManager
@@ -124,9 +125,9 @@ class SettingsFragment : Fragment() {
             .remove("base_password")
             .apply()
         NetManager.createTask(NetManager::logout)
-        val intent = Intent(activity, LoginActivity::class.java)
+        val intent = Intent(activity, MainActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-        intent.setClass(requireContext(), LoginActivity::class.java)
+        intent.setClass(requireContext(), MainActivity::class.java)
         startActivity(intent)
     }
 }

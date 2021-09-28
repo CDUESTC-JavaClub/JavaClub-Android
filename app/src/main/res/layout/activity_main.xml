@@ -5,28 +5,201 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/nav_view"
-        android:layout_width="0dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="0dp"
-        android:layout_marginEnd="0dp"
-        style="@style/NavColor"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:menu="@menu/bottom_nav_menu" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:visibility="visible"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <fragment
-        android:id="@+id/nav_host_fragment_activity_main"
-        android:name="androidx.navigation.fragment.NavHostFragment"
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/nav_view"
+            style="@style/NavColor"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:menu="@menu/bottom_nav_menu" />
+
+        <fragment
+            android:id="@+id/nav_host_fragment_activity_main"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="70dp"
+            app:defaultNavHost="true"
+            app:layout_constraintBottom_toTopOf="@id/nav_view"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:visibility="gone"
+        android:id="@+id/login_mask"
+        android:translationZ="80dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:defaultNavHost="true"
-        android:layout_marginBottom="70dp"
-        app:layout_constraintBottom_toTopOf="@id/nav_view"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:background="#88000000" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/login_card_main"
+        android:visibility="visible"
+        android:translationZ="100dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <club.cduestc.ui.CollapseCardView
+            android:id="@+id/login_card"
+            app:collapse="true"
+            app:cardElevation="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="600dp"
+            android:translationY="20dp"
+            app:cardCornerRadius="20dp"
+            app:collapseHeight="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/login_card_main"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+            <LinearLayout
+                android:layout_marginTop="50dp"
+                android:layout_marginHorizontal="50dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:orientation="vertical"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginBottom="20dp"
+                    android:src="@drawable/logo" />
+
+                <TextView
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:text="登陆科成JavaClub App"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_height="1dp"
+                    android:background="#46959595"/>
+
+                <EditText
+                    android:layout_marginTop="30dp"
+                    android:id="@+id/input_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/gray"
+                    android:textAlignment="center"
+                    android:hint="@string/login_name"
+                    android:lines="1"
+                    android:maxLength="20"
+                    android:background="@drawable/translucent"/>
+
+                <EditText
+                    android:id="@+id/input_pwd"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/gray"
+                    android:layout_marginTop="20dp"
+                    android:inputType="textPassword"
+                    android:textAlignment="center"
+                    android:hint="@string/login_password"
+                    android:lines="1"
+                    android:maxLength="20"
+                    android:background="@drawable/translucent"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="match_parent"
+                    android:id="@+id/btn_login"
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/login_btn"
+                    style="@style/LoginButton"
+                    app:cornerRadius="25dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:layout_height="20dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/TextColor"
+                        android:shadowColor="@color/gray"
+                        android:shadowRadius="10"
+                        android:id="@+id/link_register"
+                        android:text="@string/register_link" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        style="@style/TextColor"
+                        android:shadowColor="@color/gray"
+                        android:shadowRadius="10"
+                        android:id="@+id/link_forget"
+                        android:text="@string/forgot_link" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_height="1dp"
+                    android:background="#46959595"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="match_parent"
+                    android:enabled="false"
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="20dp"
+                    android:text="使用QQ登录"
+                    style="@style/LoginButton"
+                    app:cornerRadius="25dp"/>
+
+            </LinearLayout>
+        </club.cduestc.ui.CollapseCardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/login_loading"
+        android:visibility="gone"
+        android:translationZ="120dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <club.cduestc.ui.LoadingView
+            android:id="@+id/loadingView"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="正在登录到俱乐部..."
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/loadingView" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

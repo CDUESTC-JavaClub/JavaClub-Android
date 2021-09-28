@@ -1,11 +1,12 @@
 package club.cduestc
 
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.navigation.NavGraph
 import androidx.navigation.NavGraphNavigator
 import androidx.navigation.NavigatorProvider
@@ -17,8 +18,10 @@ import club.cduestc.ui.home.HomeFragment
 import club.cduestc.ui.kc.KcFragment
 import club.cduestc.ui.nav.FixFragmentNavigator
 import club.cduestc.ui.settings.SettingsFragment
+import club.cduestc.util.AnimUtil
 import club.cduestc.util.NetManager
 import club.cduestc.util.UpdateUtil
+import club.cduestc.util.UserManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
@@ -29,10 +32,79 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
         super.onCreate(savedInstanceState)
-
+        window.navigationBarColor = Color.TRANSPARENT
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val sharedPreference = getSharedPreferences("data", MODE_PRIVATE)
+        val baseName = sharedPreference.getString("base_id", "").toString()
+        val basePassword = sharedPreference.getString("base_password", "").toString()
+        binding.btnLogin.setOnClickListener{
+            saveLoginForm(sharedPreference)
+            binding.loginCard.toggle()
+            NetManager.createTask{ doLogin(sharedPreference) }
+        }
+        binding.inputPwd.setText(basePassword)
+        binding.inputId.setText(baseName)
+        AnimUtil.show(binding.loginMask)
+        login(sharedPreference)
+    }
+
+    private fun login(sharedPreference : SharedPreferences){
+        val success = sharedPreference.getBoolean("base_last", false)
+        NetManager.createTask{
+            if(success){
+                doLogin(sharedPreference)
+            }else{
+                runOnUiThread { binding.loginCard.toggle() }
+            }
+        }
+    }
+
+    private fun doLogin(sharedPreference : SharedPreferences){
+        val baseName = sharedPreference.getString("base_id", "").toString()
+        val basePassword = sharedPreference.getString("base_password", "").toString()
+        runOnUiThread { AnimUtil.show(binding.loginLoading) }
+        if(!NetManager.login(baseName, basePassword)){
+            val editor = sharedPreference.edit()
+            editor.putBoolean("base_last", false)
+            editor.apply()
+            runOnUiThread {
+                Toast.makeText(this, "登陆失败，可能是用户名或密码错误！", Toast.LENGTH_SHORT).show()
+                AnimUtil.hide(binding.loginLoading)
+                binding.loginCard.toggle()
+            }
+        }else{   //登陆完成
+            AnimUtil.hide(binding.loginMask)
+            initUserImage()
+            runOnUiThread {
+                AnimUtil.hide(binding.loginCardMain)
+                AnimUtil.hide(binding.loginLoading)
+                initView()
+            }
+        }
+    }
+
+    /**
+     * 保存登陆表单
+     */
+    private fun saveLoginForm(sharedPreference : SharedPreferences){
+        sharedPreference
+            .edit()
+            .putString("base_id", binding.inputId.text.toString())
+            .putString("base_password", binding.inputPwd.text.toString())
+            .apply()
+    }
+
+    /**
+     * 初始化用户图片（头像、背景）
+     */
+    private fun initUserImage(){
+        val s = getSharedPreferences("data", MODE_PRIVATE)
+        UserManager.initImage(s.getString("base_avatar_url", null), s.getString("base_background_url", null))
+    }
+
+    private fun initView(){
         //自定义导航栏复用Fragment处理
         val navView: BottomNavigationView = binding.navView
         val fragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main)
@@ -46,8 +118,6 @@ class MainActivity : AppCompatActivity() {
             navController.navigate(item.itemId)
             true
         }
-        window.navigationBarColor = Color.TRANSPARENT
-
         checkUpdate()
     }
 

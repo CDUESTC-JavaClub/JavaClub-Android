@@ -79,7 +79,7 @@ class CollapseCardView : CardView {
             }
         }
         animation.duration = 400
-        animation.interpolator = AccelerateInterpolator()
+        animation.interpolator = DecelerateInterpolator()
         view.startAnimation(animation)
     }
 }
