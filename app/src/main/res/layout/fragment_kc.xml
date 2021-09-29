@@ -301,6 +301,7 @@
                     android:id="@+id/btn_kc_score"
                     style="@style/FunctionButtonKc"
                     android:text="@string/btn_kc_score"
+                    android:textAllCaps="false"
                     app:cornerRadius="0dp"
                     app:icon="@drawable/icon_kc"
                     app:iconSize="20dp" />
@@ -311,6 +312,7 @@
                     android:id="@+id/btn_kc_class"
                     style="@style/FunctionButtonKc"
                     android:text="@string/btn_kc_class"
+                    android:textAllCaps="false"
                     app:cornerRadius="0dp"
                     app:icon="@drawable/icon_class_table"
                     app:iconSize="20dp" />
@@ -321,6 +323,7 @@
                     android:id="@+id/btn_kc_user"
                     style="@style/FunctionButtonKc"
                     android:text="@string/btn_kc_user"
+                    android:textAllCaps="false"
                     app:cornerRadius="0dp"
                     app:icon="@drawable/icon_kc_user"
                     app:iconSize="20dp" />

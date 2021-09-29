@@ -11,7 +11,7 @@
     <LinearLayout
         android:id="@+id/topCard"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,8 +19,11 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/kc_class_switch"
             android:layout_width="300dp"
+            android:textSize="14sp"
+            android:layout_gravity="center"
             style="@style/FunctionButtonBai"
             app:icon="@drawable/icon_kc"
+            android:textAllCaps="false"
             app:iconSize="30dp" />
 
         <View
@@ -31,8 +34,11 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/kc_week_switch"
             android:layout_width="match_parent"
+            android:layout_gravity="center"
             android:gravity="center"
+            android:textAllCaps="false"
             style="@style/FunctionButtonBai"
+            android:textSize="14sp"
             app:iconSize="30dp" />
     </LinearLayout>
 

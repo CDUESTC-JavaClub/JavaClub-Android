@@ -67,13 +67,13 @@ class KcTableActivity : AppCompatActivity() {
         val list = LinkedList<String>()
         if(UserManager.kcAccount.info.get("学历层次") == "本科"){
             for (i in 0..3){
-                list.add(getString(R.string.kc_class_level_b, startYear+i, startYear + 1 + i, "上"))
-                list.add(getString(R.string.kc_class_level_b, startYear+i, startYear + 1 + i, "下"))
+                list.add(getString(R.string.kc_class_level_b_1, startYear+i, startYear + 1 + i))
+                list.add(getString(R.string.kc_class_level_b_2, startYear+i, startYear + 1 + i))
             }
         }else{
             for (i in 0..2){
-                list.add(getString(R.string.kc_class_level_z, startYear+i, startYear + 1 + i, "上"))
-                list.add(getString(R.string.kc_class_level_z, startYear+i, startYear + 1 + i, "下"))
+                list.add(getString(R.string.kc_class_level_z_1, startYear+i, startYear + 1 + i))
+                list.add(getString(R.string.kc_class_level_z_2, startYear+i, startYear + 1 + i))
             }
         }
         return list

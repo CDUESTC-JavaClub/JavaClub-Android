@@ -28,6 +28,11 @@
     <string name="kc_fragment_bind_btn_login">ログイン</string>
     <string name="kc_fragment_bind_btn_login_do">確認中…</string>
     <string name="kc_fragment_tip_verify_ode">検証コード</string>
+    <string name="kc_fragment_tip_blank">请输入验证码!</string>
+    <string name="kc_fragment_tip_account_error">登陆失败，账号或密码错误!</string>
+    <string name="kc_fragment_card_line_1">%1$s年生 %2$s</string>
+    <string name="kc_fragment_card_line_2">学生証：%1$s</string>
+    <string name="kc_fragment_card_line_3">学部：%1$s（%2$s）</string>
     <string name="model_kc_note">以下の機能モジュールのネットワークリクエストは、アプリサーバーを介したデータ送信や転送を行わずに、教育システムのインターフェースに直接アクセスし、個人のプライバシーデータが漏洩しないようにあらゆる努力をします。</string>
     <string name="kc_account_timeout">ログインの有効期限が切れています。再ログインしています…</string>
     <string name="kc_score_loading">正在读取成绩信息…</string>
@@ -50,8 +55,10 @@
     <string name="kc_class_week_odd">单周</string>
     <string name="kc_class_week_dual">双周</string>
     <string name="kc_class_term_select">请选择学期</string>
-    <string name="kc_class_level_b">本科 %1$d-%2$d 学年（%3$s）</string>
-    <string name="kc_class_level_z">专科 %1$d-%2$d 学年（%3$s）</string>
+    <string name="kc_class_level_b_1">本科 %1$d-%2$d 学年（上）</string>
+    <string name="kc_class_level_b_2">本科 %1$d-%2$d 学年（下）</string>
+    <string name="kc_class_level_z_1">专科 %1$d-%2$d 学年（上）</string>
+    <string name="kc_class_level_z_2">专科 %1$d-%2$d 学年（下）</string>
     <string name="kc_class_card_teacher">任课老师：%1$s</string>
     <string name="kc_class_card_time">上课时间：周 %1$s 第 %2$s 节</string>
     <string name="kc_class_card_local">上课地点：%1$s</string>

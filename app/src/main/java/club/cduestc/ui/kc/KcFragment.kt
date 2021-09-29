@@ -59,7 +59,7 @@ class KcFragment : Fragment() {
                         binding.btnKcCaptcha.setOnClickListener {
                             str = binding.kcCaptchaInput.text.toString()
                             if(str.isEmpty()) {
-                                Toast.makeText(context, "请输入验证码!", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context, getString(R.string.kc_fragment_tip_blank), Toast.LENGTH_SHORT).show()
                             }else{
                                 val v: View = requireActivity().window.peekDecorView()
                                 imm.hideSoftInputFromWindow(v.windowToken, 0)
@@ -91,9 +91,9 @@ class KcFragment : Fragment() {
 
     private fun initInfoCard(){
         binding.kcInfoName.text = UserManager.kcAccount.name
-        binding.kcInfoDepartment.text = "${UserManager.kcAccount.info.get("年级")}级 ${UserManager.kcAccount.info.get("专业")}"
-        binding.kcInfoId.text = "学号：${UserManager.kcAccount.id}"
-        binding.kcInfoEmail.text = "所属：${UserManager.kcAccount.info.get("院系")} (${UserManager.kcAccount.info.get("学历层次")})"
+        binding.kcInfoDepartment.text = getString(R.string.kc_fragment_card_line_1, UserManager.kcAccount.info.get("年级"), UserManager.kcAccount.info.get("专业"))
+        binding.kcInfoId.text = getString(R.string.kc_fragment_card_line_2, UserManager.kcAccount.id)
+        binding.kcInfoEmail.text = getString(R.string.kc_fragment_card_line_3, UserManager.kcAccount.info.get("院系"), UserManager.kcAccount.info.get("学历层次"))
     }
 
     private fun displayInfo(it : View){
@@ -133,7 +133,7 @@ class KcFragment : Fragment() {
             }else{
                 requireActivity().runOnUiThread {
                     endSave()
-                    Toast.makeText(context, "登陆失败，账号或密码错误！", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, getString(R.string.kc_fragment_tip_account_error), Toast.LENGTH_SHORT).show()
                 }
             }
         }
