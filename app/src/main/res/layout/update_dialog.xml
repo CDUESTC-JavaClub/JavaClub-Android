@@ -7,14 +7,14 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/update_menu"
         android:layout_width="320dp"
-        android:layout_height="340dp"
+        android:layout_height="360dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
         <androidx.cardview.widget.CardView
             android:layout_width="300dp"
-            android:layout_height="320dp"
+            android:layout_height="340dp"
             app:cardCornerRadius="20dp"
             app:cardElevation="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -32,6 +32,8 @@
 
                 <TextView
                     android:layout_width="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:gravity="center"
                     android:layout_height="wrap_content"
                     android:textSize="15sp"
                     android:layout_gravity="center_horizontal"
@@ -41,6 +43,7 @@
                     android:id="@+id/version_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:textSize="15sp"
                     android:layout_marginTop="10dp"
                     android:layout_gravity="center_horizontal" />
@@ -50,6 +53,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:id="@+id/btn_update"
+                    android:textAllCaps="false"
                     android:text="@string/update_btn"
                     android:layout_gravity="center_horizontal" />
             </LinearLayout>

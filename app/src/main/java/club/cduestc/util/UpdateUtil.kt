@@ -25,7 +25,7 @@ object UpdateUtil {
         val builder: AlertDialog.Builder = AlertDialog.Builder(context, R.style.Translucent_NoTitle)
         val view: View = LayoutInflater.from(context).inflate(R.layout.update_dialog, null)
         val btn = view.findViewById<Button>(R.id.btn_update)
-        view.findViewById<TextView>(R.id.version_text).text = "当前版本：${this.version}，最新版本：${version}"
+        view.findViewById<TextView>(R.id.version_text).text = context.getString(R.string.update_version, this.version, version)
         val dialog = builder.setView(view).create()
         btn.setOnClickListener {
             dialog.dismiss()

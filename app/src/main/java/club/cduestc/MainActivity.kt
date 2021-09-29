@@ -221,10 +221,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun linkToWeb(url : String){
-        if(binding.loginMask.visibility == View.GONE){
-            val uri: Uri = Uri.parse(url)
-            val intent = Intent(Intent.ACTION_VIEW, uri)
-            startActivity(intent)
-        }
+        val uri: Uri = Uri.parse(url)
+        val intent = Intent(Intent.ACTION_VIEW, uri)
+        startActivity(intent)
     }
 }

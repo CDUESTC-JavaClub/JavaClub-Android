@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import club.cduestc.MainActivity
+import club.cduestc.R
 import club.cduestc.databinding.FragmentSettingsBinding
 import club.cduestc.util.NetManager
 import club.cduestc.util.UpdateUtil
@@ -35,7 +36,7 @@ class SettingsFragment : Fragment() {
 
         binding.userName.text = UserManager.getUserName()
         binding.userSignature.text = UserManager.getSignature()
-        binding.userId.text = UserManager.getBindId() ?: "未绑定"
+        binding.userId.text = UserManager.getBindId() ?: getString(R.string.settings_user_id_no)
         binding.userEmail.text = UserManager.getEmail()
 
         binding.version.text = UpdateUtil.getVersion()
@@ -109,7 +110,7 @@ class SettingsFragment : Fragment() {
 
     private fun update(view: View){
         view.isEnabled = false
-        (view as Button).text = "正在检查更新..."
+        (view as Button).text = getString(R.string.settings_btn_update_do)
         NetManager.createTask{
             val data = NetManager.update()
             if(data != null){
@@ -118,15 +119,15 @@ class SettingsFragment : Fragment() {
                 if(UpdateUtil.getVersion() != version){
                     requireActivity().runOnUiThread {
                         view.isEnabled = true
-                        view.text = "检查更新"
+                        view.text = getString(R.string.settings_btn_update)
                         UpdateUtil.showUpdateDialog(requireContext(), data.getJSONObject("data").getString("url"), version)
                     }
                     return@createTask
                 }
                 requireActivity().runOnUiThread {
                     view.isEnabled = true
-                    view.text = "检查更新"
-                    Toast.makeText(context, "已经是最新版本啦！", Toast.LENGTH_SHORT).show()
+                    view.text = getString(R.string.settings_btn_update)
+                    Toast.makeText(context, getString(R.string.settings_btn_update_no), Toast.LENGTH_SHORT).show()
                 }
             }
         }
