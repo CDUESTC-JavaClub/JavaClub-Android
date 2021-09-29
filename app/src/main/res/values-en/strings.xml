@@ -13,6 +13,9 @@
     <string name="model_contest_note">The data of the following functional modules are provided by JavaClub. We aim to provide students with the latest and most valuable event information and activities.</string>
     <string name="contest_unknown">There is no news about the latest competition, so stay tuned!</string>
     <string name="contest_loading">Getting the latest contest information…</string>
+    <string name="contest_more">Learn more</string>
+    <string name="contest_no_prize">You have not won any awards</string>
+    <string name="contest_no_prize_desc">(The in-club competition is recognized only at the end of June each year)</string>
 
     <string name="model_kc">Education system</string>
     <string name="model_kc_desc">Contains all the functions of the educational system.</string>
@@ -90,7 +93,7 @@
     <string name="btn_bai_join_jm">尽美活动</string>
     <string name="btn_bai_manage">管理我的活动</string>
     <string name="btn_bai_score">百叶积分</string>
-    <string name="bai_no_net">当前网络无法访问到百叶计划，请连接校园内网络！</string>
+    <string name="bai_no_net">The current network is unable to access the Baiye Project, please connect to the campus network!</string>
 
     <string name="login_name">用户名/邮箱</string>
     <string name="login_password">密码</string>

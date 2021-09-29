@@ -172,7 +172,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="40dp"
-                android:text="了解更多详情"
+                android:text="@string/contest_more"
                 android:textSize="12sp"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:layout_editor_absoluteX="40dp" />

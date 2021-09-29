@@ -13,6 +13,9 @@
     <string name="model_contest_note">以下の機能モジュールのデータは、 JavaClubによって提供されており、学生に最新かつ最も価値のあるイベント情報とアクティビティを提供することを目的としています。</string>
     <string name="contest_unknown">最新のコンテストに関するニュースはありませんので、お楽しみに！</string>
     <string name="contest_loading">最新の試合を取得する…</string>
+    <string name="contest_more">もっと詳しく知る</string>
+    <string name="contest_no_prize">賞を獲得していません</string>
+    <string name="contest_no_prize_desc">(クラブ内大会は毎年6月末にのみ認められます)</string>
 
     <string name="model_kc">教育システム</string>
     <string name="model_kc_desc">教育行政システムのすべての機能が含まれています。</string>

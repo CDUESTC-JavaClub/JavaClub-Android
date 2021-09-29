@@ -86,6 +86,7 @@
         android:visibility="gone"
         android:layout_width="match_parent"
         android:orientation="vertical"
+        android:layout_marginHorizontal="10dp"
         android:gravity="center"
         android:layout_height="match_parent">
         <ImageView
@@ -95,6 +96,8 @@
             app:tint="#8D8C8C8C" />
         <TextView
             android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/bai_no_net"/>
