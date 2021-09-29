@@ -32,15 +32,19 @@ class KcScoreActivity : AppCompatActivity() {
             try {
                 this.doInitScore()
             }catch (e : Exception){
-                try {
-                    UserManager.kcAccount.login()
-                    this.doInitScore()
-                }catch (e : Exception){
-                    e.printStackTrace()
-                    this.runOnUiThread {
-                        Toast.makeText(this, "未知错误，无法获取成绩信息！", Toast.LENGTH_SHORT).show()
-                        this.finish()
+                this.runOnUiThread { Toast.makeText(this, "登陆已过期，正在重新登陆...", Toast.LENGTH_SHORT).show() }
+                for (i in 1..10){
+                    try {
+                        UserManager.kcAccount.login()
+                        this.doInitScore()
+                        return@createTask
+                    }catch (e : Exception){
+                        e.printStackTrace()
                     }
+                }
+                this.runOnUiThread {
+                    Toast.makeText(this, "未知错误，无法获取成绩信息！", Toast.LENGTH_SHORT).show()
+                    this.finish()
                 }
             }
         }

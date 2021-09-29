@@ -108,18 +108,23 @@ class KcTableActivity : AppCompatActivity() {
 
         if(!sharedPreference.contains("class_table")){
             NetManager.createTask{
-                var arr : JSONArray
+                var arr = JSONArray()
                 try {
                     arr =  UserManager.kcAccount.getClassTable(term).toJSONArray()
                 }catch (e : Exception){
-                    try {
-                        UserManager.kcAccount.login()
-                        arr =  UserManager.kcAccount.getClassTable(term).toJSONArray()
-                    }catch (e : Exception){
-                        arr = JSONArray()
-                        e.printStackTrace()
-                        Toast.makeText(this, "未知错误，无法获取课程表信息！", Toast.LENGTH_SHORT).show()
-                        this.finish()
+                    this.runOnUiThread { Toast.makeText(this, "登陆已过期，正在重新登陆...", Toast.LENGTH_SHORT).show() }
+                    for (i in 1..10){
+                        try {
+                            UserManager.kcAccount.login()
+                            arr =  UserManager.kcAccount.getClassTable(term).toJSONArray()
+                            break
+                        }catch (e : Exception){
+                            e.printStackTrace()
+                            if(i == 9) this.runOnUiThread {
+                                Toast.makeText(this, "未知错误，无法获取课程表信息！", Toast.LENGTH_SHORT).show()
+                                this.finish()
+                            }
+                        }
                     }
                 }
                 sharedPreference.edit().putString("class_table", arr.toString()).apply()
