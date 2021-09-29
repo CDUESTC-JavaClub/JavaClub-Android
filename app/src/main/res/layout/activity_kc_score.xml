@@ -41,15 +41,14 @@
                     android:layout_width="40dp"
                     android:layout_height="wrap_content"
                     android:textSize="12sp"
-                    android:text="已完成课程数"/>
+                    android:text="@string/kc_score_finished"/>
                 <TextView
                     android:id="@+id/kc_statistic_count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:textSize="20sp"
-                    android:textColor="@color/main"
-                    android:text="--"/>
+                    android:textColor="@color/main" />
             </LinearLayout>
 
             <LinearLayout
@@ -68,15 +67,14 @@
                     android:layout_width="40dp"
                     android:layout_height="wrap_content"
                     android:textSize="12sp"
-                    android:text="已获得总学分"/>
+                    android:text="@string/kc_score_credit"/>
                 <TextView
                     android:id="@+id/kc_statistic_cridet"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:textSize="20sp"
-                    android:textColor="@color/blue"
-                    android:text="--"/>
+                    android:textColor="@color/blue" />
             </LinearLayout>
 
             <LinearLayout
@@ -95,15 +93,14 @@
                     android:layout_width="40dp"
                     android:layout_height="wrap_content"
                     android:textSize="12sp"
-                    android:text="当前平均绩点"/>
+                    android:text="@string/kc_score_avg_points"/>
                 <TextView
                     android:id="@+id/kc_statistic_points"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:textSize="20sp"
-                    android:textColor="@color/purple_200"
-                    android:text="--"/>
+                    android:textColor="@color/purple_200" />
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>

@@ -9,7 +9,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="上午"/>
+        android:text="@string/kc_class_widget_day"/>
     <LinearLayout
         android:id="@+id/widget_class_day"
         android:layout_width="match_parent"
@@ -90,7 +90,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="下午"/>
+        android:text="@string/kc_class_widget_noon"/>
     <LinearLayout
         android:id="@+id/widget_class_afternoon"
         android:layout_width="match_parent"
@@ -156,14 +156,12 @@
                 <TextView
                     android:id="@+id/widget_class_name_4"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="程序设计II（数据结构与算法）"/>
+                    android:layout_height="wrap_content" />
                 <TextView
                     android:id="@+id/widget_class_desc_4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="13sp"
-                    android:text="二教504（杨铸）"/>
+                    android:textSize="13sp" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
@@ -173,7 +171,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="晚间"/>
+        android:text="@string/kc_class_widget_night"/>
     <LinearLayout
         android:id="@+id/widget_class_night"
         android:layout_width="match_parent"
@@ -205,14 +203,12 @@
                 <TextView
                     android:id="@+id/widget_class_name_5"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="程序设计II（数据结构与算法）"/>
+                    android:layout_height="wrap_content" />
                 <TextView
                     android:id="@+id/widget_class_desc_5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="13sp"
-                    android:text="二教504（杨铸）"/>
+                    android:textSize="13sp" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

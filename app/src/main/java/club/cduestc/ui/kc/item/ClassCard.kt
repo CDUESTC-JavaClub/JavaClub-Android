@@ -30,7 +30,7 @@ import club.cduestc.ui.kc.sub.KcTableActivity
 
 
 class ClassCard(
-    context: Context?,
+    context: Context,
     val clazz: JSONObject?,
     private val time : String?,
     private val color: String?,
@@ -41,10 +41,7 @@ class ClassCard(
         val view: View = LayoutInflater.from(context).inflate(R.layout.class_card, this)
         val name = view.findViewById<TextView>(R.id.card_name)
         if(this.clazz != null && this.time != null)
-            name.text = "${this.time}" +
-                    "\n${this.clazz.getString("name")}" +
-                    "\n${this.clazz.getString("local")}" +
-                    "\n${this.clazz.getString("teacher")}"
+            name.text = context.getString(R.string.kc_class_card_table, this.time, this.clazz.getString("name"), this.clazz.getString("local"), this.clazz.getString("teacher"))
         val body = view.findViewById<LinearLayout>(card_body)
         if(color != null) {
             body.setBackgroundColor(Color.parseColor(this.color))
@@ -60,10 +57,11 @@ class ClassCard(
         val builder: AlertDialog.Builder = AlertDialog.Builder(context,R.style.Translucent_NoTitle)
         val view: View = LayoutInflater.from(context).inflate(R.layout.class_card_detail, null)
         view.findViewById<TextView>(R.id.class_info_name).text = this.clazz.getString("name")
-        view.findViewById<TextView>(R.id.class_info_teacher).text = "任课老师：${this.clazz.getString("teacher")}"
-        view.findViewById<TextView>(R.id.class_info_time).text = "上课时间：周 ${this.clazz.getString("day")} 第 ${this.clazz.getJSONArray("indexSet")} 节"
-        view.findViewById<TextView>(R.id.class_info_local).text = "上课地点：${this.clazz.getString("local")}"
-        view.findViewById<TextView>(R.id.class_info_week).text = "周数：${convertWeek(this.clazz.getJSONArray("weekSet"))}"
+        view.findViewById<TextView>(R.id.class_info_teacher).text = context.getString(R.string.kc_class_card_teacher, this.clazz.getString("teacher"))
+        view.findViewById<TextView>(R.id.class_info_time).text = context.getString(R.string.kc_class_card_time, this.clazz.getString("day"), this.clazz.getJSONArray("indexSet"))
+        view.findViewById<TextView>(R.id.class_info_local).text = context.getString(R.string.kc_class_card_local, this.clazz.getString("local"))
+        view.findViewById<TextView>(R.id.class_info_week).text = context.getString(R.string.kc_class_card_week, convertWeek(this.clazz.getJSONArray("weekSet")))
+
         val dialog = builder.setView(view).create()
         view.findViewById<Button>(R.id.class_ok).setOnClickListener { dialog.dismiss() }
         view.findViewById<Button>(R.id.class_hide).setOnClickListener { this.hideClass(this.clazz.getString("name")) }
@@ -90,9 +88,9 @@ class ClassCard(
             "${week[0]}-${week.last()}"
         }else{
             if(f % 2 == 0){
-                "${week[0]}-${week.last()}（双）"
+                context.getString(R.string.kc_class_card_week_dual, week[0], week.last())
             }else{
-                "${week[0]}-${week.last()}（单）"
+                context.getString(R.string.kc_class_card_week_odd, week[0], week.last())
             }
         }
     }

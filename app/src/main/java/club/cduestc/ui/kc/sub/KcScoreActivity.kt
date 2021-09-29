@@ -32,7 +32,7 @@ class KcScoreActivity : AppCompatActivity() {
             try {
                 this.doInitScore()
             }catch (e : Exception){
-                this.runOnUiThread { Toast.makeText(this, "登陆已过期，正在重新登陆...", Toast.LENGTH_SHORT).show() }
+                this.runOnUiThread { Toast.makeText(this, getString(R.string.kc_account_timeout), Toast.LENGTH_SHORT).show() }
                 for (i in 1..10){
                     try {
                         UserManager.kcAccount.login()
@@ -43,7 +43,7 @@ class KcScoreActivity : AppCompatActivity() {
                     }
                 }
                 this.runOnUiThread {
-                    Toast.makeText(this, "未知错误，无法获取成绩信息！", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.kc_score_unknown_error), Toast.LENGTH_SHORT).show()
                     this.finish()
                 }
             }
@@ -64,16 +64,16 @@ class KcScoreActivity : AppCompatActivity() {
         scoreList.terms.forEach {
             if(scoreList.getScore(it, 2).isNotEmpty()){
                 val term2 = scoreList.getScore(it, 2).stream().map { inner ->
-                    ScoreLine(this, "学分 "+inner.credits+"（绩点"+inner.points+"）", inner.name, inner.finalScore.toString())
+                    ScoreLine(this, getString(R.string.kc_score_line_value, inner.credits, inner.points), inner.name, inner.finalScore.toString())
                 }.toList()
-                val list2 = TermScoreList(this, it+"学年 第2学期", term2)
+                val list2 = TermScoreList(this, getString(R.string.kc_score_card_term, it, 2), term2)
                 menu.addView(list2)
             }
 
             val term1 = scoreList.getScore(it, 1).stream().map { inner ->
-                ScoreLine(this, "学分 "+inner.credits+"（绩点"+inner.points+"）", inner.name, inner.finalScore.toString())
+                ScoreLine(this, getString(R.string.kc_score_line_value, inner.credits, inner.points), inner.name, inner.finalScore.toString())
             }.toList()
-            val list = TermScoreList(this, it+"学年 第1学期", term1)
+            val list = TermScoreList(this, getString(R.string.kc_score_card_term, it, 1), term1)
             menu.addView(list)
         }
         findViewById<TextView>(R.id.kc_statistic_count).text = scoreList.statistic.getString("门数")

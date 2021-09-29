@@ -34,7 +34,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="百叶计划活动列表"
+                android:text="@string/bai_activity_list"
                 android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@+id/imageView2" />
 
@@ -52,7 +52,7 @@
                 android:layout_height="match_parent"
                 app:icon="@drawable/bai_filter"
                 app:iconSize="20dp"
-                android:text="全部"
+                android:text="@string/bai_name_all"
                 app:layout_constraintEnd_toEndOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

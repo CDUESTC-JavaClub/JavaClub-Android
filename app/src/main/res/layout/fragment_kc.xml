@@ -22,7 +22,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="绑定您的学号"
+            android:text="@string/kc_fragment_bind_title"
             android:textSize="20sp"
             android:layout_marginTop="10dp"
             android:layout_gravity="center_horizontal"
@@ -36,7 +36,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="需要绑定学号之后才能使用教务系统功能哦，我们注重个人隐私，不会在远端保留您的密码和个人信息，敏感内容只会保存在本地"
+            android:text="@string/kc_fragment_bind_text"
             android:layout_marginTop="45dp"
             android:layout_gravity="center_horizontal"
             android:textSize="11sp"
@@ -48,7 +48,7 @@
             android:layout_marginHorizontal="20dp"
             android:lines="1"
             android:maxLength="20"
-            android:hint="学号"
+            android:hint="@string/kc_fragment_bind_input_id"
             android:layout_height="40dp"/>
         <EditText
             android:id="@+id/kc_password"
@@ -58,14 +58,14 @@
             android:maxLength="20"
             android:layout_marginHorizontal="20dp"
             android:inputType="textPassword"
-            android:hint="密码"
+            android:hint="@string/kc_fragment_bind_input_password"
             android:layout_height="40dp"/>
         <com.google.android.material.button.MaterialButton
             android:id="@+id/save_kc_btn"
             android:layout_width="wrap_content"
             android:layout_marginBottom="10dp"
             android:layout_gravity="center_horizontal|bottom"
-            android:text="登录"
+            android:text="@string/kc_fragment_bind_btn_login"
             android:layout_height="50dp"/>
     </androidx.cardview.widget.CardView>
 
@@ -89,7 +89,7 @@
                 android:layout_width="80dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="end"
-                android:text="验证码"
+                android:text="@string/kc_fragment_tip_verify_ode"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/kc_captcha_input" />
 
@@ -138,7 +138,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="正在连接到教务系统..."/>
+            android:text="@string/kc_loading"/>
     </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -150,7 +150,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/card2"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginHorizontal="10dp"
             app:cardCornerRadius="10dp"
@@ -195,7 +195,7 @@
                 </RelativeLayout>
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp">
+                    android:layout_height="wrap_content">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -279,7 +279,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="暂无公告内容，敬请期待~"/>
+                    android:text="@string/kc_announce_none"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 

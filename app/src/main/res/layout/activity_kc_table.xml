@@ -20,7 +20,6 @@
             android:id="@+id/kc_class_switch"
             android:layout_width="300dp"
             style="@style/FunctionButtonBai"
-            android:text="2021-2022 学年（上）"
             app:icon="@drawable/icon_kc"
             app:iconSize="30dp" />
 
@@ -34,7 +33,6 @@
             android:layout_width="match_parent"
             android:gravity="center"
             style="@style/FunctionButtonBai"
-            android:text="单周"
             app:iconSize="30dp" />
     </LinearLayout>
 
@@ -55,7 +53,7 @@
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="正在拉取课程表信息..."/>
+            android:text="@string/kc_class_loading"/>
     </LinearLayout>
 
     <LinearLayout

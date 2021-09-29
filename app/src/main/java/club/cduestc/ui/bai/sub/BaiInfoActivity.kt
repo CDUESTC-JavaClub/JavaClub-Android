@@ -27,7 +27,7 @@ class BaiInfoActivity : AppCompatActivity() {
     private fun init(){
         NetManager.createTask{
             val list = UserManager.baiAccount.scoreAddList
-            var score = UserManager.baiAccount.score
+            val score = UserManager.baiAccount.score
             this.runOnUiThread {
                 list.forEach {
                     findViewById<LinearLayout>(R.id.score_add_list).addView(ScoreLine(this, it))
@@ -38,7 +38,7 @@ class BaiInfoActivity : AppCompatActivity() {
                 findViewById<TextView>(R.id.bai_score_md).text = score.md.toString()
                 if(score.bx >= 10 && score.dx >= 10 && score.jm >= 30 && score.md >= 10){
                     findViewById<CardView>(R.id.finish_back).backgroundTintList = ColorStateList.valueOf(Color.parseColor("#4CAF50"))
-                    findViewById<TextView>(R.id.finish_text).text = "已达标"
+                    findViewById<TextView>(R.id.finish_text).text = getString(R.string.bai_pass)
                 }
                 AnimUtil.hide(findViewById(R.id.loadActivity))
                 findViewById<View>(R.id.score_add_menu).visibility = View.VISIBLE

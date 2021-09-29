@@ -37,8 +37,8 @@ class KcTableActivity : AppCompatActivity() {
      */
     private fun switchWeek(it : View){
         val builder: AlertDialog.Builder = AlertDialog.Builder(this, android.R.style.ThemeOverlay_Material_Dialog)
-        builder.setTitle("请选择本周为单/双周")
-        builder.setItems(arrayOf("单周", "双周")) { _, which ->
+        builder.setTitle(getString(R.string.kc_class_week_select))
+        builder.setItems(arrayOf(getString(R.string.kc_class_week_odd), getString(R.string.kc_class_week_dual))) { _, which ->
             var week = getCurrentWeek()
             if(which != 0) week -= 1
             val sharedPreference = getSharedPreferences("class_table", MODE_PRIVATE)
@@ -50,7 +50,7 @@ class KcTableActivity : AppCompatActivity() {
 
     private fun switchTerm(it : View){
         val builder: AlertDialog.Builder = AlertDialog.Builder(this, android.R.style.ThemeOverlay_Material_Dialog)
-        builder.setTitle("请选择学期")
+        builder.setTitle(getString(R.string.kc_class_term_select))
         val cities = this.genTerms().toTypedArray()
         builder.setItems(cities) { _, which ->
             val sharedPreference = getSharedPreferences("class_table", MODE_PRIVATE)
@@ -62,18 +62,18 @@ class KcTableActivity : AppCompatActivity() {
 
     private fun genTerms() : List<String>{
         val date = UserManager.kcAccount.info.get("入校时间") as Date
-        val format = SimpleDateFormat("yyyy")
+        val format = SimpleDateFormat("yyyy", Locale.CHINA)
         val startYear = format.format(date).toInt()
         val list = LinkedList<String>()
         if(UserManager.kcAccount.info.get("学历层次") == "本科"){
             for (i in 0..3){
-                list.add("本科 ${startYear+i}-${startYear + 1 + i} 学年（上）")
-                list.add("本科 ${startYear+i}-${startYear + 1 + i} 学年（下）")
+                list.add(getString(R.string.kc_class_level_b, startYear+i, startYear + 1 + i, "上"))
+                list.add(getString(R.string.kc_class_level_b, startYear+i, startYear + 1 + i, "下"))
             }
         }else{
             for (i in 0..2){
-                list.add("专科 ${startYear+i}-${startYear + 1 + i} 学年（上）")
-                list.add("专科 ${startYear+i}-${startYear + 1 + i} 学年（下）")
+                list.add(getString(R.string.kc_class_level_z, startYear+i, startYear + 1 + i, "上"))
+                list.add(getString(R.string.kc_class_level_z, startYear+i, startYear + 1 + i, "下"))
             }
         }
         return list
@@ -90,9 +90,9 @@ class KcTableActivity : AppCompatActivity() {
         val btn2 = findViewById<Button>(R.id.kc_week_switch)
         btn2.setOnClickListener(this::switchWeek)
         btn2.text = if((sharedPreference.getInt("single_week", getCurrentWeek()) - getCurrentWeek()) % 2 == 0){
-            "单周"
+            getString(R.string.kc_class_week_odd)
         }else{
-            "双周"
+            getString(R.string.kc_class_week_dual)
         }
 
         val matrix : Array<Array<ArrayList<ClassCard>>> = Array(5) { Array(7){ArrayList()} }
@@ -112,7 +112,7 @@ class KcTableActivity : AppCompatActivity() {
                 try {
                     arr =  UserManager.kcAccount.getClassTable(term).toJSONArray()
                 }catch (e : Exception){
-                    this.runOnUiThread { Toast.makeText(this, "登陆已过期，正在重新登陆...", Toast.LENGTH_SHORT).show() }
+                    this.runOnUiThread { Toast.makeText(this, getString(R.string.kc_account_timeout), Toast.LENGTH_SHORT).show() }
                     for (i in 1..10){
                         try {
                             UserManager.kcAccount.login()
@@ -121,7 +121,7 @@ class KcTableActivity : AppCompatActivity() {
                         }catch (e : Exception){
                             e.printStackTrace()
                             if(i == 9) this.runOnUiThread {
-                                Toast.makeText(this, "未知错误，无法获取课程表信息！", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this, getString(R.string.kc_class_unknown_error), Toast.LENGTH_SHORT).show()
                                 this.finish()
                             }
                         }

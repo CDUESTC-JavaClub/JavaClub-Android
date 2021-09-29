@@ -52,7 +52,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
-                        android:text="尽美"/>
+                        android:text="@string/bai_name_jm"/>
                 </LinearLayout>
                 <TextView
                     android:id="@+id/bai_score_jm"
@@ -61,8 +61,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="25sp"
-                    android:textColor="@color/yellow"
-                    android:text="30"/>
+                    android:textColor="@color/yellow" />
                 <View
                     android:layout_marginStart="5dp"
                     android:layout_width="1dp"
@@ -86,7 +85,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
-                        android:text="博学"/>
+                        android:text="@string/bai_name_bx"/>
                 </LinearLayout>
                 <TextView
                     android:id="@+id/bai_score_bx"
@@ -95,8 +94,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="25sp"
                     android:textColor="@color/red"
-                    android:layout_marginHorizontal="5dp"
-                    android:text="10"/>
+                    android:layout_marginHorizontal="5dp" />
                 <View
                     android:layout_marginStart="5dp"
                     android:layout_width="1dp"
@@ -120,7 +118,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
-                        android:text="笃行"/>
+                        android:text="@string/bai_name_dx"/>
                 </LinearLayout>
                 <TextView
                     android:id="@+id/bai_score_dx"
@@ -129,8 +127,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="5dp"
                     android:textSize="25sp"
-                    android:textColor="@color/green"
-                    android:text="10"/>
+                    android:textColor="@color/green" />
                 <View
                     android:layout_marginStart="5dp"
                     android:layout_width="1dp"
@@ -154,7 +151,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
-                        android:text="明德"/>
+                        android:text="@string/bai_name_md"/>
                 </LinearLayout>
                 <TextView
                     android:id="@+id/bai_score_md"
@@ -163,8 +160,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="25sp"
-                    android:textColor="@color/blue"
-                    android:text="10"/>
+                    android:textColor="@color/blue" />
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
@@ -185,7 +181,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="未达标"
+                android:text="@string/bai_failed"
                 android:textColor="@color/white"
                 android:textSize="15sp" />
         </androidx.cardview.widget.CardView>
@@ -226,7 +222,7 @@
                         android:layout_gravity="center"
                         android:layout_marginVertical="5dp"
                         android:layout_marginStart="10dp"
-                        android:text="加分记录"
+                        android:text="@string/bai_score_add"
                         android:textSize="18sp" />
                 </LinearLayout>
 

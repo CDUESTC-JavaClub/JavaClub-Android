@@ -14,6 +14,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import club.cduestc.R
 import club.cduestc.databinding.FragmentKcBinding
 import club.cduestc.ui.kc.sub.KcScoreActivity
 import club.cduestc.ui.kc.sub.KcStudentActivity
@@ -37,37 +38,39 @@ class KcFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         kcViewModel = ViewModelProvider(this).get(KcViewModel::class.java)
         _binding = FragmentKcBinding.inflate(inflater, container, false)
+        val performance = requireActivity().getSharedPreferences("data", AppCompatActivity.MODE_PRIVATE)
 
         club.jw.net.NetManager.setCaptcha {
             val base64 = toBase64(it)
             val ocrResult = NetManager.ocr(base64)
             if(ocrResult == "failed"){
-                val latch = CountDownLatch(1)
                 var str = ""
-                requireActivity().runOnUiThread {
-                    binding.kcMenu.visibility = View.GONE
-                    binding.tipCaptcha.visibility = View.VISIBLE
-                    binding.kcLoading.visibility = View.GONE
-                    binding.kcCaptchaInput.setText("")
-                    binding.kcCaptchaImage.setImageBitmap(BitmapFactory.decodeStream(toStream(base64)))
-                    binding.kcCaptchaInput.requestFocus()
-                    binding.kcCaptchaImage.visibility = View.VISIBLE
-                    val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                    imm.showSoftInput(binding.kcCaptchaInput, InputMethodManager.SHOW_IMPLICIT)
-                    binding.btnKcCaptcha.setOnClickListener {
-                        str = binding.kcCaptchaInput.text.toString()
-                        if(str.isEmpty()) {
-                            Toast.makeText(context, "请输入验证码!", Toast.LENGTH_SHORT).show()
-                        }else{
-                            val v: View = requireActivity().window.peekDecorView()
-                            imm.hideSoftInputFromWindow(v.windowToken, 0)
-                            binding.kcLoading.visibility = View.VISIBLE
-                            binding.tipCaptcha.visibility = View.GONE
-                            latch.countDown()
+                if(binding.kcMenu.visibility == View.GONE){  //是否为首次登陆操作（重登陆会自动完成登陆操作）
+                    val latch = CountDownLatch(1)
+                    requireActivity().runOnUiThread {
+                        binding.tipCaptcha.visibility = View.VISIBLE
+                        binding.kcLoading.visibility = View.GONE
+                        binding.kcCaptchaInput.setText("")
+                        binding.kcCaptchaImage.setImageBitmap(BitmapFactory.decodeStream(toStream(base64)))
+                        binding.kcCaptchaInput.requestFocus()
+                        binding.kcCaptchaImage.visibility = View.VISIBLE
+                        val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                        imm.showSoftInput(binding.kcCaptchaInput, InputMethodManager.SHOW_IMPLICIT)
+                        binding.btnKcCaptcha.setOnClickListener {
+                            str = binding.kcCaptchaInput.text.toString()
+                            if(str.isEmpty()) {
+                                Toast.makeText(context, "请输入验证码!", Toast.LENGTH_SHORT).show()
+                            }else{
+                                val v: View = requireActivity().window.peekDecorView()
+                                imm.hideSoftInputFromWindow(v.windowToken, 0)
+                                binding.kcLoading.visibility = View.VISIBLE
+                                binding.tipCaptcha.visibility = View.GONE
+                                latch.countDown()
+                            }
                         }
                     }
+                    latch.await()
                 }
-                latch.await()
                 it.close()
                 str
             }else{
@@ -75,7 +78,6 @@ class KcFragment : Fragment() {
             }
         }
 
-        val performance = requireActivity().getSharedPreferences("data", AppCompatActivity.MODE_PRIVATE)
         if(UserManager.getBindId() != null && performance.contains("kc_password")) displayMenu(performance, false, 0)
         if(UserManager.getBindId() != null) initEdit(performance)
         binding.saveKcBtn.setOnClickListener { savePassword(performance, binding.kcPassword.text.toString(), binding.kcId.text.toString()) }
@@ -139,12 +141,12 @@ class KcFragment : Fragment() {
 
     private fun postSave(){
         binding.saveKcBtn.isEnabled = false
-        binding.saveKcBtn.text = "正在验证..."
+        binding.saveKcBtn.text = getString(R.string.kc_fragment_bind_btn_login_do)
     }
 
     private fun endSave(){
         binding.saveKcBtn.isEnabled = true
-        binding.saveKcBtn.text = "保存"
+        binding.saveKcBtn.text = getString(R.string.kc_fragment_bind_btn_login)
     }
 
     private fun displayMenu(performance: SharedPreferences, first : Boolean, limit : Int ){
@@ -169,7 +171,6 @@ class KcFragment : Fragment() {
                     }
                 }
                 requireActivity().runOnUiThread {
-                    binding.kcMenu.visibility = View.GONE
                     binding.kcLoading.visibility = View.GONE
                     binding.tipBind.visibility = View.VISIBLE
                     endSave()
