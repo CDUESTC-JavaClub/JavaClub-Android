@@ -38,7 +38,7 @@
     <string name="kc_score_loading">正在读取成绩信息…</string>
     <string name="kc_score_finished">已完成课程数</string>
     <string name="kc_score_credit">已获得总学分</string>
-    <string name="kc_score_avg_points">已完成课程数</string>
+    <string name="kc_score_avg_points">当前平均绩点</string>
     <string name="kc_score_unknown_error">未知错误，无法获取成绩信息！</string>
     <string name="kc_score_card_term">%1$s学年 第%2$d学期</string>
     <string name="kc_score_line_value">学分 %1$.1f（绩点 %2$.1f）</string>
@@ -69,6 +69,8 @@
     <string name="kc_class_widget_day">上午</string>
     <string name="kc_class_widget_noon">下午</string>
     <string name="kc_class_widget_night">晚间</string>
+    <string name="kc_class_detail_ok">确定</string>
+    <string name="kc_class_detail_delete">删除此课程</string>
 
     <string name="model_bai">百叶计划</string>
     <string name="model_bai_desc">包含活动报名、活动取消、积分查询等功能。</string>

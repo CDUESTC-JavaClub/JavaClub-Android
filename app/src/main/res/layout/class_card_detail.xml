@@ -122,13 +122,13 @@
                     android:id="@+id/class_ok"
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
-                    android:text="确定"/>
+                    android:text="@string/kc_class_detail_ok"/>
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/class_hide"
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
                     android:layout_marginStart="20dp"
-                    android:text="删除此课程"/>
+                    android:text="@string/kc_class_detail_delete"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>

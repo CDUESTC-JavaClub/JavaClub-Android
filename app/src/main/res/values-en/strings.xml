@@ -69,6 +69,8 @@
     <string name="kc_class_widget_day">Morning</string>
     <string name="kc_class_widget_noon">Afternoon</string>
     <string name="kc_class_widget_night">Night</string>
+    <string name="kc_class_detail_ok">OK</string>
+    <string name="kc_class_detail_delete">Delete</string>
 
     <string name="model_bai">百叶计划功能</string>
     <string name="model_bai_desc">包含活动报名、活动取消、积分查询等功能。</string>
