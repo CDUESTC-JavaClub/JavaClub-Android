@@ -74,7 +74,7 @@ class MainActivity : AppCompatActivity() {
     private fun doLogin(sharedPreference : SharedPreferences, first : Boolean){
         val baseName = sharedPreference.getString("base_id", "").toString()
         val basePassword = sharedPreference.getString("base_password", "").toString()
-        runOnUiThread { AnimUtil.show(binding.loginLoading) }
+        runOnUiThread { AnimUtil.show(binding.loginLoading, 0f, 1f) }
         if(!NetManager.login(baseName, basePassword)){
             val editor = sharedPreference.edit()
             editor.putBoolean("base_last", false)
