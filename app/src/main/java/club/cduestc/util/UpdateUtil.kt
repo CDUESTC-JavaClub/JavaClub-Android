@@ -4,13 +4,13 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
-import android.view.Window
 import android.widget.Button
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import club.cduestc.R
+import java.util.*
 
 
 object UpdateUtil {

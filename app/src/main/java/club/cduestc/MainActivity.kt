@@ -11,6 +11,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.NavGraph
 import androidx.navigation.NavGraphNavigator
 import androidx.navigation.NavigatorProvider
@@ -27,6 +28,7 @@ import club.cduestc.util.NetManager
 import club.cduestc.util.UpdateUtil
 import club.cduestc.util.UserManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -34,6 +36,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+        this.setDayNight()
+
         super.onCreate(savedInstanceState)
         window.navigationBarColor = Color.TRANSPARENT
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -58,6 +62,22 @@ class MainActivity : AppCompatActivity() {
         AnimUtil.show(binding.loginMask)
 
         login(sharedPreference)
+    }
+
+    private fun setDayNight(){
+        val settingsPreference = getSharedPreferences("settings", MODE_PRIVATE)
+        if(!settingsPreference.contains("settings_auto_dark")) settingsPreference.edit().putBoolean("settings_auto_dark", true).apply()
+        val auto = settingsPreference.getBoolean("settings_auto_dark", false)
+        val dark = settingsPreference.getBoolean("settings_dark_mode", false)
+        if(!auto){
+            if (dark){
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            }else{
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+        }else{
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+        }
     }
 
     private fun login(sharedPreference : SharedPreferences){
