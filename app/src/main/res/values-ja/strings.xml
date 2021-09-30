@@ -79,6 +79,7 @@
     <string name="model_bai_loading">正在连接到百叶计划…</string>
     <string name="model_bai_desc">包含活动报名、活动取消、积分查询等功能。</string>
     <string name="model_bai_bind_text">需要绑定学号之后才能使用百叶计划功能哦，我们注重个人隐私，不会在远端保留您的密码和个人信息，敏感内容只会保存在本地</string>
+    <string name="model_bai_bind_error">请先绑定教务系统账号</string>
     <string name="bai_name_md">明德</string>
     <string name="bai_name_dx">笃行</string>
     <string name="bai_name_bx">博学</string>

@@ -27,7 +27,13 @@ class MyActivityLine(context: Context,
         view.findViewById<TextView>(R.id.bai_activity_local).text = activity.place
         view.findViewById<TextView>(R.id.bai_activity_time).text = format.format(activity.start)
         view.findViewById<ImageView>(R.id.qrcode_img).setOnClickListener(onClick)
-        view.findViewById<TextView>(R.id.type_text).text = activity.type
+        view.findViewById<TextView>(R.id.type_text).text = when(activity.type){
+            "博学" -> context.getString(R.string.bai_name_bx)
+            "笃行" -> context.getString(R.string.bai_name_dx)
+            "尽美" -> context.getString(R.string.bai_name_jm)
+            "明德" -> context.getString(R.string.bai_name_md)
+            else -> context.getString(R.string.bai_name_bx)
+        }
         val id = when(activity.type){
             "笃行" -> R.drawable.bai_icon_dx
             "博学" -> R.drawable.bai_icon_bx

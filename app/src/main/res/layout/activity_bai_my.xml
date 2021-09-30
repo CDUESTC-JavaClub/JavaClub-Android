@@ -45,7 +45,7 @@
                         android:layout_width="50dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
-                        android:text="已完成的活动" />
+                        android:text="@string/bai_my_finish" />
 
                     <TextView
                         android:id="@+id/count_signed"
@@ -71,7 +71,7 @@
                         android:layout_width="50dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
-                        android:text="待参加的活动" />
+                        android:text="@string/bai_my_wait" />
 
                     <TextView
                         android:id="@+id/count_wait"
@@ -111,7 +111,7 @@
                             style="@style/IconColor" />
                         <TextView
                             android:layout_marginStart="10dp"
-                            android:text="待参加活动列表"
+                            android:text="@string/bai_my_wait"
                             android:textSize="16sp"
                             style="@style/TextColor"
                             android:layout_width="wrap_content"
@@ -143,7 +143,7 @@
                             style="@style/IconColor" />
                         <TextView
                             android:layout_marginStart="10dp"
-                            android:text="已完成活动列表"
+                            android:text="@string/bai_my_finish"
                             android:textSize="16sp"
                             style="@style/TextColor"
                             android:layout_width="wrap_content"
@@ -175,7 +175,7 @@
                             style="@style/IconColor" />
                         <TextView
                             android:layout_marginStart="10dp"
-                            android:text="缺席的活动列表"
+                            android:text="@string/bai_my_absent"
                             android:textSize="16sp"
                             style="@style/TextColor"
                             android:layout_width="wrap_content"

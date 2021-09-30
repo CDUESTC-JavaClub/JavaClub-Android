@@ -33,9 +33,10 @@
                 android:id="@+id/qrcode_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="250dp"
-                android:textSize="16sp" />
+                android:textSize="14sp" />
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
@@ -53,8 +54,11 @@
                 android:layout_height="match_parent"
                 style="@style/FunctionButtonBai"
                 android:gravity="center"
+                android:textAllCaps="false"
+                android:textAppearance="@font/arial"
+                android:textSize="16sp"
                 android:textColor="@color/gray"
-                android:text="取消报名此活动"/>
+                android:text="@string/bai_my_cancel"/>
         </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

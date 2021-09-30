@@ -79,6 +79,12 @@
     <string name="model_bai_loading">Connecting to the BaiYe project…</string>
     <string name="model_bai_desc">Contains functions such as event registration, event cancellation, and point query.</string>
     <string name="model_bai_bind_text">You need to bind your student ID before you can use the function of the Baiye Project. We pay attention to personal privacy and will not keep your password and personal information remotely. Sensitive content will only be stored locally.</string>
+    <string name="model_bai_bind_error">Please bind the educational system account first!</string>
+    <string name="bai_my_cancel">Cancel this event</string>
+    <string name="bai_my_qrcode">Verification code：%1$s</string>
+    <string name="bai_my_finish">Completed activity</string>
+    <string name="bai_my_wait">Activities to be attended</string>
+    <string name="bai_my_absent">Absent activity</string>
     <string name="bai_name_md">MingDe</string>
     <string name="bai_name_dx">DuXing</string>
     <string name="bai_name_bx">BoXue</string>

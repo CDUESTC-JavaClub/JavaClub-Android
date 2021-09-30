@@ -308,7 +308,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="12sp"
-                                android:text="博学"/>
+                                android:text="@string/bai_name_bx"/>
                         </LinearLayout>
                         <View
                             android:layout_width="1dp"
@@ -346,7 +346,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="12sp"
-                                android:text="尽美"/>
+                                android:text="@string/bai_name_jm"/>
                         </LinearLayout>
                     </LinearLayout>
                     <View
@@ -390,7 +390,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="12sp"
-                                android:text="笃行"/>
+                                android:text="@string/bai_name_dx"/>
                         </LinearLayout>
                         <View
                             android:layout_width="1dp"
@@ -428,7 +428,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="12sp"
-                                android:text="明德"/>
+                                android:text="@string/bai_name_md"/>
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>

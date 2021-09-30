@@ -109,6 +109,11 @@
     <string name="bai_activity_status_stop">(报名结束)</string>
     <string name="bai_activity_status_end">(已结束)</string>
     <string name="bai_activity_filter">请选择筛选的活动类型</string>
+    <string name="bai_my_cancel">取消报名此活动</string>
+    <string name="bai_my_qrcode">核验码：%1$s</string>
+    <string name="bai_my_finish">已完成的活动</string>
+    <string name="bai_my_wait">待参加的活动</string>
+    <string name="bai_my_absent">缺席的活动</string>
 
     <string name="login_name">用户名/邮箱</string>
     <string name="login_password">密码</string>

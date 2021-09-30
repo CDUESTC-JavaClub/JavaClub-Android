@@ -78,7 +78,7 @@ class BaiMyActivity : AppCompatActivity() {
                                 this.runOnUiThread{
                                     findViewById<View>(R.id.loadActivity).visibility = View.VISIBLE
                                     findViewById<View>(R.id.my_activity_menu).visibility = View.GONE
-                                    Toast.makeText(this, "取消报名成功！", Toast.LENGTH_LONG).show()
+                                    Toast.makeText(this, getString(R.string.bai_activity_cancel_success), Toast.LENGTH_LONG).show()
                                     init()
                                 }
                             }catch (e : ActivityOprException){
@@ -87,7 +87,7 @@ class BaiMyActivity : AppCompatActivity() {
                         }
                     }
                 }
-                view.findViewById<TextView>(R.id.qrcode_text).text = "核验码："+p.activity.qrCode
+                view.findViewById<TextView>(R.id.qrcode_text).text = getString(R.string.bai_my_qrcode, p.activity.qrCode)
                 view.findViewById<ImageView>(R.id.qrcode_img_src).setImageBitmap(map)
                 dialog.show()
             }
