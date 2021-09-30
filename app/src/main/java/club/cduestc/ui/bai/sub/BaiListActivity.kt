@@ -30,6 +30,7 @@ class BaiListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bai_list)
+        findViewById<View>(R.id.loadActivity).setOnClickListener {  }
         init()
         findViewById<Button>(R.id.btnFilterActivity).setOnClickListener(this::filter)
     }
@@ -53,7 +54,7 @@ class BaiListActivity : AppCompatActivity() {
     }
 
     private fun detail(v : View){
-        findViewById<View>(R.id.loadActivity).visibility = View.VISIBLE
+        AnimUtil.show(findViewById(R.id.loadActivity), 0f, 1f)
         val format = SimpleDateFormat("yyyy-MM-dd", Locale.CHINA)
         v as ActivityLine
         val builder: AlertDialog.Builder = AlertDialog.Builder(this,R.style.Translucent_NoTitle)
@@ -70,23 +71,23 @@ class BaiListActivity : AppCompatActivity() {
             }
         }
         view.findViewById<TextView>(R.id.activity_name).text = v.activity.name
-        view.findViewById<TextView>(R.id.bai_activity_local).text = "活动地点："+v.activity.place
-        view.findViewById<TextView>(R.id.activity_status).text = "当前状态："+v.activity.status
-        view.findViewById<TextView>(R.id.activity_count).text = "报名人数：${v.activity.reg}/${v.activity.max}"
-        view.findViewById<TextView>(R.id.bai_activity_time).text = "活动时间："+format.format(v.activity.start)
+        view.findViewById<TextView>(R.id.bai_activity_local).text = getString(R.string.bai_activity_detail_local, v.activity.place)
+        view.findViewById<TextView>(R.id.activity_status).text = getString(R.string.bai_activity_detail_status, v.activity.status)
+        view.findViewById<TextView>(R.id.activity_count).text = getString(R.string.bai_activity_detail_people, v.activity.reg, v.activity.max)
+        view.findViewById<TextView>(R.id.bai_activity_time).text = getString(R.string.bai_activity_detail_time, format.format(v.activity.start))
         val btn = view.findViewById<Button>(R.id.activity_btn)
         btn.setTextColor(Color.parseColor("#A8A8A8"))
         if(v.signed){
             btn.isEnabled = true
             btn.setTextColor(Color.parseColor("#F44336"))
-            btn.text = "取消参加此活动"
+            btn.text = getString(R.string.bai_activity_detail_cancel)
             btn.setOnClickListener {
                 dialog.dismiss()
                 NetManager.createTask{
                     try{
                         UserManager.baiAccount.cancelActivity(v.activity.id)
                         this.runOnUiThread{
-                            Toast.makeText(this, "取消报名成功！", Toast.LENGTH_LONG).show()
+                            Toast.makeText(this, getString(R.string.bai_activity_cancel_success), Toast.LENGTH_LONG).show()
                             v.signed = false
                         }
                     }catch (e : ActivityOprException){
@@ -99,14 +100,14 @@ class BaiListActivity : AppCompatActivity() {
                 "报名中" -> {
                     btn.isEnabled = true
                     btn.setTextColor(Color.parseColor("#4CAF50"))
-                    btn.text = "报名参加此活动"
+                    btn.text = getString(R.string.bai_activity_detail_join)
                     btn.setOnClickListener {
                         dialog.dismiss()
                         NetManager.createTask{
                             try{
                                 UserManager.baiAccount.signActivity(v.activity.id)
                                 this.runOnUiThread{
-                                    Toast.makeText(this, "报名成功！", Toast.LENGTH_LONG).show()
+                                    Toast.makeText(this, getString(R.string.bai_activity_join_success), Toast.LENGTH_LONG).show()
                                     v.signed = true
                                 }
                             }catch (e : ActivityOprException){
@@ -117,11 +118,15 @@ class BaiListActivity : AppCompatActivity() {
                 }
                 "活动中" -> {
                     btn.isEnabled = false
-                    btn.text = "活动正在进行中"
+                    btn.text = getString(R.string.bai_activity_detail_running)
+                }
+                "报名结束" ->{
+                    btn.isEnabled = false
+                    btn.text = getString(R.string.bai_activity_detail_stop)
                 }
                 else -> {
                     btn.isEnabled = false
-                    btn.text = "活动已结束"
+                    btn.text = getString(R.string.bai_activity_detail_end)
                 }
             }
         }
@@ -129,9 +134,12 @@ class BaiListActivity : AppCompatActivity() {
 
     private fun filter(v : View){
         val builder: AlertDialog.Builder = AlertDialog.Builder(this, android.R.style.ThemeOverlay_Material_Dialog)
-        builder.setTitle("请选择筛选的活动类型")
+        builder.setTitle(getString(R.string.bai_activity_filter))
+        val names = listOf(getString(R.string.bai_name_all), getString(R.string.bai_name_jm),
+            getString(R.string.bai_name_bx) ,getString(R.string.bai_name_md),
+            getString(R.string.bai_name_dx)).toTypedArray()
         val types = listOf("全部", "尽美", "博学" ,"明德", "笃行").toTypedArray()
-        builder.setItems(types) { _, which ->
+        builder.setItems(names) { _, which ->
             type = if(which != 0) types[which] else ""
             val view = findViewById<View>(R.id.loadActivity)
             view.alpha = 1f

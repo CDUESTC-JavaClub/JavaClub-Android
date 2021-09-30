@@ -202,6 +202,9 @@
                 android:id="@+id/activity_btn"
                 android:layout_width="match_parent"
                 android:gravity="center"
+                android:textAllCaps="false"
+                android:textAppearance="@font/arial"
+                android:textSize="15sp"
                 android:layout_height="match_parent"
                 style="@style/FunctionButtonBai"/>
         </androidx.cardview.widget.CardView>

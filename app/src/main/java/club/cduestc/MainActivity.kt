@@ -80,7 +80,7 @@ class MainActivity : AppCompatActivity() {
             editor.putBoolean("base_last", false)
             editor.apply()
             runOnUiThread {
-                Toast.makeText(this, "登陆失败，可能是用户名或密码错误！", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.login_failed), Toast.LENGTH_SHORT).show()
                 AnimUtil.hide(binding.loginLoading)
                 binding.loginCard.toggle()
             }

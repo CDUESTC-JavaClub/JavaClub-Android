@@ -103,6 +103,7 @@
     <string name="login_qq_btn">QQでログイン</string>
     <string name="login_title">登陆科成JavaClub App</string>
     <string name="login_connect">正在登录到俱乐部…</string>
+    <string name="login_failed">登陆失败，可能是用户名或密码错误！</string>
 
     <string name="settings_info">你可以对您的学号（教务账号）、百叶计划账号进行绑定，我们只会在远端保存您的学号，个人信息和密码都存储在本地，这些敏感信息会跟随软件卸载一起移除</string>
     <string name="settings_user_id">已绑定学号</string>

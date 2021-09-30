@@ -87,13 +87,25 @@
     <string name="bai_score_add">加分记录</string>
     <string name="bai_activity_list">百叶计划活动列表</string>
     <string name="btn_bai_join">所有活动</string>
-    <string name="btn_bai_join_md">明德活动</string>
-    <string name="btn_bai_join_dx">笃行活动</string>
-    <string name="btn_bai_join_bx">博学活动</string>
-    <string name="btn_bai_join_jm">尽美活动</string>
     <string name="btn_bai_manage">管理我的活动</string>
     <string name="btn_bai_score">百叶积分</string>
     <string name="bai_no_net">当前网络无法访问到百叶计划，请连接校园内网络！</string>
+    <string name="bai_activity_detail_local">活动地点：%1$s</string>
+    <string name="bai_activity_detail_time">活动时间：%1$s</string>
+    <string name="bai_activity_detail_people">报名人数：%1$d/%2$d</string>
+    <string name="bai_activity_detail_status">当前状态：%1$s</string>
+    <string name="bai_activity_detail_cancel">取消参加此活动</string>
+    <string name="bai_activity_detail_join">报名参加此活动</string>
+    <string name="bai_activity_detail_stop">报名已结束</string>
+    <string name="bai_activity_detail_end">活动已结束</string>
+    <string name="bai_activity_detail_running">活动正在进行中</string>
+    <string name="bai_activity_cancel_success">活动取消成功！</string>
+    <string name="bai_activity_join_success">活动报名成功！</string>
+    <string name="bai_activity_status_wait">(报名中)</string>
+    <string name="bai_activity_status_running">(活动中)</string>
+    <string name="bai_activity_status_stop">(报名结束)</string>
+    <string name="bai_activity_status_end">(已结束)</string>
+    <string name="bai_activity_filter">请选择筛选的活动类型</string>
 
     <string name="login_name">用户名/邮箱</string>
     <string name="login_password">密码</string>
@@ -103,6 +115,7 @@
     <string name="login_qq_btn">使用QQ登录</string>
     <string name="login_title">登陆科成JavaClub App</string>
     <string name="login_connect">正在登录到俱乐部…</string>
+    <string name="login_failed">登陆失败，可能是用户名或密码错误！</string>
 
     <string name="settings_info">你可以对您的学号（教务账号）、百叶计划账号进行绑定，我们只会在远端保存您的学号，个人信息和密码都存储在本地，这些敏感信息会跟随软件卸载一起移除</string>
     <string name="settings_user_id">已绑定学号</string>

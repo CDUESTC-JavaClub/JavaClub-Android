@@ -30,11 +30,22 @@ class ActivityLine(context: Context,
         view.findViewById<TextView>(R.id.bai_activity_name).text = activity.name
         view.findViewById<TextView>(R.id.bai_activity_local).text = activity.place
         val statusText = view.findViewById<TextView>(R.id.bai_text_status)
-        statusText.text = "(${activity.status})"
+        statusText.text = when(activity.status){
+            "报名中" -> context.getString(R.string.bai_activity_status_wait)
+            "活动中" -> context.getString(R.string.bai_activity_status_running)
+            "报名结束" -> context.getString(R.string.bai_activity_status_stop)
+            else -> context.getString(R.string.bai_activity_status_end)
+        }
         statusText.setTextColor(statusColor(activity.status))
 
         view.findViewById<TextView>(R.id.bai_activity_time).text = format.format(activity.start)
-        view.findViewById<TextView>(R.id.bai_text_type).text = activity.type
+        view.findViewById<TextView>(R.id.bai_text_type).text = when(activity.type){
+            "博学" -> context.getString(R.string.bai_name_bx)
+            "笃行" -> context.getString(R.string.bai_name_dx)
+            "尽美" -> context.getString(R.string.bai_name_jm)
+            "明德" -> context.getString(R.string.bai_name_md)
+            else -> context.getString(R.string.bai_name_bx)
+        }
         val image = when(activity.type){
             "博学" -> R.drawable.bai_icon_bx
             "笃行" -> R.drawable.bai_icon_dx
