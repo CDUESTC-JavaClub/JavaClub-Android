@@ -89,7 +89,9 @@ class MainActivity : AppCompatActivity() {
                 .edit()
                 .putBoolean("base_last", true)
                 .apply()
-            if(first) this.firstLogin(sharedPreference)
+            if(first || sharedPreference.getString("base_avatar_url", null) == null){
+                this.firstLogin(sharedPreference)
+            }
             initUserImage()
             runOnUiThread {
                 AnimUtil.hide(binding.loginMask)

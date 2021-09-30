@@ -62,7 +62,7 @@ object UserManager {
         try {
             myFileURL = URL(url)
             val conn: HttpURLConnection = myFileURL.openConnection() as HttpURLConnection
-            conn.connectTimeout = 6000
+            conn.connectTimeout = 20000
             conn.doInput = true
             conn.useCaches = false
             val inputStream: InputStream = conn.inputStream

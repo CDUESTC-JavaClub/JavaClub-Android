@@ -14,6 +14,7 @@ import club.byjh.entity.account.BaiAccount
 import club.byjh.exception.ByjhAssistantException
 import club.byjh.net.WebManager
 import club.byjh.net.enums.StatusType
+import club.cduestc.R
 import club.cduestc.databinding.FragmentBaiBinding
 import club.cduestc.ui.bai.sub.BaiInfoActivity
 import club.cduestc.ui.bai.sub.BaiListActivity
@@ -82,7 +83,7 @@ class BaiFragment : Fragment() {
 
     private fun initEdit(performance: SharedPreferences){
         if(UserManager.getBindId() == null || UserManager.getBindId()!!.isEmpty()){
-            binding.saveKcBtn.text = "请先绑定教务系统账号"
+            binding.saveKcBtn.text = getString(R.string.model_bai_bind_error)
             binding.saveKcBtn.isEnabled = false
             return
         }
@@ -103,7 +104,7 @@ class BaiFragment : Fragment() {
             }catch (e : Exception){
                 requireActivity().runOnUiThread {
                     endSave()
-                    Toast.makeText(context, "登陆失败，账号或密码错误！", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, getString(R.string.kc_fragment_tip_account_error), Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -111,12 +112,12 @@ class BaiFragment : Fragment() {
 
     private fun postSave(){
         binding.saveKcBtn.isEnabled = false
-        binding.saveKcBtn.text = "正在验证..."
+        binding.saveKcBtn.text = getString(R.string.kc_fragment_bind_btn_login_do)
     }
 
     private fun endSave(){
         binding.saveKcBtn.isEnabled = true
-        binding.saveKcBtn.text = "保存"
+        binding.saveKcBtn.text = getString(R.string.kc_fragment_bind_btn_login)
     }
 
     private fun displayMenu(performance : SharedPreferences){
@@ -137,7 +138,7 @@ class BaiFragment : Fragment() {
                     binding.baiScoreDx.text = score.dx.toString()
                     binding.baiScoreMd.text = score.md.toString()
                     binding.baiScoreAll.text = score.allScore.toString()
-                    binding.baiScoreAllStatus.text = if(score.allScore >= 60) "已达标" else "继续努力"
+                    binding.baiScoreAllStatus.text = if(score.allScore >= 60) getString(R.string.bai_pass) else getString(R.string.bai_failed)
 
                     binding.baiUserHead.setImageBitmap(header)
                     binding.baiUserName.text = UserManager.baiAccount.userName
@@ -150,7 +151,7 @@ class BaiFragment : Fragment() {
                     binding.baiLoading.visibility = View.GONE
                     binding.baiTipBind.visibility = View.VISIBLE
                 }
-                Toast.makeText(context, "登陆失败，请检查你的学号和密码！", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, getString(R.string.kc_fragment_tip_account_error), Toast.LENGTH_SHORT).show();
             }
         }
     }

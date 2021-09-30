@@ -69,7 +69,7 @@ class SettingsFragment : Fragment() {
 
     private fun loadImageResource(){
         NetManager.createTask{
-            for (i in 1..10){
+            for (i in 1..20){
                 if(UserManager.getBackground() != null) {
                     requireActivity().runOnUiThread { binding.userBackground.setImageBitmap(UserManager.getBackground()) }
                     break
@@ -78,7 +78,7 @@ class SettingsFragment : Fragment() {
             }
         }
         NetManager.createTask{
-            for (i in 1..10){
+            for (i in 1..20){
                 if(UserManager.getHeader() != null){
                     requireActivity().runOnUiThread { binding.userHeader.setImageBitmap(UserManager.getHeader()) }
                     break
