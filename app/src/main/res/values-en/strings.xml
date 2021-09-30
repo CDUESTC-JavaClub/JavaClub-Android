@@ -142,6 +142,6 @@
     <string name="update_new">A version update is detected, please upgrade as soon as possible!</string>
     <string name="update_version">Current version：%1$s, new version：%2$s</string>
 
-    <string name="add_widget">添加小组件</string>
-    <string name="app_widget_description">课程表小组件</string>
+    <string name="add_widget">Add widget</string>
+    <string name="app_widget_description">Curriculum widget</string>
 </resources>

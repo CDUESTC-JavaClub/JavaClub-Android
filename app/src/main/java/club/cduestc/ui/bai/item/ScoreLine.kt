@@ -28,7 +28,13 @@ class ScoreLine(context: Context,
         val value = view.findViewById<TextView>(R.id.score_value)
         value.text = "+"+scoreAdd.add
         value.setTextColor(Color.parseColor(color))
-        view.findViewById<TextView>(R.id.score_type).text = scoreAdd.type
+        view.findViewById<TextView>(R.id.score_type).text = when(scoreAdd.type){
+            "博学" -> context.getString(R.string.bai_name_bx)
+            "笃行" -> context.getString(R.string.bai_name_dx)
+            "尽美" -> context.getString(R.string.bai_name_jm)
+            "明德" -> context.getString(R.string.bai_name_md)
+            else -> context.getString(R.string.bai_name_bx)
+        }
         view.findViewById<TextView>(R.id.score_reason_text).text = scoreAdd.reason
     }
 }
