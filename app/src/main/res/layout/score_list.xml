@@ -25,6 +25,9 @@
                 android:layout_width="match_parent"
                 app:icon="@drawable/icon_kc"
                 app:iconSize="30dp"
+                android:textAppearance="@font/arial"
+                android:textAllCaps="false"
+                android:textSize="16sp"
                 android:layout_height="match_parent"/>
 
             <LinearLayout

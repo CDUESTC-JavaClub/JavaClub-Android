@@ -166,8 +166,6 @@
                         android:textColor="@color/dark_gray"/>
                 </RelativeLayout>
             </LinearLayout>
-
-
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
@@ -454,6 +452,8 @@
                     android:id="@+id/btn_bai_all"
                     style="@style/FunctionButtonBai"
                     android:text="@string/btn_bai_join"
+                    android:textAppearance="@font/arial"
+                    android:textAllCaps="false"
                     app:cornerRadius="0dp"
                     app:icon="@drawable/icon_kc_user"
                     app:iconSize="20dp" />
@@ -464,6 +464,8 @@
                     android:id="@+id/btn_bai_my"
                     style="@style/FunctionButtonBai"
                     android:text="@string/btn_bai_manage"
+                    android:textAppearance="@font/arial"
+                    android:textAllCaps="false"
                     app:cornerRadius="0dp"
                     app:icon="@drawable/icon_class_table"
                     app:iconSize="20dp" />
@@ -474,6 +476,8 @@
                     android:id="@+id/btn_bai_info"
                     style="@style/FunctionButtonBai"
                     android:text="@string/btn_bai_score"
+                    android:textAppearance="@font/arial"
+                    android:textAllCaps="false"
                     app:cornerRadius="0dp"
                     app:icon="@drawable/icon_kc"
                     app:iconSize="20dp" />
