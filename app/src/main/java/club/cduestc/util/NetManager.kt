@@ -1,5 +1,6 @@
 package club.cduestc.util
 
+import android.content.SharedPreferences
 import android.util.Log
 import com.alibaba.fastjson.JSONArray
 import com.alibaba.fastjson.JSONObject
@@ -19,7 +20,7 @@ import kotlin.collections.ArrayList
 
 
 object NetManager {
-    private var ip = "http://192.168.10.6/api"
+    private var ip = "https://api.cduestc.club/api"
     private var executorService = Executors.newFixedThreadPool(10)
 
     fun isBaiNetwork() : Boolean{
@@ -46,14 +47,17 @@ object NetManager {
         cookies = null  //清理缓存
         val getRes = get("/auth/public-key") ?: return false
         val key = getRes.getString("data")
-        val req = mapOf("id" to name, "password" to encrypt(pwd, key), "remember-me" to "false")
+        val req = mapOf("id" to name, "password" to encrypt(pwd, key), "remember-me" to "true")
         val res = post("/auth/login", req) ?: return false
         if (res.getIntValue("status") != 200) return false
-        if(res.getBoolean("data")){
-            val getResp = get("/auth/info") ?: return false
-            UserManager.init(getResp.getJSONObject("data"))
-        }
         return res.getBoolean("data")
+    }
+
+    fun initUserInfo() : Boolean{
+        val getResp = get("/auth/info") ?: return false
+        if (getResp.getIntValue("status") != 200) return false
+        UserManager.init(getResp.getJSONObject("data"))
+        return true
     }
 
     fun getGithubInfo(id : String) : JSONObject?{
@@ -95,7 +99,35 @@ object NetManager {
         return get("/check/update")
     }
 
-    private var cookies : List<HttpCookie>? = null
+    fun oauth(url : String) : Boolean{
+        return try{
+            val con = Jsoup.connect(url)
+            con.timeout(200000)
+            con.ignoreContentType(true)
+            val str = con.get().body().text()
+            if(cookies == null) cookies = ArrayList(con.cookieStore().cookies)
+            val res = JSONObject.parseObject(str)
+            if(res.getInteger("status") != 200) return false
+            return res.getBoolean("data")
+        }catch (e : Exception){
+            e.printStackTrace()
+            false
+        }
+    }
+
+    fun cookieWrite(sharedPreference : SharedPreferences){
+        val obj = JSONObject()
+        cookies?.forEach { obj[it.name] = it.value }
+        sharedPreference.edit().putString("saved_cookie", obj.toJSONString()).apply()
+    }
+
+    fun cookieRead(sharedPreference : SharedPreferences){
+        val obj = JSONObject.parseObject(sharedPreference.getString("saved_cookie", "{}"))
+        cookies = ArrayList()
+        obj.forEach { k, v -> cookies!!.add(HttpCookie(k, v.toString())) }
+    }
+
+    private var cookies : ArrayList<HttpCookie>? = null
     private fun post(url: String, data : Map<String, String>) : JSONObject?{
         return try {
             val con = Jsoup.connect(ip+url)
@@ -120,7 +152,6 @@ object NetManager {
             con.ignoreContentType(true)
             val str = con.get().body().text()
             if(cookies == null) cookies = ArrayList(con.cookieStore().cookies)
-            Log.i("A", str)
             JSONObject.parseObject(str)
         }catch (e : Exception){
             e.printStackTrace()

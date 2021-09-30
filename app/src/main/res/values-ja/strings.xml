@@ -121,12 +121,14 @@
     <string name="register_link"><u>新规登録</u></string>
     <string name="forgot_link"><u>忘れる？</u></string>
     <string name="login_qq_btn">QQでログイン</string>
+    <string name="login_github_btn">GitHubでログイン</string>
     <string name="login_title">JavaClub Appにログインします</string>
     <string name="login_connect">クラブにログインする…</string>
     <string name="login_failed">ログインに失敗しました。ユーザー名またはパスワードが間違っている可能性があります。</string>
     <string name="login_check">プライバシーポリシーに同意する</string>
     <string name="login_check_tip">Please agree and check the App Privacy Policy first!</string>
     <string name="login_info_tip">Please fill in the username and password completely!</string>
+    <string name="login_timeout">ログインに失敗しました。もう一度ログインしてください。</string>
 
     <string name="settings_info">学生証（アカデミックアカウント）とBaiye Projectアカウントをバインドできます。学生証はリモートでのみ保存されます。個人情報とパスワードはローカルに保存されます。これらの機密情報は、ソフトウェアのアンインストールとともに削除されます。</string>
     <string name="settings_user_id">学生証</string>

@@ -22,6 +22,7 @@ object UserManager {
 
     fun init(data : JSONObject) {
         this.data = data
+        if(data["connectedAccounts"].toString().length < 5) return
         NetManager.createTask{ githubInfo = NetManager.getGithubInfo(data.getJSONObject("connectedAccounts").getString("github")) }
     }
 

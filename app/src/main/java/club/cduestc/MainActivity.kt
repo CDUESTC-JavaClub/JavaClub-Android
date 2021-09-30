@@ -3,12 +3,17 @@ package club.cduestc
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Bitmap
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.webkit.WebResourceRequest
+import android.webkit.WebResourceResponse
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -53,7 +58,7 @@ class MainActivity : AppCompatActivity() {
                     imm.hideSoftInputFromWindow(binding.root.windowToken, 0)
                     saveLoginForm(sharedPreference)
                     binding.loginCard.toggle()
-                    NetManager.createTask{ doLogin(sharedPreference, true) }
+                    NetManager.createTask{ doLogin(sharedPreference) }
                 }else{
                     Toast.makeText(this, getString(R.string.login_info_tip), Toast.LENGTH_SHORT).show()
                 }
@@ -61,6 +66,38 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, getString(R.string.login_check_tip), Toast.LENGTH_SHORT).show()
             }
         }
+        binding.btnLoginGithub.setOnClickListener {
+            if(binding.policyCheck.isChecked){
+                binding.webLoginViewLoading.visibility = View.VISIBLE
+                AnimUtil.hide(binding.mainLogin)
+                binding.webLogin.visibility = View.VISIBLE
+                binding.webLoginView.clearCache(true)
+                binding.webLoginView.webViewClient = object : WebViewClient(){
+                    override fun onPageFinished(view: WebView?, url: String?) {
+                        super.onPageFinished(view, url)
+                        binding.webLoginViewLoading.visibility = View.GONE
+                    }
+
+                    override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
+                        if(request?.url.toString().startsWith("https://api.cduestc.club/api/callback/github")){
+                            binding.webLogin.visibility = View.GONE
+                            AnimUtil.show(binding.mainLogin, 0f, 1f)
+                            binding.loginCard.toggle()
+                            AnimUtil.show(binding.loginLoading, 0f, 1f)
+                            NetManager.createTask{
+                                if(NetManager.oauth(request?.url.toString()) && loginSuccess(sharedPreference)) return@createTask
+                                else loginFailed(sharedPreference)
+                            }
+                        }
+                        return true
+                    }
+                }
+                binding.webLoginView.loadUrl("https://github.com/login/oauth/authorize?client_id=4bc36d459443333062b5")
+            }else{
+                Toast.makeText(this, getString(R.string.login_check_tip), Toast.LENGTH_SHORT).show()
+            }
+        }
+
         binding.inputPwd.setText(basePassword)
         binding.inputId.setText(baseName)
 
@@ -97,34 +134,46 @@ class MainActivity : AppCompatActivity() {
         val success = sharedPreference.getBoolean("base_last", false)
         NetManager.createTask{
             if(success){
-                doLogin(sharedPreference, false)
-            }else{
-                runOnUiThread { binding.loginCard.toggle() }
+                runOnUiThread { AnimUtil.show(binding.loginLoading, 0f, 1f) }
+                NetManager.cookieRead(sharedPreference)
+                if(loginSuccess(sharedPreference)) return@createTask
+            }
+            runOnUiThread {
+                binding.loginLoading.visibility = View.GONE
+                binding.loginCard.toggle()
             }
         }
     }
 
-    private fun doLogin(sharedPreference : SharedPreferences, first : Boolean){
+    private fun doLogin(sharedPreference : SharedPreferences){
         val baseName = sharedPreference.getString("base_id", "").toString()
         val basePassword = sharedPreference.getString("base_password", "").toString()
         runOnUiThread { AnimUtil.show(binding.loginLoading, 0f, 1f) }
-        if(!NetManager.login(baseName, basePassword)){
-            val editor = sharedPreference.edit()
-            editor.putBoolean("base_last", false)
-            editor.apply()
-            runOnUiThread {
-                Toast.makeText(this, getString(R.string.login_failed), Toast.LENGTH_SHORT).show()
-                AnimUtil.hide(binding.loginLoading)
-                binding.loginCard.toggle()
-            }
-        }else{   //登陆完成
+        if(NetManager.login(baseName, basePassword) && loginSuccess(sharedPreference)){
+            //登陆成功
+        }else{
+            loginFailed(sharedPreference)
+        }
+    }
+
+    private fun loginFailed(sharedPreference : SharedPreferences){
+        val editor = sharedPreference.edit()
+        editor.putBoolean("base_last", false)
+        editor.apply()
+        runOnUiThread {
+            Toast.makeText(this, getString(R.string.login_failed), Toast.LENGTH_SHORT).show()
+            AnimUtil.hide(binding.loginLoading)
+            binding.loginCard.toggle()
+        }
+    }
+
+    private fun loginSuccess(sharedPreference : SharedPreferences) : Boolean{
+        if(NetManager.initUserInfo()){
             sharedPreference
                 .edit()
                 .putBoolean("base_last", true)
                 .apply()
-            if(first || sharedPreference.getString("base_avatar_url", null) == null){
-                this.firstLogin(sharedPreference)
-            }
+            if(sharedPreference.getString("base_avatar_url", null) == null) this.firstLogin(sharedPreference)
             initUserImage()
             runOnUiThread {
                 AnimUtil.hide(binding.loginMask)
@@ -132,7 +181,15 @@ class MainActivity : AppCompatActivity() {
                 AnimUtil.hide(binding.loginLoading)
                 initView()
             }
+            NetManager.cookieWrite(sharedPreference)
+            return true
         }
+        runOnUiThread { Toast.makeText(this, getString(R.string.login_timeout), Toast.LENGTH_SHORT).show() }
+        sharedPreference
+            .edit()
+            .putBoolean("base_last", false)
+            .apply()
+        return false
     }
 
     /**
