@@ -144,6 +144,13 @@
     <string name="settings_user_id_no">アンバウンド</string>
     <string name="settings_btn_update_no">すでに最新バージョンです~</string>
     <string name="update_version">現在：%1$s，最新：%2$s</string>
+    <string name="settings_user_github_name"> Githubアカウントの関連付け</string>
+    <string name="settings_user_github_disconnected">関連付けられていません</string>
+    <string name="settings_user_github_connected">が関連付けられました</string>
+    <string name="settings_user_github_home">個人のホームページ：<u>%1$s</u></string>
+    <string name="settings_user_github_join"> Githubに参加する時間：%1$s</string>
+    <string name="settings_user_github_repo">パブリックウェアハウス</string>
+    <string name="settings_user_github_fans">ファン</string>
 
     <string name="add_widget">ウィジェットを追加</string>
     <string name="app_widget_description">カリキュラムウィジェット</string>

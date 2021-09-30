@@ -19,7 +19,7 @@ import kotlin.collections.ArrayList
 
 
 object NetManager {
-    private var ip = "https://api.cduestc.club/api"
+    private var ip = "http://192.168.10.6/api"
     private var executorService = Executors.newFixedThreadPool(10)
 
     fun isBaiNetwork() : Boolean{
@@ -54,6 +54,16 @@ object NetManager {
             UserManager.init(getResp.getJSONObject("data"))
         }
         return res.getBoolean("data")
+    }
+
+    fun getGithubInfo(id : String) : JSONObject?{
+        return try {
+            val connect = Jsoup.connect("https://api.github.com/user/$id")
+            connect.ignoreContentType(true)
+            JSONObject.parseObject(connect.get().text())
+        }catch (e : Exception){
+            null
+        }
     }
 
     fun initForum() : JSONObject?{
@@ -110,8 +120,10 @@ object NetManager {
             con.ignoreContentType(true)
             val str = con.get().body().text()
             if(cookies == null) cookies = ArrayList(con.cookieStore().cookies)
+            Log.i("A", str)
             JSONObject.parseObject(str)
-        }catch (e : IOException){
+        }catch (e : Exception){
+            e.printStackTrace()
             null
         }
     }

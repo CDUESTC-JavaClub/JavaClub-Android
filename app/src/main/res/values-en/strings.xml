@@ -144,6 +144,13 @@
     <string name="update_btn">Update</string>
     <string name="update_new">A version update is detected, please upgrade as soon as possible!</string>
     <string name="update_version">Current version：%1$s, new version：%2$s</string>
+    <string name="settings_user_github_name">Github account association</string>
+    <string name="settings_user_github_disconnected">Not associated</string>
+    <string name="settings_user_github_connected">Linked</string>
+    <string name="settings_user_github_home">Homepage: <u>%1$s</u></string>
+    <string name="settings_user_github_join">Join Github time：%1$s</string>
+    <string name="settings_user_github_repo">Public Repo</string>
+    <string name="settings_user_github_fans">Followers</string>
 
     <string name="add_widget">Add widget</string>
     <string name="app_widget_description">Curriculum widget</string>

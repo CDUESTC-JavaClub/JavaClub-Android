@@ -1,11 +1,14 @@
 package club.cduestc.ui.settings
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -13,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider
 import club.cduestc.MainActivity
 import club.cduestc.R
 import club.cduestc.databinding.FragmentSettingsBinding
+import club.cduestc.util.AnimUtil
 import club.cduestc.util.NetManager
 import club.cduestc.util.UpdateUtil
 import club.cduestc.util.UserManager
@@ -33,6 +37,7 @@ class SettingsFragment : Fragment() {
         _binding = FragmentSettingsBinding.inflate(inflater, container, false)
 
         loadImageResource()
+        loadGithubInfo()
 
         binding.userName.text = UserManager.getUserName()
         binding.userSignature.text = UserManager.getSignature()
@@ -59,6 +64,14 @@ class SettingsFragment : Fragment() {
         binding.switchUpdateAuto.setOnClickListener(this::switchAutoUpdate)
         binding.exit.setOnClickListener (this::exit)
         binding.update.setOnClickListener(this::update)
+
+        binding.userGithubStatus.setOnClickListener {
+            it as TextView
+            if(it.text.equals(getString(R.string.settings_user_github_disconnected))){
+                linkToWeb("")
+            }
+        }
+
         return binding.root
     }
 
@@ -67,11 +80,45 @@ class SettingsFragment : Fragment() {
         _binding = null
     }
 
+    private fun loadGithubInfo(){
+        NetManager.createTask{
+            for (i in 1..10){
+                if(UserManager.githubInfo != null){
+                    requireActivity().runOnUiThread {
+                        val data = UserManager.githubInfo!!
+                        NetManager.createTask{
+                            val bitmap = UserManager.getHttpBitmap(data.getString("avatar_url"))
+                            requireActivity().runOnUiThread {
+                                AnimUtil.show(binding.userGithubAvatar, 0f, 1f)
+                                binding.userGithubAvatar.setImageBitmap(bitmap)
+                            }
+                        }
+                        binding.userGithubName.text = data.getString("login")
+                        binding.userGithubRepo.text = data.getInteger("public_repos").toString()
+                        binding.userGithubFans.text = data.getInteger("followers").toString()
+
+                        binding.userGithubHome.text = Html.fromHtml(getString(R.string.settings_user_github_home, data.getString("html_url")))
+                        binding.userGithubHome.setOnClickListener { linkToWeb(data.getString("html_url")) }
+                        binding.userGithubJoin.text = getString(R.string.settings_user_github_join, data.getString("created_at").substring(0..9))
+
+                        binding.card0.toggle()
+                        binding.userGithubStatus.text = getString(R.string.settings_user_github_connected)
+                    }
+                    break
+                }
+                Thread.sleep(1000)
+            }
+        }
+    }
+
     private fun loadImageResource(){
         NetManager.createTask{
             for (i in 1..20){
                 if(UserManager.getBackground() != null) {
-                    requireActivity().runOnUiThread { binding.userBackground.setImageBitmap(UserManager.getBackground()) }
+                    requireActivity().runOnUiThread {
+                        AnimUtil.show(binding.userBackground, 0f, 1f)
+                        binding.userBackground.setImageBitmap(UserManager.getBackground())
+                    }
                     break
                 }
                 Thread.sleep(1000)
@@ -80,7 +127,10 @@ class SettingsFragment : Fragment() {
         NetManager.createTask{
             for (i in 1..20){
                 if(UserManager.getHeader() != null){
-                    requireActivity().runOnUiThread { binding.userHeader.setImageBitmap(UserManager.getHeader()) }
+                    requireActivity().runOnUiThread {
+                        AnimUtil.show(binding.userHeader, 0f, 1f)
+                        binding.userHeader.setImageBitmap(UserManager.getHeader())
+                    }
                     break
                 }
                 Thread.sleep(1000)
@@ -145,6 +195,12 @@ class SettingsFragment : Fragment() {
         val intent = Intent(activity, MainActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
         intent.setClass(requireContext(), MainActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun linkToWeb(url : String){
+        val uri: Uri = Uri.parse(url)
+        val intent = Intent(Intent.ACTION_VIEW, uri)
         startActivity(intent)
     }
 }

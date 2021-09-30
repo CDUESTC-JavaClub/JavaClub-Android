@@ -144,6 +144,13 @@
     <string name="update_btn">立即更新</string>
     <string name="update_new">检测到版本更新，赶快升级吧!</string>
     <string name="update_version">当前版本：%1$s，最新版本：%2$s</string>
+    <string name="settings_user_github_name">Github账号关联</string>
+    <string name="settings_user_github_disconnected">未关联</string>
+    <string name="settings_user_github_connected">已关联</string>
+    <string name="settings_user_github_home">个人主页：<u>%1$s</u></string>
+    <string name="settings_user_github_join">加入Github时间：%1$s</string>
+    <string name="settings_user_github_repo">公共仓库</string>
+    <string name="settings_user_github_fans">粉丝</string>
 
     <string name="add_widget">添加小组件</string>
     <string name="app_widget_description">课程表小组件</string>

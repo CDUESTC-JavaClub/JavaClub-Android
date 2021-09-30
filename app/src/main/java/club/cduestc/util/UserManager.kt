@@ -18,9 +18,11 @@ object UserManager {
     var index : String? = null
     lateinit var kcAccount : KcAccount
     lateinit var baiAccount : BaiAccount
+    var githubInfo : JSONObject? = null
 
     fun init(data : JSONObject) {
         this.data = data
+        NetManager.createTask{ githubInfo = NetManager.getGithubInfo(data.getJSONObject("connectedAccounts").getString("github")) }
     }
 
     fun initImage(u1 : String?, u2 : String?){
