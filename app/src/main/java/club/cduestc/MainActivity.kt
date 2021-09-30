@@ -47,21 +47,34 @@ class MainActivity : AppCompatActivity() {
         val baseName = sharedPreference.getString("base_id", "").toString()
         val basePassword = sharedPreference.getString("base_password", "").toString()
         binding.btnLogin.setOnClickListener{
-            val imm = this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.hideSoftInputFromWindow(binding.root.windowToken, 0)
-            saveLoginForm(sharedPreference)
-            binding.loginCard.toggle()
-            NetManager.createTask{ doLogin(sharedPreference, true) }
+            if(binding.policyCheck.isChecked){
+                if(infoCheck()){
+                    val imm = this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                    imm.hideSoftInputFromWindow(binding.root.windowToken, 0)
+                    saveLoginForm(sharedPreference)
+                    binding.loginCard.toggle()
+                    NetManager.createTask{ doLogin(sharedPreference, true) }
+                }else{
+                    Toast.makeText(this, getString(R.string.login_info_tip), Toast.LENGTH_SHORT).show()
+                }
+            }else{
+                Toast.makeText(this, getString(R.string.login_check_tip), Toast.LENGTH_SHORT).show()
+            }
         }
         binding.inputPwd.setText(basePassword)
         binding.inputId.setText(baseName)
 
+        binding.linkPolicy.setOnClickListener { linkToWeb("https://study.cduestc.club/index.php?help/privacy-policy/") }
         binding.linkRegister.setOnClickListener { linkToWeb("https://study.cduestc.club/index.php?register/") }
         binding.linkForget.setOnClickListener { linkToWeb("https://study.cduestc.club/index.php?lost-password/") }
         binding.loginMask.setOnClickListener {  }
         AnimUtil.show(binding.loginMask)
 
         login(sharedPreference)
+    }
+
+    private fun infoCheck() : Boolean{
+        return binding.inputId.text.isNotEmpty() && binding.inputPwd.text.isNotEmpty()
     }
 
     private fun setDayNight(){

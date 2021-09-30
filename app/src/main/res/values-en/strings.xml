@@ -124,6 +124,9 @@
     <string name="login_title">Log in to the JavaClub App</string>
     <string name="login_connect">Logging in to the Java club…</string>
     <string name="login_failed">The login failed, it may be the user name or password is wrong!</string>
+    <string name="login_check">Agree to the <u>Privacy Policy</u> of JavaClub App</string>
+    <string name="login_check_tip">Please agree and check the App Privacy Policy first!</string>
+    <string name="login_info_tip">Please fill in the username and password completely!</string>
 
     <string name="settings_info">You can bind your student ID (academic account) and Baiye Project account. We will only save your student ID remotely. Personal information and passwords are stored locally. These sensitive information will be removed along with the uninstallation of the software.</string>
     <string name="settings_user_id">Bound student ID</string>

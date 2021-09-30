@@ -172,6 +172,22 @@
                     style="@style/LoginButton"
                     app:cornerRadius="25dp"/>
 
+                <LinearLayout
+                    android:gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp">
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/policy_check"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp" />
+                    <TextView
+                        android:id="@+id/link_policy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+                        android:text="@string/login_check"/>
+                </LinearLayout>
             </LinearLayout>
         </club.cduestc.ui.CollapseCardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
