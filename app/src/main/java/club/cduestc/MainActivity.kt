@@ -88,8 +88,10 @@ class MainActivity : AppCompatActivity() {
                                 if(NetManager.oauth(request?.url.toString()) && loginSuccess(sharedPreference)) return@createTask
                                 else loginFailed(sharedPreference)
                             }
+                            return true
+                        }else{
+                            return false
                         }
-                        return true
                     }
                 }
                 binding.webLoginView.loadUrl("https://github.com/login/oauth/authorize?client_id=4bc36d459443333062b5")
