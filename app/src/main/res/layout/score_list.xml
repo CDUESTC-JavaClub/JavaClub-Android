@@ -6,13 +6,13 @@
     android:layout_height="match_parent">
     <View
         android:layout_width="wrap_content"
-        android:layout_height="5dp"/>
+        android:layout_height="10dp"/>
     <club.cduestc.ui.CollapseCardView
         android:id="@+id/score_card"
         android:layout_width="match_parent"
         android:layout_marginHorizontal="20dp"
         app:cardCornerRadius="10dp"
-        app:collapseHeight="40dp"
+        app:collapseHeight="50dp"
         android:layout_height="wrap_content">
         <LinearLayout
             android:orientation="vertical"
@@ -41,5 +41,5 @@
     </club.cduestc.ui.CollapseCardView>
     <View
         android:layout_width="wrap_content"
-        android:layout_height="5dp"/>
+        android:layout_height="10dp"/>
 </LinearLayout>
