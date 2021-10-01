@@ -67,9 +67,7 @@ class SettingsFragment : Fragment() {
 
         binding.userGithubStatus.setOnClickListener {
             it as TextView
-            if(it.text.equals(getString(R.string.settings_user_github_disconnected))){
-                linkToWeb("")
-            }
+            if(it.text.equals(getString(R.string.settings_user_github_disconnected))) linkToWeb("https://study.cduestc.club/index.php?account/connected-accounts/")
         }
 
         return binding.root
@@ -187,10 +185,14 @@ class SettingsFragment : Fragment() {
         val share = requireActivity().getSharedPreferences("data", AppCompatActivity.MODE_PRIVATE)
         share
             .edit()
+            .remove("saved_cookie")
             .remove("base_last")
             .remove("base_id")
             .remove("base_password")
+            .remove("base_avatar_url")
+            .remove("base_background_url")
             .apply()
+        UserManager.githubInfo = null
         NetManager.createTask(NetManager::logout)
         val intent = Intent(activity, MainActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK

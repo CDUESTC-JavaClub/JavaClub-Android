@@ -23,13 +23,12 @@ import club.cduestc.util.UserManager
 class HomeFragment : Fragment() {
 
     private lateinit var homeViewModel: HomeViewModel
-    private var _binding: FragmentHomeBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding: FragmentHomeBinding
 
     @SuppressLint("SetJavaScriptEnabled")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
 
         val web = binding.forumWebView
         if(UserManager.index != null) web.clearCache(true)
@@ -86,11 +85,6 @@ class HomeFragment : Fragment() {
                 mFilePathCallback!!.onReceiveValue(resultsArray)
             } else mFilePathCallback!!.onReceiveValue(null)
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 
     private fun toWeb(){

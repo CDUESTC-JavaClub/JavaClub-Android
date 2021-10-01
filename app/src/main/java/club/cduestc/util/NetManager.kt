@@ -102,10 +102,10 @@ object NetManager {
     fun oauth(url : String) : Boolean{
         return try{
             val con = Jsoup.connect(url)
-            con.timeout(200000)
             con.ignoreContentType(true)
+            con.timeout(60000)
             val str = con.get().body().text()
-            if(cookies == null) cookies = ArrayList(con.cookieStore().cookies)
+            cookies = ArrayList(con.cookieStore().cookies)
             val res = JSONObject.parseObject(str)
             if(res.getInteger("status") != 200) return false
             return res.getBoolean("data")
