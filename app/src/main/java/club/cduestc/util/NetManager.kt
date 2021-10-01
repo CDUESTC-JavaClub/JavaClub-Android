@@ -44,7 +44,7 @@ object NetManager {
     }
 
     fun login(name: String, pwd: String) : Boolean {
-        cookies = null  //清理缓存
+        cookies.clear()  //清理缓存
         val getRes = get("/auth/public-key") ?: return false
         val key = getRes.getString("data")
         val req = mapOf("id" to name, "password" to encrypt(pwd, key), "remember-me" to "true")
@@ -72,7 +72,9 @@ object NetManager {
 
     fun initForum() : JSONObject?{
         val getResp = get("/auth/forum") ?: return null
-        return getResp.getJSONObject("data")
+        return if(getResp.getInteger("status") == 200){
+            getResp.getJSONObject("data")
+        } else null
     }
 
     fun allContest() : JSONArray?{
@@ -117,26 +119,26 @@ object NetManager {
 
     fun cookieWrite(sharedPreference : SharedPreferences){
         val obj = JSONObject()
-        cookies?.forEach { obj[it.name] = it.value }
+        cookies.forEach { obj[it.name] = it.value }
         sharedPreference.edit().putString("saved_cookie", obj.toJSONString()).apply()
     }
 
     fun cookieRead(sharedPreference : SharedPreferences){
         val obj = JSONObject.parseObject(sharedPreference.getString("saved_cookie", "{}"))
         cookies = ArrayList()
-        obj.forEach { k, v -> cookies!!.add(HttpCookie(k, v.toString())) }
+        obj.forEach { k, v -> cookies.add(HttpCookie(k, v.toString())) }
     }
 
-    private var cookies : ArrayList<HttpCookie>? = null
+    private var cookies : ArrayList<HttpCookie> = ArrayList()
     private fun post(url: String, data : Map<String, String>) : JSONObject?{
         return try {
             val con = Jsoup.connect(ip+url)
-            con.timeout(10000)
-            cookies?.forEach{ con.cookie(it.name, it.value) }
+            con.timeout(20000)
+            cookies.forEach{ con.cookie(it.name, it.value) }
             con.ignoreContentType(true)
             con.data(data)
             val str = con.post().body().text()
-            if(cookies == null) cookies = ArrayList(con.cookieStore().cookies)
+            updateCookie(con.cookieStore().cookies)
             JSONObject.parseObject(str)
         }catch (e : IOException){
             e.printStackTrace()
@@ -147,15 +149,25 @@ object NetManager {
     private fun get(url : String) : JSONObject?{
         return try{
             val con = Jsoup.connect(ip+url)
-            con.timeout(10000)
-            cookies?.forEach{ con.cookie(it.name, it.value) }
+            con.timeout(20000)
+            cookies.forEach{ con.cookie(it.name, it.value) }
             con.ignoreContentType(true)
             val str = con.get().body().text()
-            if(cookies == null) cookies = ArrayList(con.cookieStore().cookies)
+            updateCookie(con.cookieStore().cookies)
             JSONObject.parseObject(str)
         }catch (e : Exception){
             e.printStackTrace()
             null
+        }
+    }
+
+    private fun updateCookie(list : List<HttpCookie>){
+        list.forEach {
+            if(!cookies.contains(it)) cookies.add(it)
+            else {
+                cookies.remove(it)
+                cookies.add(it)
+            }
         }
     }
 

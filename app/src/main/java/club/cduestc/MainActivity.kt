@@ -149,7 +149,8 @@ class MainActivity : AppCompatActivity() {
         val baseName = sharedPreference.getString("base_id", "").toString()
         val basePassword = sharedPreference.getString("base_password", "").toString()
         runOnUiThread { AnimUtil.show(binding.loginLoading, 0f, 1f) }
-        if(NetManager.login(baseName, basePassword) && loginSuccess(sharedPreference)){
+        if(NetManager.login(baseName, basePassword)
+            && loginSuccess(sharedPreference)){
             //登陆成功
         }else{
             loginFailed(sharedPreference)
