@@ -1,5 +1,8 @@
 # CDUESTC-JavaClub-Android
+
 电子科技大学成都学院Java俱乐部App（安卓端）
+
+<img src="https://i0.hdslb.com/bfs/album/51ece4f36002569235c826fb2aa8be9e0c578f44.png" alt="4TTFLq.png" border="0" width="100"/>
 
 ## 基本介绍
 
@@ -22,5 +25,6 @@
 * 设置
   * 支持夜间模式切换
   * 快速查看论坛账号个人信息
+* Github账号绑定
 
 其余功能待定，我们也会听取用户建议，开发更多实用功能！
