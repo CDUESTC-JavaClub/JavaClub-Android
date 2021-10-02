@@ -19,7 +19,7 @@ import com.alibaba.fastjson.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*
 
-class ContestLine(context: Activity, data : JSONObject, other : List<ContestLine>) : LinearLayout(context) {
+class ContestLine(context: Activity, data : JSONObject) : LinearLayout(context) {
     init {
         val format = SimpleDateFormat("yyyy-MM-dd", Locale.CHINA)
         val view: View = LayoutInflater.from(context).inflate(R.layout.contest_line, this)
@@ -39,7 +39,6 @@ class ContestLine(context: Activity, data : JSONObject, other : List<ContestLine
             context.runOnUiThread { view.findViewById<ImageView>(R.id.contest_img).setImageBitmap(bitmap) }
         }
         view.findViewById<CollapseCardView>(R.id.time_line_card).setOnClickListener {
-            other.forEach { line -> if(line != this) line.findViewById<CollapseCardView>(R.id.time_line_card).collapse() }
             it as CollapseCardView
             it.toggle()
         }

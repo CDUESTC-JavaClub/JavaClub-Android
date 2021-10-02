@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import club.cduestc.databinding.FragmentContestBinding
 import club.cduestc.ui.contest.item.ContestLine
+import club.cduestc.util.AnimUtil
 import club.cduestc.util.NetManager
 import com.alibaba.fastjson.JSONObject
 
@@ -30,17 +31,15 @@ class ContestFragment : Fragment() {
 
     private fun init(){
         val timeLine = binding.contestTimeLine
-        val lineList = ArrayList<ContestLine>()
         NetManager.createTask{
             val list = NetManager.allContest()
             requireActivity().runOnUiThread{
                 list?.forEach{
                     it as JSONObject
-                    val line = ContestLine(requireActivity(), it, lineList)
-                    lineList.add(line)
+                    val line = ContestLine(requireActivity(), it)
                     timeLine.addView(line)
                 }
-                binding.contestLoad.visibility = View.GONE
+                AnimUtil.hide(binding.contestLoad)
                 binding.contestMenu.visibility = View.VISIBLE
             }
         }
