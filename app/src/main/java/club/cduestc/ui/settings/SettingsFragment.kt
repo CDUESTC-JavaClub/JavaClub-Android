@@ -86,7 +86,7 @@ class SettingsFragment : Fragment() {
                         val data = UserManager.githubInfo!!
                         NetManager.createTask{
                             val bitmap = UserManager.getHttpBitmap(data.getString("avatar_url"))
-                            requireActivity().runOnUiThread {
+                            activity?.runOnUiThread {
                                 AnimUtil.show(binding.userGithubAvatar, 0f, 1f)
                                 binding.userGithubAvatar.setImageBitmap(bitmap)
                             }
@@ -113,7 +113,7 @@ class SettingsFragment : Fragment() {
         NetManager.createTask{
             for (i in 1..20){
                 if(UserManager.getBackground() != null) {
-                    requireActivity().runOnUiThread {
+                    activity?.runOnUiThread {
                         AnimUtil.show(binding.userBackground, 0f, 1f)
                         binding.userBackground.setImageBitmap(UserManager.getBackground())
                     }
@@ -125,7 +125,7 @@ class SettingsFragment : Fragment() {
         NetManager.createTask{
             for (i in 1..20){
                 if(UserManager.getHeader() != null){
-                    requireActivity().runOnUiThread {
+                    activity?.runOnUiThread {
                         AnimUtil.show(binding.userHeader, 0f, 1f)
                         binding.userHeader.setImageBitmap(UserManager.getHeader())
                     }

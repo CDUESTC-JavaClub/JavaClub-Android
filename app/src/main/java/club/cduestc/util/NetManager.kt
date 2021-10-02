@@ -14,6 +14,7 @@ import java.security.KeyFactory
 import java.security.interfaces.RSAPublicKey
 import java.security.spec.X509EncodedKeySpec
 import java.util.*
+import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import javax.crypto.Cipher
 import kotlin.collections.ArrayList
@@ -34,7 +35,7 @@ object NetManager {
 
     fun ocr(image : String) : String{
         val resp = post("/auth/ocr", mapOf("image" to image))
-        val str = resp!!.getString("data");
+        val str = resp!!.getString("data")
         Log.i("OCR", "自动识别到验证码：$str")
         return str
     }
