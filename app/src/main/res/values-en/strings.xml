@@ -132,6 +132,7 @@
 
     <string name="settings_info">You can bind your student ID (academic account) and Baiye Project account. We will only save your student ID remotely. Personal information and passwords are stored locally. These sensitive information will be removed along with the uninstallation of the software.</string>
     <string name="settings_user_id">Bound student ID</string>
+    <string name="settings_user_qq">Bound QQ ID</string>
     <string name="settings_user_email">Bind email</string>
     <string name="settings_dark_mode">Use dark mode</string>
     <string name="settings_auto_dark">Color changes according to the system</string>

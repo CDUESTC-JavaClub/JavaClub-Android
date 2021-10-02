@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.text.Html
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,7 +38,7 @@ class SettingsFragment : Fragment() {
         _binding = FragmentSettingsBinding.inflate(inflater, container, false)
 
         loadImageResource()
-        loadGithubInfo()
+        loadOauthInfo()
 
         binding.userName.text = UserManager.getUserName()
         binding.userSignature.text = UserManager.getSignature()
@@ -69,6 +70,10 @@ class SettingsFragment : Fragment() {
             it as TextView
             if(it.text.equals(getString(R.string.settings_user_github_disconnected))) linkToWeb("https://study.cduestc.club/index.php?account/connected-accounts/")
         }
+        binding.qqId.setOnClickListener {
+            it as TextView
+            if(it.text.equals(getString(R.string.settings_user_github_disconnected))) linkToWeb("https://study.cduestc.club/index.php?account/connected-accounts/")
+        }
 
         return binding.root
     }
@@ -78,29 +83,53 @@ class SettingsFragment : Fragment() {
         _binding = null
     }
 
-    private fun loadGithubInfo(){
+    /**
+     * 第三方绑定信息
+     */
+    private fun loadOauthInfo(){
         NetManager.createTask{
             for (i in 1..10){
-                if(UserManager.githubInfo != null){
-                    requireActivity().runOnUiThread {
-                        val data = UserManager.githubInfo!!
-                        NetManager.createTask{
-                            val bitmap = UserManager.getHttpBitmap(data.getString("avatar_url"))
-                            activity?.runOnUiThread {
-                                AnimUtil.show(binding.userGithubAvatar, 0f, 1f)
-                                binding.userGithubAvatar.setImageBitmap(bitmap)
+                if(UserManager.oauthInfo != null){
+                    //QQ
+                    if(UserManager.oauthInfo!!.containsKey("qq")){
+                        requireActivity().runOnUiThread {
+                            val data = UserManager.oauthInfo!!.getJSONObject("qq")
+                            val nickname = data.getString("nickname")
+                            val avatar = data.getString("figureurl_qq")
+                            NetManager.createTask{
+                                val bitmap = UserManager.getHttpBitmap(avatar)
+                                activity?.runOnUiThread {
+                                    AnimUtil.show(binding.qqAvatar, 0f, 1f)
+                                    binding.qqAvatar.setImageBitmap(bitmap)
+                                }
                             }
+                            binding.qqId.text = nickname
                         }
-                        binding.userGithubName.text = data.getString("login")
-                        binding.userGithubRepo.text = data.getInteger("public_repos").toString()
-                        binding.userGithubFans.text = data.getInteger("followers").toString()
+                    }else{
+                        binding.qqAvatar.layoutParams.width = 0
+                    }
+                    //Github
+                    if(UserManager.oauthInfo!!.containsKey("github")){
+                        requireActivity().runOnUiThread {
+                            val data = UserManager.oauthInfo!!.getJSONObject("github")
+                            NetManager.createTask{
+                                val bitmap = UserManager.getHttpBitmap(data.getString("avatar_url"))
+                                activity?.runOnUiThread {
+                                    AnimUtil.show(binding.userGithubAvatar, 0f, 1f)
+                                    binding.userGithubAvatar.setImageBitmap(bitmap)
+                                }
+                            }
+                            binding.userGithubName.text = data.getString("login")
+                            binding.userGithubRepo.text = data.getInteger("public_repos").toString()
+                            binding.userGithubFans.text = data.getInteger("followers").toString()
 
-                        binding.userGithubHome.text = Html.fromHtml(getString(R.string.settings_user_github_home, data.getString("html_url")))
-                        binding.userGithubHome.setOnClickListener { linkToWeb(data.getString("html_url")) }
-                        binding.userGithubJoin.text = getString(R.string.settings_user_github_join, data.getString("created_at").substring(0..9))
+                            binding.userGithubHome.text = Html.fromHtml(getString(R.string.settings_user_github_home, data.getString("html_url")))
+                            binding.userGithubHome.setOnClickListener { linkToWeb(data.getString("html_url")) }
+                            binding.userGithubJoin.text = getString(R.string.settings_user_github_join, data.getString("created_at").substring(0..9))
 
-                        binding.card0.toggle()
-                        binding.userGithubStatus.text = getString(R.string.settings_user_github_connected)
+                            binding.card0.toggle()
+                            binding.userGithubStatus.text = getString(R.string.settings_user_github_connected)
+                        }
                     }
                     break
                 }
@@ -192,7 +221,7 @@ class SettingsFragment : Fragment() {
             .remove("base_avatar_url")
             .remove("base_background_url")
             .apply()
-        UserManager.githubInfo = null
+        UserManager.oauthInfo = null
         NetManager.createTask(NetManager::logout)
         val intent = Intent(activity, MainActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK

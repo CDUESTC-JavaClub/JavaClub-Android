@@ -132,6 +132,7 @@
 
     <string name="settings_info">学生証（アカデミックアカウント）とBaiye Projectアカウントをバインドできます。学生証はリモートでのみ保存されます。個人情報とパスワードはローカルに保存されます。これらの機密情報は、ソフトウェアのアンインストールとともに削除されます。</string>
     <string name="settings_user_id">学生証</string>
+    <string name="settings_user_qq">QQ</string>
     <string name="settings_user_email">Eメール</string>
     <string name="settings_dark_mode">ダークモードを使用する</string>
     <string name="settings_auto_dark">システムにより色が変わります</string>

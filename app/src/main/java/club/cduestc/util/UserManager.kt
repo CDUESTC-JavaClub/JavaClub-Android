@@ -2,6 +2,7 @@ package club.cduestc.util
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.util.Log
 import club.byjh.entity.account.BaiAccount
 import club.jw.auth.KcAccount
 import com.alibaba.fastjson.JSONObject
@@ -18,12 +19,23 @@ object UserManager {
     var index : String? = null
     lateinit var kcAccount : KcAccount
     lateinit var baiAccount : BaiAccount
-    var githubInfo : JSONObject? = null
+    var oauthInfo : JSONObject? = null
 
     fun init(data : JSONObject) {
         this.data = data
-        if(data["connectedAccounts"].toString().length < 5) return
-        NetManager.createTask{ githubInfo = NetManager.getGithubInfo(data.getJSONObject("connectedAccounts").getString("github")) }
+
+        NetManager.createTask {
+            val obj = JSONObject()
+            try {
+                val accounts = data.getJSONObject("connectedAccounts")
+                if(accounts.containsKey("github")) obj["github"] = NetManager.getGithubInfo(accounts.getString("github"))
+                if(accounts.containsKey("qq")) obj["qq"] = accounts.getJSONObject("qq")
+                oauthInfo = obj
+            }catch (e : Exception){
+                e.printStackTrace()
+                oauthInfo = obj
+            }
+        }
     }
 
     fun initImage(u1 : String?, u2 : String?){
