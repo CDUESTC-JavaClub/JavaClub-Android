@@ -4,6 +4,7 @@ import android.content.SharedPreferences
 import android.util.Log
 import com.alibaba.fastjson.JSONArray
 import com.alibaba.fastjson.JSONObject
+import org.jsoup.Connection
 import org.jsoup.Jsoup
 import java.io.ByteArrayOutputStream
 import java.io.IOException
@@ -157,10 +158,9 @@ object NetManager {
             con.timeout(20000)
             cookies.forEach{ con.cookie(it.name, it.value) }
             con.ignoreContentType(true)
+            con.header("Content-Type", "application/json;charset=UTF-8")
             val str = if(!rawValue) con.get().body().text()
-            else con.get().body().toString()
-                .replace("<body>", "")
-                .replace("</body>", "")
+            else con.method(Connection.Method.GET).execute().body().toString()
             updateCookie(con.cookieStore().cookies)
             JSONObject.parseObject(str)
         }catch (e : Exception){
