@@ -107,6 +107,7 @@
                 android:id="@+id/card0"
                 app:collapse="true"
                 app:collapseHeight="40dp"
+                app:expandHeight="130dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"

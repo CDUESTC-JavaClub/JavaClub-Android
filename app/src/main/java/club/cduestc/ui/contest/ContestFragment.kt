@@ -1,10 +1,13 @@
 package club.cduestc.ui.contest
 
+import android.R
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.BaseAdapter
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import club.cduestc.databinding.FragmentContestBinding
@@ -31,6 +34,7 @@ class ContestFragment : Fragment() {
 
     private fun init(){
         val timeLine = binding.contestTimeLine
+        timeLine.removeAllViews()
         NetManager.createTask{
             val list = NetManager.allContest()
             requireActivity().runOnUiThread{
@@ -39,6 +43,7 @@ class ContestFragment : Fragment() {
                     val line = ContestLine(requireActivity(), it)
                     timeLine.addView(line)
                 }
+
                 AnimUtil.hide(binding.contestLoad)
                 binding.contestMenu.visibility = View.VISIBLE
             }

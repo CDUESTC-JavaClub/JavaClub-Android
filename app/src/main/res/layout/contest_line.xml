@@ -34,12 +34,13 @@
     <club.cduestc.ui.CollapseCardView
         android:id="@+id/time_line_card"
         android:layout_width="match_parent"
-        android:layout_height="340dp"
+        android:layout_height="50dp"
         android:layout_marginHorizontal="10dp"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="5dp"
         app:cardCornerRadius="10dp"
         app:collapse="true"
+        app:expandHeight="340dp"
         app:collapseHeight="50dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout

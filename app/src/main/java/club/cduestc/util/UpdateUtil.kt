@@ -15,7 +15,7 @@ import java.util.*
 
 object UpdateUtil {
 
-    private const val version = "1.0.0"
+    private const val version = "1.0.1"
 
     fun getVersion() : String{
         return version

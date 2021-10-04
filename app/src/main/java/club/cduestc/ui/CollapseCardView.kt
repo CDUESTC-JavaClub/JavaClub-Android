@@ -18,6 +18,7 @@ class CollapseCardView : CardView {
     var collapseHeight : Float
     var expandedHeight : Float? = 0f
     var collapse = false
+    var first = true
 
     constructor(context: Context) : super(context){
         collapseHeight = 0f
@@ -26,19 +27,19 @@ class CollapseCardView : CardView {
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs){
         val typedArray = context.obtainStyledAttributes(attrs, R.styleable.CollapseCardView)
         collapseHeight = typedArray.getDimension(R.styleable.CollapseCardView_collapseHeight, 0f)
+        expandedHeight = typedArray.getDimension(R.styleable.CollapseCardView_expandHeight, 0f)
         collapse = typedArray.getBoolean(R.styleable.CollapseCardView_collapse, false)
     }
     constructor(context: Context, attrs: AttributeSet, defStyleAttr : Int) : super(context, attrs, defStyleAttr){
         val typedArray = context.obtainStyledAttributes(attrs, R.styleable.CollapseCardView)
         collapseHeight = typedArray.getDimension(R.styleable.CollapseCardView_collapseHeight, 0f)
+        expandedHeight = typedArray.getDimension(R.styleable.CollapseCardView_expandHeight, 0f)
         collapse = typedArray.getBoolean(R.styleable.CollapseCardView_collapse, false)
     }
 
     fun collapse(){
-        if(!collapse){
-            collapse(this)
-            collapse = true
-        }
+        collapse(this)
+        collapse = true
     }
 
     fun toggle(){
@@ -53,9 +54,10 @@ class CollapseCardView : CardView {
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-        if(expandedHeight == 0.0f){
+        if(first){
             if(collapse) this.layoutParams.height = collapseHeight.toInt()
-            expandedHeight = measuredHeight.toFloat()
+            if(expandedHeight == 0f) expandedHeight = measuredHeight.toFloat()
+            first = false
         }
     }
 
