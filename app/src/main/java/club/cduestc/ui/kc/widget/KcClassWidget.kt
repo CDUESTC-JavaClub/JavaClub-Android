@@ -22,16 +22,8 @@ import kotlin.math.abs
 
 class KcClassWidget : AppWidgetProvider() {
 
-    override fun onDisabled(context: Context) {
-        super.onDisabled(context)
-    }
-
-    override fun onEnabled(context: Context) {
-        super.onEnabled(context)
-    }
-
-    override fun onReceive(context: Context, intent: Intent) {
-        super.onReceive(context, intent)
-        KcClassUtil.reloadWidget(context)
+    override fun onUpdate(context: Context, appWidgetManager: AppWidgetManager, appWidgetIds: IntArray) {
+        super.onUpdate(context, appWidgetManager, appWidgetIds)
+        KcClassUtil.reloadWidget(context, appWidgetManager, appWidgetIds)
     }
 }

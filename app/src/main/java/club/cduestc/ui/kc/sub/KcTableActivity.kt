@@ -1,6 +1,8 @@
 package club.cduestc.ui.kc.sub
 
 import android.app.AlertDialog
+import android.appwidget.AppWidgetManager
+import android.content.ComponentName
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
@@ -11,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import club.cduestc.R
 import club.cduestc.ui.kc.item.ClassCard
 import club.cduestc.ui.kc.widget.KcClassUtil
+import club.cduestc.ui.kc.widget.KcClassWidget
 import club.cduestc.util.NetManager
 import club.cduestc.util.UserManager
 import com.alibaba.fastjson.JSON
@@ -154,7 +157,10 @@ class KcTableActivity : AppCompatActivity() {
             }
         }
         findViewById<View>(R.id.class_loading).visibility = View.GONE
-        KcClassUtil.reloadWidget(this)
+
+        val appWidgetManager = AppWidgetManager.getInstance(applicationContext)
+        val componentName = ComponentName(applicationContext, KcClassWidget::class.java)
+        KcClassUtil.reloadWidget(this, appWidgetManager, appWidgetManager.getAppWidgetIds(componentName))
     }
 
     private fun addCards(arr: JSONArray, matrix: Array<Array<ArrayList<ClassCard>>>){
