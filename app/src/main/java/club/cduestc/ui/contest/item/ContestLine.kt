@@ -28,7 +28,7 @@ class ContestLine(context: Activity, data : JSONObject) : LinearLayout(context) 
         view.findViewById<TextView>(R.id.contest_time).text = format.format(data.getDate("time"))
         view.findViewById<TextView>(R.id.contest_depart).text = data.getString("depart")
         view.findViewById<TextView>(R.id.contest_type).text = data.getString("type")
-        view.findViewById<TextView>(R.id.contest_desc).text = Html.fromHtml(data.getString("desc"))
+        view.findViewById<TextView>(R.id.contest_desc).text = Html.fromHtml(data.getString("desc"), Html.FROM_HTML_MODE_COMPACT)
         view.findViewById<Button>(R.id.btn_detail).setOnClickListener{
             val uri: Uri = Uri.parse(data.getString("url"))
             val intent = Intent(Intent.ACTION_VIEW, uri)

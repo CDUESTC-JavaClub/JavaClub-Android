@@ -79,7 +79,7 @@ object NetManager {
     }
 
     fun allContest() : JSONArray?{
-        val getResp = get("/contest/all") ?: return null
+        val getResp = get("/contest/all", true) ?: return null
         return if(getResp.getInteger("status") == 200){
             getResp.getJSONArray("data")
         } else null
@@ -148,12 +148,19 @@ object NetManager {
     }
 
     private fun get(url : String) : JSONObject?{
+        return get(url, false)
+    }
+
+    private fun get(url : String, rawValue : Boolean) : JSONObject?{
         return try{
             val con = Jsoup.connect(ip+url)
             con.timeout(20000)
             cookies.forEach{ con.cookie(it.name, it.value) }
             con.ignoreContentType(true)
-            val str = con.get().body().text()
+            val str = if(!rawValue) con.get().body().text()
+            else con.get().body().toString()
+                .replace("<body>", "")
+                .replace("</body>", "")
             updateCookie(con.cookieStore().cookies)
             JSONObject.parseObject(str)
         }catch (e : Exception){
