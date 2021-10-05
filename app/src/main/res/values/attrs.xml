@@ -19,4 +19,9 @@
         <attr name="collapseHeight" format="dimension" />
         <attr name="expandHeight" format="dimension" />
     </declare-styleable>
+    <declare-styleable name="SegmentedControl">
+        <attr name="radius" format="dimension" />
+        <attr name="border" format="dimension"/>
+        <attr name="textSize" format="dimension"/>
+    </declare-styleable>
 </resources>

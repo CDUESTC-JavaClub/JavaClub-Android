@@ -163,7 +163,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <RelativeLayout
-                    android:background="@color/green"
+                    android:background="@color/blue"
                     android:layout_width="match_parent"
                     android:layout_height="50dp">
                     <com.google.android.material.card.MaterialCardView
