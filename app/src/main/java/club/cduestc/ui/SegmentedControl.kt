@@ -9,6 +9,7 @@ import android.graphics.Rect
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
+import androidx.appcompat.app.AppCompatDelegate
 import club.cduestc.R
 import club.cduestc.util.AnimUtil
 
@@ -32,8 +33,9 @@ class SegmentedControl(context: Context, attrs: AttributeSet) : View(context, at
         this.setOnTouchListener { _, event ->
             if (event.actionMasked == MotionEvent.ACTION_DOWN) {
                 val tabWidth : Float = measuredWidth.toFloat() / tabList.size
-                val keys = tabList.keys.toTypedArray()
                 val index = (event.x / tabWidth).toInt()
+                if(index == selectIndex) return@setOnTouchListener false
+                val keys = tabList.keys.toTypedArray()
                 AnimUtil.hide(tabList[keys[selectIndex]]!!, 150)
                 select(index)
                 AnimUtil.show(tabList[keys[index]]!!, 0f , 1f, 150)
@@ -65,7 +67,13 @@ class SegmentedControl(context: Context, attrs: AttributeSet) : View(context, at
         }
 
         for (i in 0 until tabList.size){
-            paint.color = Color.parseColor("#FFFFFF")
+            if(i != selectIndex){
+                if(context.resources.configuration.uiMode == 0x21) paint.color = Color.parseColor("#FFFFFF")
+                else paint.color = Color.parseColor("#444444")
+            }else{
+                if(context.resources.configuration.uiMode == 0x21) paint.color = Color.parseColor("#444444")
+                else paint.color = Color.parseColor("#FFFFFF")
+            }
             paint.textSize = 40f
             val name : String = tabList.keys.toTypedArray()[i]
             val rect = Rect()

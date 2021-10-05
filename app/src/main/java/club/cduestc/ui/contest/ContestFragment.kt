@@ -26,8 +26,8 @@ class ContestFragment : Fragment() {
         _binding = FragmentContestBinding.inflate(inflater, container, false)
 
         binding.segmented.addTab("竞赛和活动", binding.panelContest)
-        binding.segmented.addTab("跳蚤市场", View(context))
-        binding.segmented.addTab("校外兼职", View(context))
+        binding.segmented.addTab("跳蚤市场", binding.panelMarket)
+        binding.segmented.addTab("招聘兼职", binding.panelJob)
 
         init()
 
@@ -47,6 +47,7 @@ class ContestFragment : Fragment() {
                 }
 
                 AnimUtil.hide(binding.contestLoad)
+                AnimUtil.show( binding.panelContest, 0f, 1f, 150)
                 AnimUtil.show( binding.contestMenu, 0f, 1f, 150)
             }
         }
