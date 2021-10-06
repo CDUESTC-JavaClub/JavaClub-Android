@@ -195,17 +195,6 @@
                         android:textColor="@color/light_gray"
                         android:gravity="center_vertical"/>
                 </RelativeLayout>
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:textSize="11sp"
-                        android:text="@string/model_kc_note"
-                        android:textColor="@color/dark_gray"/>
-                </RelativeLayout>
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
