@@ -21,7 +21,7 @@ class SegmentedControl(context: Context, attrs: AttributeSet) : View(context, at
     private var fontSize : Float
     private val paint = Paint()
     private val tabList = LinkedHashMap<String, View>()
-    private var selectIndex = 0
+    var selectIndex = 0
 
     init {
         val typedArray = context.obtainStyledAttributes(attrs, R.styleable.SegmentedControl)
@@ -31,14 +31,10 @@ class SegmentedControl(context: Context, attrs: AttributeSet) : View(context, at
         typedArray.recycle()
 
         this.setOnTouchListener { _, event ->
-            if (event.actionMasked == MotionEvent.ACTION_DOWN) {
+            if (event.actionMasked == MotionEvent.ACTION_DOWN){
                 val tabWidth : Float = measuredWidth.toFloat() / tabList.size
                 val index = (event.x / tabWidth).toInt()
-                if(index == selectIndex) return@setOnTouchListener false
-                val keys = tabList.keys.toTypedArray()
-                AnimUtil.hide(tabList[keys[selectIndex]]!!, 150)
-                select(index)
-                AnimUtil.show(tabList[keys[index]]!!, 0f , 1f, 150)
+                switchTab(index)
             }
             return@setOnTouchListener false;
         }
@@ -89,6 +85,14 @@ class SegmentedControl(context: Context, attrs: AttributeSet) : View(context, at
     private fun select(index : Int){
         this.selectIndex = index
         this.invalidate()
+    }
+
+    fun switchTab(index : Int){
+        val keys = tabList.keys.toTypedArray()
+        if(tabList[keys[index]]!!.visibility == VISIBLE) return
+        AnimUtil.hide(tabList[keys[selectIndex]]!!, 150)
+        select(index)
+        AnimUtil.show(tabList[keys[index]]!!, 0f , 1f, 150)
     }
 
     fun tabCount() : Int{

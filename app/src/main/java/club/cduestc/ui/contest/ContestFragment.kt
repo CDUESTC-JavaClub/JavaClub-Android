@@ -3,6 +3,7 @@ package club.cduestc.ui.contest
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,12 +42,20 @@ class ContestFragment : Fragment() {
                 Toast.makeText(requireContext(), "此功能需要绑定学号后才能使用！", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-            startActivity(Intent(context, MyMarketActivity::class.java))
+            startActivityForResult(Intent(context, MyMarketActivity::class.java), 10)
         }
 
         init()
 
         return binding.root
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode == 10 && data != null){
+            val reload = data.getBooleanExtra("reload", false)
+            if(reload) NetManager.createTask{ loadMarketPanel(null) }
+        }
     }
 
     private fun init(){
@@ -68,7 +77,7 @@ class ContestFragment : Fragment() {
         latch.countDown()
     }
 
-    private fun loadMarketPanel(latch: CountDownLatch){
+    private fun loadMarketPanel(latch: CountDownLatch?){
         val marketLeft = binding.marketWaterfallLeft
         val marketRight = binding.marketWaterfallRight
         requireActivity().runOnUiThread{
@@ -85,7 +94,7 @@ class ContestFragment : Fragment() {
                 else marketRight.addView(card)
                 o = (o + 1) % 2
             }
-            latch.countDown()
+            latch?.countDown()
         }
     }
 

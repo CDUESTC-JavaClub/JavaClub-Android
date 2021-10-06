@@ -9,6 +9,7 @@ import com.alibaba.fastjson.JSONObject
 import org.jsoup.Connection
 import org.jsoup.Jsoup
 import java.io.ByteArrayOutputStream
+import java.io.FileInputStream
 import java.io.IOException
 import java.io.InputStream
 import java.lang.RuntimeException
@@ -27,7 +28,7 @@ import kotlin.collections.ArrayList
 
 
 object NetManager {
-    private var ip = "http://192.168.10.5/api"
+    private var ip = "http://192.168.10.6/api"
     private var executorService = Executors.newFixedThreadPool(30)
 
     fun isBaiNetwork() : Boolean{
@@ -89,6 +90,34 @@ object NetManager {
         return if(getResp.getInteger("status") == 200){
             getResp.getJSONArray("data")
         } else null
+    }
+
+    fun cancelItem(id : Int) : Boolean{
+        val data = mapOf("id" to id.toString())
+        val resp = post("/news/market-cancel", data) ?: return false
+        return if(resp.getInteger("status") == 200){
+            resp.getBoolean("data")
+        }else false
+    }
+
+    fun createItem(name:String, desc:String, images: String, qq:String, price:Double, type:String) : Boolean{
+        val data = mapOf("name" to name, "desc" to desc, "images" to images, "qq" to qq, "price" to price.toString(), "type" to type)
+        val res = post("/news/market-create", data) ?: return false
+        return if(res.getInteger("status") == 200){
+            res.getBoolean("data")
+        }else false
+    }
+
+    fun uploadImage(i: InputStream?) : String{
+        if(i == null) return ""
+        val data = mapOf("apiType" to "bilibili", "token" to "4094182e4009cc09a370c5e53ce892ab")
+        val connection = Jsoup.connect("https://www.hualigs.cn/api/upload")
+        connection.method(Connection.Method.POST)
+        connection.ignoreContentType(true)
+        connection.data(data)
+        connection.data("image", "upload.jpg", i)
+        val res = connection.execute().body().toString()
+        return res
     }
 
     fun bind(id: String, pwd : String) : Boolean {

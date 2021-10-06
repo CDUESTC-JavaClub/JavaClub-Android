@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/market_item_img"
         android:layout_width="70dp"
         android:layout_height="80dp"
         android:layout_margin="5dp"
@@ -22,7 +22,7 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView3"
+        app:layout_constraintStart_toEndOf="@+id/market_item_img"
         app:layout_constraintTop_toTopOf="parent">
         <TextView
             android:id="@+id/market_item_name"
@@ -63,6 +63,7 @@
                 android:layout_gravity="center"
                 android:layout_marginStart="5dp"
                 android:src="@drawable/bai_activity_time"
+                style="@style/IconColor"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@+id/market_item_status_color"
                 app:layout_constraintTop_toTopOf="parent" />
