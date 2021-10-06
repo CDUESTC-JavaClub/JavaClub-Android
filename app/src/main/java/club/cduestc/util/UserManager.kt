@@ -39,8 +39,8 @@ object UserManager {
     }
 
     fun initImage(u1 : String?, u2 : String?){
-        header = getHttpBitmap(u1)
-        background = getHttpBitmap(u2)
+        header = NetManager.getHttpBitmap(u1)
+        background = NetManager.getHttpBitmap(u2)
     }
 
     fun getUserName(): String {
@@ -69,23 +69,5 @@ object UserManager {
 
     fun getBackground() : Bitmap?{
         return background
-    }
-
-    fun getHttpBitmap(url: String?): Bitmap? {
-        val myFileURL: URL
-        var bitmap: Bitmap? = null
-        try {
-            myFileURL = URL(url)
-            val conn: HttpURLConnection = myFileURL.openConnection() as HttpURLConnection
-            conn.connectTimeout = 20000
-            conn.doInput = true
-            conn.useCaches = false
-            val inputStream: InputStream = conn.inputStream
-            bitmap = BitmapFactory.decodeStream(inputStream)
-            inputStream.close()
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-        return bitmap
     }
 }

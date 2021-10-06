@@ -10,9 +10,11 @@ import androidx.lifecycle.ViewModelProvider
 import club.cduestc.R
 import club.cduestc.databinding.FragmentContestBinding
 import club.cduestc.ui.contest.item.ContestLine
+import club.cduestc.ui.contest.item.MarketCard
 import club.cduestc.util.AnimUtil
 import club.cduestc.util.NetManager
 import com.alibaba.fastjson.JSONObject
+import java.util.concurrent.CountDownLatch
 
 class ContestFragment : Fragment() {
 
@@ -35,21 +37,54 @@ class ContestFragment : Fragment() {
     }
 
     private fun init(){
-        val timeLine = binding.contestTimeLine
-        timeLine.removeAllViews()
         NetManager.createTask{
-            val list = NetManager.allContest()
-            requireActivity().runOnUiThread{
-                list?.forEach{
-                    it as JSONObject
-                    val line = ContestLine(requireActivity(), it)
-                    timeLine.addView(line)
-                }
+            val latch = CountDownLatch(binding.segmented.tabCount())
+            NetManager.createTask{ loadContestPanel(latch) }
+            NetManager.createTask{ loadMarketPanel(latch) }
+            NetManager.createTask{ loadJobs(latch) }
+            latch.await()
+            AnimUtil.hide(binding.contestLoad)
+            AnimUtil.show( binding.panelContest, 0f, 1f, 150)
+            AnimUtil.show( binding.contestMenu, 0f, 1f, 150)
+        }
+    }
 
-                AnimUtil.hide(binding.contestLoad)
-                AnimUtil.show( binding.panelContest, 0f, 1f, 150)
-                AnimUtil.show( binding.contestMenu, 0f, 1f, 150)
+    private fun loadJobs(latch: CountDownLatch){
+        latch.countDown()
+    }
+
+    private fun loadMarketPanel(latch: CountDownLatch){
+        val marketLeft = binding.marketWaterfallLeft
+        val marketRight = binding.marketWaterfallRight
+        requireActivity().runOnUiThread{
+            marketLeft.removeAllViews()
+            marketRight.removeAllViews()
+        }
+        val list = NetManager.getNews("market")
+        requireActivity().runOnUiThread{
+            var o = 0
+            list?.forEach {
+                it as JSONObject
+                val card = MarketCard(requireActivity(), it)
+                if(o == 0) marketLeft.addView(card)
+                else marketRight.addView(card)
+                o = (o + 1) % 2
             }
+            latch.countDown()
+        }
+    }
+
+    private fun loadContestPanel(latch: CountDownLatch){
+        val timeLine = binding.contestTimeLine
+        requireActivity().runOnUiThread{ timeLine.removeAllViews() }
+        val list = NetManager.getNews("contest")
+        requireActivity().runOnUiThread{
+            list?.forEach{
+                it as JSONObject
+                val line = ContestLine(requireActivity(), it)
+                timeLine.addView(line)
+            }
+            latch.countDown()
         }
     }
 

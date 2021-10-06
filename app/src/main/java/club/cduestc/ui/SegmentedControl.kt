@@ -90,4 +90,8 @@ class SegmentedControl(context: Context, attrs: AttributeSet) : View(context, at
         this.selectIndex = index
         this.invalidate()
     }
+
+    fun tabCount() : Int{
+        return tabList.size
+    }
 }

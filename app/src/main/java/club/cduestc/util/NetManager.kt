@@ -1,6 +1,8 @@
 package club.cduestc.util
 
 import android.content.SharedPreferences
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.util.Log
 import com.alibaba.fastjson.JSONArray
 import com.alibaba.fastjson.JSONObject
@@ -8,8 +10,11 @@ import org.jsoup.Connection
 import org.jsoup.Jsoup
 import java.io.ByteArrayOutputStream
 import java.io.IOException
+import java.io.InputStream
 import java.lang.RuntimeException
 import java.net.HttpCookie
+import java.net.HttpURLConnection
+import java.net.URL
 import java.security.GeneralSecurityException
 import java.security.KeyFactory
 import java.security.interfaces.RSAPublicKey
@@ -79,8 +84,8 @@ object NetManager {
         } else null
     }
 
-    fun allContest() : JSONArray?{
-        val getResp = get("/contest/all", true) ?: return null
+    fun getNews(source : String) : JSONArray?{
+        val getResp = get("/news/${source}", true) ?: return null
         return if(getResp.getInteger("status") == 200){
             getResp.getJSONArray("data")
         } else null
@@ -177,6 +182,24 @@ object NetManager {
                 cookies.add(it)
             }
         }
+    }
+
+    fun getHttpBitmap(url: String?): Bitmap? {
+        val myFileURL: URL
+        var bitmap: Bitmap? = null
+        try {
+            myFileURL = URL(url)
+            val conn: HttpURLConnection = myFileURL.openConnection() as HttpURLConnection
+            conn.connectTimeout = 20000
+            conn.doInput = true
+            conn.useCaches = false
+            val inputStream: InputStream = conn.inputStream
+            bitmap = BitmapFactory.decodeStream(inputStream)
+            inputStream.close()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return bitmap
     }
 
     private fun encrypt(str: String, publicKey: String?): String {

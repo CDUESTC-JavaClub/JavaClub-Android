@@ -196,6 +196,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <LinearLayout
+                        android:id="@+id/market_waterfall_left"
                         android:orientation="vertical"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
@@ -203,6 +204,7 @@
 
                     </LinearLayout>
                     <LinearLayout
+                        android:id="@+id/market_waterfall_right"
                         android:orientation="vertical"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
