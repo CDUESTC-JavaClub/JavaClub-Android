@@ -97,7 +97,7 @@ class SettingsFragment : Fragment() {
                             val nickname = data.getString("nickname")
                             val avatar = data.getString("figureurl_qq")
                             NetManager.createTask{
-                                val bitmap = UserManager.getHttpBitmap(avatar)
+                                val bitmap = NetManager.getHttpBitmap(avatar)
                                 activity?.runOnUiThread {
                                     AnimUtil.show(binding.qqAvatar, 0f, 1f)
                                     binding.qqAvatar.setImageBitmap(bitmap)
@@ -113,7 +113,7 @@ class SettingsFragment : Fragment() {
                         requireActivity().runOnUiThread {
                             val data = UserManager.oauthInfo!!.getJSONObject("github")
                             NetManager.createTask{
-                                val bitmap = UserManager.getHttpBitmap(data.getString("avatar_url"))
+                                val bitmap = NetManager.getHttpBitmap(data.getString("avatar_url"))
                                 activity?.runOnUiThread {
                                     AnimUtil.show(binding.userGithubAvatar, 0f, 1f)
                                     binding.userGithubAvatar.setImageBitmap(bitmap)

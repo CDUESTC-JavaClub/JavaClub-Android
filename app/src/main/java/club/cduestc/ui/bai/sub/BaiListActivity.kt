@@ -62,7 +62,7 @@ class BaiListActivity : AppCompatActivity() {
         val dialog = builder.setView(view).create()
         NetManager.createTask{
             val desc = UserManager.baiAccount.getActivityDesc(v.activity.id)
-            val bitmap = UserManager.getHttpBitmap(v.activity.coverUrl)
+            val bitmap = NetManager.getHttpBitmap(v.activity.coverUrl)
             this.runOnUiThread {
                 view.findViewById<ImageView>(R.id.activity_avatar).setImageBitmap(bitmap)
                 view.findViewById<TextView>(R.id.activity_desc).text = Html.fromHtml(desc)

@@ -27,7 +27,7 @@ import kotlin.collections.ArrayList
 
 
 object NetManager {
-    private var ip = "https://api.cduestc.club/api"
+    private var ip = "http://192.168.10.5/api"
     private var executorService = Executors.newFixedThreadPool(30)
 
     fun isBaiNetwork() : Boolean{

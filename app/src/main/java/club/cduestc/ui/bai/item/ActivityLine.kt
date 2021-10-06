@@ -64,7 +64,7 @@ class ActivityLine(context: Context,
         }
         i.imageTintList = ColorStateList.valueOf(Color.parseColor(color))
         NetManager.createTask{
-            val bitmap = UserManager.getHttpBitmap(activity.coverUrl)
+            val bitmap = NetManager.getHttpBitmap(activity.coverUrl)
             app.runOnUiThread {
                 view.findViewById<ImageView>(R.id.bai_activity_header).setImageBitmap(bitmap)
             }

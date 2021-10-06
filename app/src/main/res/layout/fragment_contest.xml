@@ -162,53 +162,96 @@
                     android:textColor="@color/dark_gray"/>
             </androidx.cardview.widget.CardView>
 
-            <androidx.cardview.widget.CardView
+            <LinearLayout
+                android:orientation="horizontal"
                 android:id="@+id/cardView11"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="10dp"
+                android:layout_height="40dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginHorizontal="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cardView9">
-                <com.google.android.material.button.MaterialButton
-                    style="@style/FunctionButtonBai"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:icon="@drawable/join_qq"
-                    app:iconSize="15dp"
-                    android:textSize="13sp"
-                    android:gravity="center"
-                    app:iconGravity="textStart"
-                    android:text="加群以发布/收购物品"/>
-            </androidx.cardview.widget.CardView>
 
-            <ScrollView
+                <androidx.cardview.widget.CardView
+                    android:layout_weight="1"
+                    android:layout_marginStart="20dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="10dp">
+                    <com.google.android.material.button.MaterialButton
+                        style="@style/FunctionButtonBai"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:icon="@drawable/market_publish"
+                        app:iconSize="15dp"
+                        android:textSize="13sp"
+                        android:gravity="center"
+                        app:iconGravity="textStart"
+                        android:text="发布/收购物品"/>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_gravity="center_vertical"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="5dp">
+                    <com.google.android.material.button.MaterialButton
+                        style="@style/FunctionButtonBai"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:icon="@drawable/join_qq"
+                        app:iconSize="15dp"
+                        android:textSize="13sp"
+                        android:gravity="center"
+                        app:iconGravity="textStart"
+                        android:text="加群了解详情"/>
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+            <View
+                style="@style/SpiltLine"
                 android:layout_marginHorizontal="20dp"
                 android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/white"
+                app:layout_constraintTop_toBottomOf="@+id/cardView11" />
+
+            <ScrollView
+                android:id="@+id/scrollView3"
+                android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginHorizontal="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardView11">
+                app:layout_constraintTop_toBottomOf="@+id/cardView11"
+                tools:layout_editor_absoluteX="20dp">
+
                 <LinearLayout
-                    android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
                     <LinearLayout
                         android:id="@+id/market_waterfall_left"
-                        android:orientation="vertical"
-                        android:layout_weight="1"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
                     </LinearLayout>
+
                     <LinearLayout
                         android:id="@+id/market_waterfall_right"
-                        android:orientation="vertical"
-                        android:layout_weight="1"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
                     </LinearLayout>
                 </LinearLayout>

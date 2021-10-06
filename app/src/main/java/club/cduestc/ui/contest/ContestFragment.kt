@@ -43,9 +43,11 @@ class ContestFragment : Fragment() {
             NetManager.createTask{ loadMarketPanel(latch) }
             NetManager.createTask{ loadJobs(latch) }
             latch.await()
-            AnimUtil.hide(binding.contestLoad)
-            AnimUtil.show( binding.panelContest, 0f, 1f, 150)
-            AnimUtil.show( binding.contestMenu, 0f, 1f, 150)
+            requireActivity().runOnUiThread {
+                AnimUtil.hide(binding.contestLoad)
+                AnimUtil.show( binding.panelContest, 0f, 1f, 150)
+                AnimUtil.show( binding.contestMenu, 0f, 1f, 150)
+            }
         }
     }
 

@@ -35,7 +35,7 @@ class ContestLine(context: Activity, data : JSONObject) : LinearLayout(context) 
             context.startActivity(intent)
         }
         NetManager.createTask{
-            val bitmap = UserManager.getHttpBitmap(data.getString("icon"))
+            val bitmap = NetManager.getHttpBitmap(data.getString("icon"))
             context.runOnUiThread { view.findViewById<ImageView>(R.id.contest_img).setImageBitmap(bitmap) }
         }
         view.findViewById<CollapseCardView>(R.id.time_line_card).setOnClickListener {

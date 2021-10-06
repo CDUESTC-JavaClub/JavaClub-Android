@@ -128,7 +128,7 @@ class BaiFragment : Fragment() {
                 UserManager.baiAccount = BaiAccount.createAccount(UserManager.getBindId(), performance.getString("bai_password", ""))
                 UserManager.baiAccount.login()
                 val score = UserManager.baiAccount.score
-                val header = UserManager.getHttpBitmap(UserManager.baiAccount.headImgUrl)
+                val header = NetManager.getHttpBitmap(UserManager.baiAccount.headImgUrl)
                 requireActivity().runOnUiThread {
                     binding.baiLoading.visibility = View.GONE
                     binding.baiMenu.visibility = View.VISIBLE

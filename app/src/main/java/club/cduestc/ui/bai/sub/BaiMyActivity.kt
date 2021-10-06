@@ -64,7 +64,7 @@ class BaiMyActivity : AppCompatActivity() {
         val view: View = LayoutInflater.from(this).inflate(R.layout.bai_activity_my_qrcode, null)
         val dialog = builder.setView(view).create()
         NetManager.createTask{
-            val map = UserManager.getHttpBitmap(p.activity.checkCode)
+            val map = NetManager.getHttpBitmap(p.activity.checkCode)
             this.runOnUiThread {
                 if(p.activity.stat.equals("已报名")) {
                     val btn = view.findViewById<Button>(R.id.cancel_activity)
