@@ -30,7 +30,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:text="原神自抽号，5000原石+70纠缠，便宜卖了"
         android:textSize="12sp"
         android:layout_marginHorizontal="10dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -61,7 +60,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="出售"
                 android:textColor="@color/white"
                 android:textSize="12sp" />
         </androidx.cardview.widget.CardView>
@@ -71,10 +69,10 @@
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:gravity="right"
-            android:text="￥305"
+            android:gravity="end"
             android:textColor="@color/red"
-            android:textSize="20sp" />
+            android:textStyle="bold"
+            android:textSize="18sp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

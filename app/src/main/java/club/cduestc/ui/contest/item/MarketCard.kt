@@ -20,7 +20,7 @@ class MarketCard(context: Activity, data : JSONObject) : ConstraintLayout(contex
     init {
         val view: View = LayoutInflater.from(context).inflate(R.layout.market_card, this)
         view.findViewById<TextView>(R.id.market_item_name).text = data.getString("name")
-        view.findViewById<TextView>(R.id.market_item_price).text = data.getDouble("price").toString()
+        view.findViewById<TextView>(R.id.market_item_price).text = "￥${data.getDouble("price")}"
 
         val type = data.getString("type")
         if(type == "出售"){
@@ -55,7 +55,6 @@ class MarketCard(context: Activity, data : JSONObject) : ConstraintLayout(contex
             img.setImageBitmap(bitmap)
             val value = bitmap!!.height.toFloat()/bitmap!!.width.toFloat()
             img.layoutParams.height = (img.measuredWidth * value).toInt() / 2
-            Log.i("A", img.layoutParams.height.toString() + ">" + img.measuredWidth)
         }
     }
 }

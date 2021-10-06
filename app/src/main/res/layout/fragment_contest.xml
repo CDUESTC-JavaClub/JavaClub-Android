@@ -181,6 +181,7 @@
                     app:cardCornerRadius="10dp"
                     app:cardElevation="10dp">
                     <com.google.android.material.button.MaterialButton
+                        android:id="@+id/market_my_btn"
                         style="@style/FunctionButtonBai"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"

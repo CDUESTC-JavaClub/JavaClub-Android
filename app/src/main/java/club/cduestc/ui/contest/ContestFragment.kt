@@ -1,18 +1,23 @@
 package club.cduestc.ui.contest
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import club.cduestc.R
 import club.cduestc.databinding.FragmentContestBinding
 import club.cduestc.ui.contest.item.ContestLine
 import club.cduestc.ui.contest.item.MarketCard
+import club.cduestc.ui.contest.sub.MyMarketActivity
+import club.cduestc.ui.kc.sub.KcStudentActivity
 import club.cduestc.util.AnimUtil
 import club.cduestc.util.NetManager
+import club.cduestc.util.UserManager
 import com.alibaba.fastjson.JSONObject
 import java.util.concurrent.CountDownLatch
 
@@ -30,6 +35,14 @@ class ContestFragment : Fragment() {
         binding.segmented.addTab("竞赛和活动", binding.panelContest)
         binding.segmented.addTab("跳蚤市场", binding.panelMarket)
         binding.segmented.addTab("招聘兼职", binding.panelJob)
+
+        binding.marketMyBtn.setOnClickListener {
+            if(UserManager.getBindId() == null || UserManager.getBindId()!!.isEmpty()){
+                Toast.makeText(requireContext(), "此功能需要绑定学号后才能使用！", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            startActivity(Intent(context, MyMarketActivity::class.java))
+        }
 
         init()
 
