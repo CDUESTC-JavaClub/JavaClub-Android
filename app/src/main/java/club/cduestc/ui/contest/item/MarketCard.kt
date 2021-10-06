@@ -16,7 +16,6 @@ import club.cduestc.util.UserManager
 import com.alibaba.fastjson.JSONObject
 
 class MarketCard(context: Activity, data : JSONObject) : ConstraintLayout(context) {
-    var bitmap : Bitmap? = null
     init {
         val view: View = LayoutInflater.from(context).inflate(R.layout.market_card, this)
         view.findViewById<TextView>(R.id.market_item_name).text = data.getString("name")
@@ -40,21 +39,11 @@ class MarketCard(context: Activity, data : JSONObject) : ConstraintLayout(contex
                 val bitmap = NetManager.getHttpBitmap(url)
                 if(bitmap != null){
                     context.runOnUiThread {
-                        this.bitmap = bitmap
-                        view.requestLayout()
+                        val img = findViewById<ImageView>(R.id.market_item_img)
+                        img.setImageBitmap(bitmap)
                     }
                 }
             }
-        }
-    }
-
-    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-        if(bitmap != null){
-            val img = findViewById<ImageView>(R.id.market_item_img)
-            img.setImageBitmap(bitmap)
-            val value = bitmap!!.height.toFloat()/bitmap!!.width.toFloat()
-            img.layoutParams.height = (img.measuredWidth * value).toInt() / 2
         }
     }
 }

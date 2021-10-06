@@ -14,6 +14,9 @@
         android:theme="@style/Theme.JavaClub"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.contest.sub.MarketDetailActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.contest.sub.MyMarketActivity"
             android:exported="true" />
         <activity
