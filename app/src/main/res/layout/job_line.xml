@@ -13,7 +13,7 @@
         android:layout_marginVertical="10dp"
         android:maxHeight="20dp"
         android:text="提瓦特风龙废墟矿工岗位"
-        android:textSize="17sp"
+        android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout13"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,8 +28,8 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <ImageView
-            android:layout_width="16dp"
-            android:layout_height="16dp"
+            android:layout_width="13dp"
+            android:layout_height="13dp"
             android:src="@drawable/job_boss" />
 
         <TextView
@@ -37,8 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:id="@+id/job_host"
-            android:text="队长凯亚"
-            android:textSize="14sp" />
+            android:textSize="12sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -49,8 +48,8 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <ImageView
-            android:layout_width="16dp"
-            android:layout_height="16dp"
+            android:layout_width="13dp"
+            android:layout_height="13dp"
             android:src="@drawable/bai_activity_time" />
 
         <TextView
@@ -58,8 +57,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
-            android:text="2021-08-10"
-            android:textSize="14sp" />
+            android:textSize="12sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -71,16 +69,16 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <ImageView
-            android:layout_width="16dp"
-            android:layout_height="16dp"
+            android:layout_width="13dp"
+            android:layout_height="13dp"
             android:src="@drawable/bai_activity_local" />
 
         <TextView
+            android:id="@+id/job_local"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
-            android:text="蒙德 风龙废墟"
-            android:textSize="14sp" />
+            android:textSize="12sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -92,22 +90,23 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <TextView
+            android:id="@+id/job_salary_value"
             android:layout_width="wrap_content"
             android:layout_height="27dp"
-            android:text="100-200"
             android:textColor="@color/main"
-            android:textSize="25sp"
+            android:textSize="22sp"
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/job_salary_unit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" / 天"
             android:textColor="@color/main"
-            android:textSize="15sp" />
+            android:textSize="13sp" />
     </LinearLayout>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/job_type_color"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
@@ -118,13 +117,14 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <TextView
+            android:id="@+id/job_type_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="5dp"
             android:layout_marginVertical="2dp"
             android:text="周末"
             android:textColor="@color/white"
-            android:textSize="15sp" />
+            android:textSize="13sp" />
     </androidx.cardview.widget.CardView>
 
     <View

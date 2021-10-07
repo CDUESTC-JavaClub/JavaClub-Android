@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import club.cduestc.R
 import club.cduestc.databinding.FragmentContestBinding
 import club.cduestc.ui.contest.item.ContestLine
+import club.cduestc.ui.contest.item.JobLine
 import club.cduestc.ui.contest.item.MarketCard
 import club.cduestc.ui.contest.sub.MyMarketActivity
 import club.cduestc.ui.kc.sub.KcStudentActivity
@@ -74,7 +75,14 @@ class ContestFragment : Fragment() {
     }
 
     private fun loadJobs(latch: CountDownLatch){
-        latch.countDown()
+        val list = NetManager.getNews("jobs")
+        requireActivity().runOnUiThread {
+            list?.forEach {
+                it as JSONObject
+                binding.jobsList.addView(JobLine(requireActivity(), it))
+            }
+            latch.countDown()
+        }
     }
 
     private fun loadMarketPanel(latch: CountDownLatch?){
