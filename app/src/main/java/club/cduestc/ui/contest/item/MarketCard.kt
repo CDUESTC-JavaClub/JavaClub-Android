@@ -1,6 +1,7 @@
 package club.cduestc.ui.contest.item
 
 import android.app.Activity
+import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Bitmap
 import android.graphics.Color
@@ -11,6 +12,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import club.cduestc.R
+import club.cduestc.ui.contest.sub.MarketDetailActivity
 import club.cduestc.util.NetManager
 import club.cduestc.util.UserManager
 import com.alibaba.fastjson.JSONObject
@@ -30,6 +32,12 @@ class MarketCard(context: Activity, data : JSONObject) : ConstraintLayout(contex
             view.findViewById<View>(R.id.market_item_type_color).backgroundTintList =
                 ColorStateList.valueOf(Color.parseColor("#BB86FC"))
             view.findViewById<TextView>(R.id.market_item_type_name).text = type
+        }
+
+        this.setOnClickListener {
+            val intent = Intent(context, MarketDetailActivity::class.java)
+            intent.putExtra("data", data.toJSONString())
+            context.startActivity(intent)
         }
 
         NetManager.createTask{
