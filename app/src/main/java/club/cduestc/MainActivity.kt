@@ -3,15 +3,16 @@ package club.cduestc
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import android.graphics.Bitmap
+import android.content.res.Configuration
+import android.content.res.Resources
 import android.graphics.Color
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.webkit.WebResourceRequest
-import android.webkit.WebResourceResponse
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.Toast
@@ -33,7 +34,7 @@ import club.cduestc.util.NetManager
 import club.cduestc.util.UpdateUtil
 import club.cduestc.util.UserManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import java.util.*
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -266,6 +267,25 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    /**
+     * 强制禁止字体大小更改
+     */
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        if (newConfig.fontScale != 1f) resources
+        super.onConfigurationChanged(newConfig)
+    }
+
+    override fun getResources(): Resources {
+        val res = super.getResources()
+        if (res.configuration.fontScale != 1f) {
+            val newConfig = Configuration()
+            newConfig.setToDefaults()
+            res.updateConfiguration(newConfig, res.displayMetrics)
+            createConfigurationContext(newConfig)
+        }
+        return res
     }
 
     /**
