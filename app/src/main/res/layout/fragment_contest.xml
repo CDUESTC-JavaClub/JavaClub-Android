@@ -68,7 +68,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginHorizontal="20dp"
             app:radius="10dp"
-            app:border="3dp"
+            app:border="2dp"
             app:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

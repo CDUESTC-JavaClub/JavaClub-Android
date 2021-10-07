@@ -3,7 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="../../../../layout/custom_preview.xml" value="0.4578125" />
+        <entry key="../../../../layout/custom_preview.xml" value="0.335" />
         <entry key="../../Library/Android/sdk/platforms/android-31/data/res/layout/simple_list_item_1.xml" value="0.42617753623188404" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.27239583333333334" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.27239583333333334" />
@@ -16,8 +16,8 @@
         <entry key="app/src/main/res/layout/activity_kc_table.xml" value="0.25625" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.26856884057971014" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.335" />
-        <entry key="app/src/main/res/layout/activity_market_detail.xml" value="0.32258587146572526" />
-        <entry key="app/src/main/res/layout/activity_my_market.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/activity_market_detail.xml" value="0.42617753623188404" />
+        <entry key="app/src/main/res/layout/activity_my_market.xml" value="0.42617753623188404" />
         <entry key="app/src/main/res/layout/bai_activity_add_line.xml" value="0.3138586956521739" />
         <entry key="app/src/main/res/layout/bai_activity_line.xml" value="0.375" />
         <entry key="app/src/main/res/layout/bai_activity_line_detail.xml" value="0.32472826086956524" />
@@ -39,10 +39,11 @@
         <entry key="app/src/main/res/layout/kc_class_widget.xml" value="0.432518115942029" />
         <entry key="app/src/main/res/layout/kc_class_widget_content.xml" value="0.42617753623188404" />
         <entry key="app/src/main/res/layout/list_widget_item.xml" value="0.42617753623188404" />
-        <entry key="app/src/main/res/layout/market_card.xml" value="0.31233000906618313" />
-        <entry key="app/src/main/res/layout/market_line.xml" value="0.31233000906618313" />
+        <entry key="app/src/main/res/layout/market_card.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/market_line.xml" value="0.42617753623188404" />
         <entry key="app/src/main/res/layout/score_line.xml" value="0.25625" />
         <entry key="app/src/main/res/layout/score_list.xml" value="0.276268115942029" />
+        <entry key="app/src/main/res/layout/segmented_control.xml" value="0.42617753623188404" />
         <entry key="app/src/main/res/layout/update_dialog.xml" value="0.4427083333333333" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.25625" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.27239583333333334" />
