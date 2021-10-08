@@ -92,6 +92,13 @@ object NetManager {
         } else null
     }
 
+    fun getSupplier() : JSONObject?{
+        val getResp = get("/news/supplier", true) ?: return null
+        return if(getResp.getInteger("status") == 200){
+            getResp.getJSONObject("data")
+        } else null
+    }
+
     fun cancelItem(id : Int) : Boolean{
         val data = mapOf("id" to id.toString())
         val resp = post("/news/market-cancel", data) ?: return false

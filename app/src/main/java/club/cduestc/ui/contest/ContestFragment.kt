@@ -1,7 +1,9 @@
 package club.cduestc.ui.contest
 
 import android.annotation.SuppressLint
+import android.content.ActivityNotFoundException
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -61,16 +63,52 @@ class ContestFragment : Fragment() {
 
     private fun init(){
         NetManager.createTask{
-            val latch = CountDownLatch(binding.segmented.tabCount())
+            val latch = CountDownLatch(binding.segmented.tabCount() + 1)
             NetManager.createTask{ loadContestPanel(latch) }
             NetManager.createTask{ loadMarketPanel(latch) }
             NetManager.createTask{ loadJobs(latch) }
+            NetManager.createTask{ loadSupplier(latch) }
             latch.await()
             requireActivity().runOnUiThread {
                 AnimUtil.hide(binding.contestLoad)
                 AnimUtil.show( binding.panelContest, 0f, 1f, 150)
                 AnimUtil.show( binding.contestMenu, 0f, 1f, 150)
             }
+        }
+    }
+
+    private fun loadSupplier(latch: CountDownLatch){
+        val obj = NetManager.getSupplier()
+        requireActivity().runOnUiThread {
+            if(obj != null){
+                binding.supplierContest.text = getString(R.string.model_contest_contest,
+                    obj.getJSONObject("contest").getString("supplier"))
+                binding.supplierMarket.text = getString(R.string.model_contest_market,
+                    obj.getJSONObject("market").getString("supplier"))
+                binding.supplierJobs.text = getString(R.string.model_contest_job,
+                    obj.getJSONObject("jobs").getString("supplier"))
+
+                binding.contactMarket.setOnClickListener {
+                    toWeb(obj.getJSONObject("market").getString("contact"))
+                }
+                binding.jobJoinBtn.setOnClickListener {
+                    toWeb(obj.getJSONObject("jobs").getString("contact"))
+                }
+            }
+            latch.countDown()
+        }
+    }
+
+    private fun toWeb(url : String?){
+        if(url == null || url.isEmpty()) return
+        try {
+            val intent = Intent()
+            intent.action = Intent.ACTION_VIEW
+            intent.data = Uri.parse(url)
+            startActivity(intent)
+        }catch (e : ActivityNotFoundException){
+            if(url.startsWith("mqqwpa:")) Toast.makeText(requireContext()
+                , "您的手机上还没安装QQ哦，请安装后再使用！", Toast.LENGTH_LONG).show()
         }
     }
 

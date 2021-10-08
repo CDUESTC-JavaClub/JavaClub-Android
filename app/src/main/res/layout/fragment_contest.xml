@@ -96,6 +96,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
                 <TextView
+                    android:id="@+id/supplier_contest"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
@@ -143,6 +144,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
                 <TextView
+                    android:id="@+id/supplier_market"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
@@ -192,6 +194,7 @@
                     app:cardCornerRadius="10dp"
                     app:cardElevation="5dp">
                     <com.google.android.material.button.MaterialButton
+                        android:id="@+id/contact_market"
                         style="@style/FunctionButtonBai"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -268,6 +271,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
                 <TextView
+                    android:id="@+id/supplier_jobs"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
