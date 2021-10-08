@@ -59,9 +59,7 @@ class SettingsFragment : Fragment() {
         if(sharedPreference.getBoolean("settings_dark_mode", false)) binding.switchDark.setDefOff(true)
 
         binding.switchDark.setOnClickListener {
-            val dark = binding.switchDark.animationCheck()
-            sharedPreference.edit().putBoolean("settings_dark_mode", dark).apply()
-            AnimUtil.switchDayNight(dark)
+            sharedPreference.edit().putBoolean("settings_dark_mode", binding.switchDark.animationCheck()).apply()
         }
         binding.switchAuto.setOnClickListener(this::switchAuto)
         binding.switchUpdateAuto.setOnClickListener(this::switchAutoUpdate)
