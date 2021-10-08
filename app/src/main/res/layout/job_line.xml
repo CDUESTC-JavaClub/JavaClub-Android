@@ -15,30 +15,10 @@
         android:text="提瓦特风龙废墟矿工岗位"
         android:textSize="15sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout13"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout14"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout13"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout14"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <ImageView
-            android:layout_width="13dp"
-            android:layout_height="13dp"
-            android:src="@drawable/job_boss" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:id="@+id/job_host"
-            android:textSize="12sp" />
-    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout14"
@@ -48,6 +28,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <ImageView
+            style="@style/IconColor"
             android:layout_width="13dp"
             android:layout_height="13dp"
             android:src="@drawable/bai_activity_time" />
@@ -64,11 +45,12 @@
         android:id="@+id/linearLayout12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="2dp"
+        android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
         <ImageView
+            style="@style/IconColor"
             android:layout_width="13dp"
             android:layout_height="13dp"
             android:src="@drawable/bai_activity_local" />
@@ -124,7 +106,7 @@
             android:layout_marginVertical="2dp"
             android:text="周末"
             android:textColor="@color/white"
-            android:textSize="13sp" />
+            android:textSize="12sp" />
     </androidx.cardview.widget.CardView>
 
     <View
