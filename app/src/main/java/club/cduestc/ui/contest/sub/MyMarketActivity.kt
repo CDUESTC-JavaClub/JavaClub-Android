@@ -82,6 +82,7 @@ class MyMarketActivity : AppCompatActivity() {
             "BUY"
         }
         NetManager.createTask{
+            runOnUiThread { AnimUtil.show(binding.marketMyLoading, 0f, 1f) }
             if(NetManager.createItem(binding.marketMyName.text.toString(), binding.marketMyDesc.text.toString(),
                 uploadUrls.toJSONString(), binding.marketMyQq.text.toString(), price, type)){
                 runOnUiThread {
