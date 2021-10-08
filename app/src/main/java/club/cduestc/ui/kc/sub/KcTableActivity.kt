@@ -52,6 +52,7 @@ class KcTableActivity : AppCompatActivity() {
     }
 
     private fun switchTerm(it : View){
+        if(findViewById<View>(R.id.class_loading).visibility == View.VISIBLE) return
         val builder: AlertDialog.Builder = AlertDialog.Builder(this, android.R.style.ThemeOverlay_Material_Dialog)
         builder.setTitle(getString(R.string.kc_class_term_select))
         val cities = this.genTerms().toTypedArray()
