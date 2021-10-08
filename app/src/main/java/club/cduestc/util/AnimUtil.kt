@@ -4,9 +4,18 @@ import android.view.View
 import android.view.animation.Animation
 import android.view.animation.LinearInterpolator
 import android.view.animation.Transformation
+import androidx.appcompat.app.AppCompatDelegate
 import java.time.Duration
 
 object AnimUtil {
+
+    fun switchDayNight(dark : Boolean){
+        if (dark){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        }else{
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
+    }
 
     fun hide(v : View){
         hide(v, 300)

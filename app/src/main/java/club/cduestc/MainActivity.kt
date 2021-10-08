@@ -123,11 +123,7 @@ class MainActivity : AppCompatActivity() {
         val auto = settingsPreference.getBoolean("settings_auto_dark", false)
         val dark = settingsPreference.getBoolean("settings_dark_mode", false)
         if(!auto){
-            if (dark){
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            }else{
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            }
+            AnimUtil.switchDayNight(dark)
         }else{
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
         }
@@ -235,7 +231,7 @@ class MainActivity : AppCompatActivity() {
     private fun initView(){
         //自定义导航栏复用Fragment处理
         val navView: BottomNavigationView = binding.navView
-        val fragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main)
+        val fragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main) ?: return
         val navController = NavHostFragment.findNavController(fragment!!)
         val fragmentNavigator = FixFragmentNavigator(this, fragment.childFragmentManager, fragment.id)
         val provider = navController.navigatorProvider
