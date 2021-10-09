@@ -1,5 +1,6 @@
 package club.cduestc
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -40,6 +41,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
+    @SuppressLint("SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
         this.setDayNight()
@@ -73,6 +75,7 @@ class MainActivity : AppCompatActivity() {
                 AnimUtil.hide(binding.mainLogin)
                 binding.webLogin.visibility = View.VISIBLE
                 binding.webLoginView.clearCache(true)
+                binding.webLoginView.settings.javaScriptEnabled = true
                 binding.webLoginView.webViewClient = object : WebViewClient(){
                     override fun onPageFinished(view: WebView?, url: String?) {
                         super.onPageFinished(view, url)

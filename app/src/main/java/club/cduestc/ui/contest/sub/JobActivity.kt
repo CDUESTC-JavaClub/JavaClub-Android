@@ -1,11 +1,15 @@
 package club.cduestc.ui.contest.sub
 
+import android.content.ActivityNotFoundException
+import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Color
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import club.cduestc.R
 import club.cduestc.databinding.ActivityJobBinding
 import club.cduestc.databinding.ActivityMarketDetailBinding
@@ -48,5 +52,18 @@ class JobActivity : AppCompatActivity() {
             else -> ColorStateList.valueOf(Color.parseColor("#BB86FC"))
         }
 
+        binding.contactBtn.setOnClickListener {
+            val url = data.getString("contact")
+            if(url == null || url.isEmpty()) return@setOnClickListener
+            try {
+                val intent = Intent()
+                intent.action = Intent.ACTION_VIEW
+                intent.data = Uri.parse(url)
+                startActivity(intent)
+            }catch (e : ActivityNotFoundException){
+                if(url.startsWith("mqqwpa:"))
+                    Toast.makeText(this, "您的手机上还没安装QQ哦，请安装后再使用！", Toast.LENGTH_LONG).show()
+            }
+        }
     }
 }
