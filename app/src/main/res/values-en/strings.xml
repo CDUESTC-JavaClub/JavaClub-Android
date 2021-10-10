@@ -99,6 +99,7 @@
     <string name="btn_bai_join">All activities</string>
     <string name="btn_bai_manage">My activities</string>
     <string name="btn_bai_score">BaiYe points</string>
+    <string name="bai_fragment_bind_input_password">密码(默认123456)</string>
     <string name="bai_no_net">The current network is unable to access the Baiye Project, please connect to the campus network!</string>
     <string name="bai_activity_detail_local">Event Location：%1$s</string>
     <string name="bai_activity_detail_time">Event time：%1$s</string>

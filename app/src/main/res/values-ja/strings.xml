@@ -92,6 +92,7 @@
     <string name="bai_score_add">ボーナスレコード</string>
     <string name="bai_activity_list">イベントリスト</string>
     <string name="btn_bai_join">すべてのイベント</string>
+    <string name="bai_fragment_bind_input_password">密码(默认123456)</string>
     <string name="btn_bai_manage">私の活動を管理する</string>
     <string name="btn_bai_score">ルーバーポイント</string>
     <string name="bai_no_net">現在のネットワークはルーバープロジェクトにアクセスできません。キャンパスネットワークに接続してください。</string>

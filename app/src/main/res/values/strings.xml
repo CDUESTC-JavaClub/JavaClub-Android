@@ -30,7 +30,7 @@
     <string name="kc_fragment_bind_title">绑定您的学号</string>
     <string name="kc_fragment_bind_text">需要绑定学号（教务系统账号）之后才能使用教务系统功能哦，我们注重个人隐私，不会在远端保留您的密码和个人信息，敏感内容只会保存在本地</string>
     <string name="kc_fragment_bind_input_id">学号</string>
-    <string name="kc_fragment_bind_input_password">密码</string>
+    <string name="kc_fragment_bind_input_password">密码(默认身份证后六位)</string>
     <string name="kc_fragment_bind_btn_login">登陆</string>
     <string name="kc_fragment_bind_btn_login_do">正在验证…</string>
     <string name="kc_fragment_tip_verify_ode">验证码</string>
@@ -95,6 +95,7 @@
     <string name="btn_bai_join">所有活动</string>
     <string name="btn_bai_manage">管理我的活动</string>
     <string name="btn_bai_score">百叶积分</string>
+    <string name="bai_fragment_bind_input_password">密码(默认123456)</string>
     <string name="bai_no_net">当前网络无法访问到百叶计划，请连接校园内网络！</string>
     <string name="bai_activity_detail_local">活动地点：%1$s</string>
     <string name="bai_activity_detail_time">活动时间：%1$s</string>

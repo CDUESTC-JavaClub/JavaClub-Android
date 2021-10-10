@@ -70,7 +70,7 @@ class BaiFragment : Fragment() {
                     binding.baiTipBind.visibility = View.VISIBLE
                     val performance = requireActivity().getSharedPreferences("data", AppCompatActivity.MODE_PRIVATE)
                     if(UserManager.getBindId() != null && performance.contains("bai_password")) displayMenu(performance)
-                    if(UserManager.getBindId() != null) initEdit(performance)
+                    initEdit(performance)
                 }
             }else{
                 requireActivity().runOnUiThread{

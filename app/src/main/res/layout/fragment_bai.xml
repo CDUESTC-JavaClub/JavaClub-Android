@@ -60,6 +60,8 @@
             android:layout_marginHorizontal="20dp"
             android:lines="1"
             android:maxLength="20"
+            android:singleLine="true"
+            android:padding="5dp"
             android:hint="@string/kc_fragment_bind_input_id"
             android:layout_height="40dp"/>
         <EditText
@@ -70,7 +72,9 @@
             android:maxLength="20"
             android:layout_marginHorizontal="20dp"
             android:inputType="textPassword"
-            android:hint="@string/kc_fragment_bind_input_password"
+            android:padding="5dp"
+            android:singleLine="true"
+            android:hint="@string/bai_fragment_bind_input_password"
             android:layout_height="40dp"/>
         <com.google.android.material.button.MaterialButton
             android:id="@+id/save_kc_btn"
