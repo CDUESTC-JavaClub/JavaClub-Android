@@ -21,7 +21,8 @@
     <string name="job_local">位置：%1$s</string>
     <string name="job_time">发布时间：%1$s</string>
     <string name="job_host">发布单位：%1$s</string>
-    <string name="job_unit"> / %1$s</string>
+    <string name="job_unit">\u0020/ %1$s</string>
+    <string name="job_detail_price">薪资待遇</string>
     <string name="market_btn_manage">发布/收购物品</string>
     <string name="market_btn_join">加群了解详情</string>
     <string name="market_time">发布于：%1$s</string>
@@ -36,6 +37,7 @@
     <string name="market_publish_success">发布成功，审核完成后就能出现在列表啦！</string>
     <string name="market_publish_failed">未知错误，发布失败！</string>
     <string name="market_upload_failed">图片上传失败！</string>
+    <string name="market_upload">正在上传</string>
     <string name="market_cancel">下架</string>
     <string name="market_cancel_success">商品下架成功！</string>
     <string name="market_cancel_failed">未知错误，下架失败！</string>
@@ -44,6 +46,19 @@
     <string name="market_status_canceled">已下架</string>
     <string name="market_detail_tip">上架的商品由提供方自行担保，本平台不承担任何责任，请各位用户在取得联系后谨慎交易，谨防上当受骗！</string>
     <string name="market_detail_btn">立即联系</string>
+    <string name="market_mamage_title">管理已上架的物品</string>
+    <string name="market_add_title">出售/收购商品</string>
+    <string name="market_add_hint_title">商品标题(5–20个字)</string>
+    <string name="market_add_hint_desc">商品描述(10–200个字)</string>
+    <string name="market_add_hint_img">添加图片…（最多添加三张哦~）</string>
+    <string name="market_add_price">请输入定价</string>
+    <string name="market_add_hint_price">范围1–10000之间</string>
+    <string name="market_add_qq">请输入联系QQ号</string>
+    <string name="market_add_hint_qq">请输入正确的QQ号</string>
+    <string name="market_add_type">请选择发布类型</string>
+    <string name="market_add_type_sale">出售</string>
+    <string name="market_add_type_buy">收购</string>
+    <string name="market_add_btn">发布到跳蚤市场</string>
 
     <string name="model_kc">教务系统</string>
     <string name="model_kc_desc">含教务系统的全部功能，包括成绩查询、课程表查询等。</string>

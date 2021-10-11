@@ -57,7 +57,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
-                            android:text="管理已上架物品"
+                            android:text="@string/market_mamage_title"
                             android:textSize="16sp" />
                     </LinearLayout>
 
@@ -124,8 +124,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="5dp"
-                                android:text="出售/收购商品"
-                                android:textSize="16dp" />
+                                android:text="@string/market_add_title"
+                                android:textSize="16sp" />
                         </LinearLayout>
 
                         <View
@@ -141,7 +141,7 @@
                             android:layout_height="35dp"
                             android:layout_margin="20dp"
                             android:background="@drawable/translucent"
-                            android:hint="商品标题(5-20个字)"
+                            android:hint="@string/market_add_hint_title"
                             android:maxLength="20"
                             android:padding="8dp"
                             android:singleLine="true"
@@ -160,7 +160,7 @@
                             android:layout_margin="20dp"
                             android:background="@drawable/translucent"
                             android:gravity="top"
-                            android:hint="商品描述(10-200个字)"
+                            android:hint="@string/market_add_hint_desc"
                             android:maxLength="200"
                             android:maxLines="20"
                             android:padding="10dp"
@@ -177,7 +177,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="20dp"
                             android:layout_marginTop="10dp"
-                            android:text="添加图片...（最多添加三张哦~）"
+                            android:text="@string/market_add_hint_img"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/market_my_desc" />
@@ -219,7 +219,7 @@
                                         android:textColor="@color/white"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
-                                        android:text="正在上传"/>
+                                        android:text="@string/market_upload"/>
                                 </LinearLayout>
                             </androidx.cardview.widget.CardView>
 
@@ -250,7 +250,7 @@
                                         android:textColor="@color/white"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
-                                        android:text="正在上传"/>
+                                        android:text="@string/market_upload"/>
                                 </LinearLayout>
                             </androidx.cardview.widget.CardView>
 
@@ -281,7 +281,7 @@
                                         android:textColor="@color/white"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
-                                        android:text="正在上传"/>
+                                        android:text="@string/market_upload"/>
                                 </LinearLayout>
                             </androidx.cardview.widget.CardView>
                         </LinearLayout>
@@ -315,7 +315,7 @@
                                     android:id="@+id/textView5"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="请输入定价"
+                                    android:text="@string/market_add_price"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -325,7 +325,7 @@
                                     android:layout_height="30dp"
                                     android:layout_marginTop="5dp"
                                     android:background="@drawable/translucent"
-                                    android:hint="范围1-10000之间"
+                                    android:hint="@string/market_add_hint_price"
                                     android:inputType="numberDecimal"
                                     android:padding="5dp"
                                     android:textAlignment="center"
@@ -339,7 +339,7 @@
                                     android:layout_marginTop="5dp"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="请输入联系QQ号"
+                                    android:text="@string/market_add_qq"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toBottomOf="@+id/market_my_price" />
 
@@ -353,7 +353,7 @@
                                     android:padding="5dp"
                                     android:textSize="14sp"
                                     android:textAlignment="center"
-                                    android:hint="请输入正确的QQ号"
+                                    android:hint="@string/market_add_hint_qq"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toBottomOf="@+id/textView6" />
@@ -376,7 +376,7 @@
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_marginHorizontal="10dp"
-                                    android:text="请选择发布类型"
+                                    android:text="@string/market_add_type"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toTopOf="parent" />
@@ -408,7 +408,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:layout_marginHorizontal="5dp"
-                                            android:text="出售"
+                                            android:text="@string/market_add_type_sale"
                                             android:textColor="@color/white" />
                                     </androidx.cardview.widget.CardView>
 
@@ -428,7 +428,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:layout_marginHorizontal="5dp"
-                                            android:text="收购"
+                                            android:text="@string/market_add_type_buy"
                                             android:textColor="@color/white" />
                                     </androidx.cardview.widget.CardView>
                                 </RadioGroup>
@@ -443,7 +443,7 @@
                             android:layout_marginHorizontal="30dp"
                             android:layout_marginVertical="20dp"
                             android:backgroundTint="@color/green"
-                            android:text="发布到跳蚤市场"
+                            android:text="@string/market_add_btn"
                             app:cornerRadius="25dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/view4" />

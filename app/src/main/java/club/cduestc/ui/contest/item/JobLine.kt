@@ -23,7 +23,7 @@ class JobLine(context: Activity, data : JSONObject)  : LinearLayout(context) {
         view.findViewById<TextView>(R.id.job_name).text = data.getString("name")
         view.findViewById<TextView>(R.id.job_local).text = data.getString("local")
         view.findViewById<TextView>(R.id.job_time).text = format.format(data.getDate("time"))
-        view.findViewById<TextView>(R.id.job_salary_unit).text = " / "+data.getString("unit")
+        view.findViewById<TextView>(R.id.job_salary_unit).text = context.getString(R.string.job_unit, data.getString("unit"))
 
         val max = data.getInteger("max_salary")
         val min = data.getInteger("min_salary")

@@ -20,7 +20,7 @@
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:backgroundTint="@color/pink"
-            android:text="立即联系"
+            android:text="@string/market_detail_btn"
             android:textSize="15sp"
             app:cornerRadius="25dp"
             app:icon="@drawable/join_qq"
@@ -55,7 +55,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="薪资待遇"/>
+                android:text="@string/job_detail_price"/>
         </LinearLayout>
 
         <LinearLayout
