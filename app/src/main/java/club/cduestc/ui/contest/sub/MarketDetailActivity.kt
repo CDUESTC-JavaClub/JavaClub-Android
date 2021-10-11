@@ -39,8 +39,8 @@ class MarketDetailActivity : AppCompatActivity() {
 
         binding.marketDetailName.text = obj.getString("name")
         binding.marketDetailDesc.text = obj.getString("desc")
-        binding.marketDetailTime.text = "发布于 "+format.format(obj.getDate("time"))
-        binding.marketDetailPrice.text = "￥"+obj.getDouble("price").toString()
+        binding.marketDetailTime.text = getString(R.string.market_time, format.format(obj.getDate("time")))
+        binding.marketDetailPrice.text = getString(R.string.market_price, obj.getDouble("price").toString())
         val type = obj.getString("type")
         if(type == "出售"){
             binding.marketDetailTypeColor.backgroundTintList =
@@ -58,7 +58,7 @@ class MarketDetailActivity : AppCompatActivity() {
                 intent.data = Uri.parse("mqqwpa://im/chat?chat_type=wpa&uin="+obj.getString("qq_link"))
                 startActivity(intent)
             }catch (e : ActivityNotFoundException){
-                Toast.makeText(this, "您的手机上还没安装QQ哦，请安装后再使用！", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, getString(R.string.driect_no_app), Toast.LENGTH_LONG).show()
             }
         }
 

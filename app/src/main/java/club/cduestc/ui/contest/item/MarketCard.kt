@@ -21,7 +21,8 @@ class MarketCard(context: Activity, data : JSONObject) : ConstraintLayout(contex
     init {
         val view: View = LayoutInflater.from(context).inflate(R.layout.market_card, this)
         view.findViewById<TextView>(R.id.market_item_name).text = data.getString("name")
-        view.findViewById<TextView>(R.id.market_item_price).text = "￥${data.getDouble("price")}"
+        view.findViewById<TextView>(R.id.market_item_price).text =
+            context.getString(R.string.market_price, data.getDouble("price").toString())
 
         val type = data.getString("type")
         if(type == "出售"){

@@ -32,9 +32,9 @@ class MarketLine(activity: MyMarketActivity, data : JSONObject) : ConstraintLayo
         view.findViewById<TextView>(R.id.market_item_name).text = data.getString("name")
         view.findViewById<TextView>(R.id.market_item_time).text = format.format(data.getDate("time"))
         view.findViewById<TextView>(R.id.market_item_status_text).text = when(data.getInteger("status")){
-            0 -> "待审核"
-            1 -> "已上架"
-            else -> "已下架"
+            0 -> activity.getString(R.string.market_status_wait)
+            1 -> activity.getString(R.string.market_status_sale)
+            else -> activity.getString(R.string.market_status_canceled)
         }
         val color = when(data.getInteger("status")){
             0 -> "#FFC107"
@@ -67,7 +67,7 @@ class MarketLine(activity: MyMarketActivity, data : JSONObject) : ConstraintLayo
             if(NetManager.cancelItem(itemId)){
                 activity.runOnUiThread {
                     activity.init()
-                    Toast.makeText(activity, "商品下架成功！", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(activity, activity.getString(R.string.market_cancel_success), Toast.LENGTH_SHORT).show()
                     val flag = Intent()
                     flag.putExtra("reload", true)
                     activity.setResult(10, flag)
@@ -75,7 +75,7 @@ class MarketLine(activity: MyMarketActivity, data : JSONObject) : ConstraintLayo
             }else{
                 activity.runOnUiThread {
                     activity.endLoading()
-                    Toast.makeText(activity, "未知错误，下架失败！", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(activity, activity.getString(R.string.market_cancel_failed), Toast.LENGTH_SHORT).show()
                 }
             }
         }

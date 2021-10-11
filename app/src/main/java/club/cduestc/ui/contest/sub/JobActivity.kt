@@ -30,10 +30,10 @@ class JobActivity : AppCompatActivity() {
 
         val data : JSONObject = JSONObject.parseObject(intent.getSerializableExtra("data") as String)
         binding.jobName.text = data.getString("name")
-        binding.jobLocal.text = "位置："+data.getString("local")
-        binding.jobHost.text = "发布单位："+data.getString("host")
-        binding.jobTime.text = "发布时间："+format.format(data.getDate("time"))
-        binding.jobSalaryUnit.text = " / "+data.getString("unit")
+        binding.jobLocal.text = getString(R.string.job_local, data.getString("local"))
+        binding.jobHost.text = getString(R.string.job_host, data.getString("host"))
+        binding.jobTime.text = getString(R.string.job_time, format.format(data.getDate("time")))
+        binding.jobSalaryUnit.text = getString(R.string.job_unit, data.getString("unit"))
 
         val max = data.getInteger("max_salary")
         val min = data.getInteger("min_salary")
@@ -62,7 +62,7 @@ class JobActivity : AppCompatActivity() {
                 startActivity(intent)
             }catch (e : ActivityNotFoundException){
                 if(url.startsWith("mqqwpa:"))
-                    Toast.makeText(this, "您的手机上还没安装QQ哦，请安装后再使用！", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, getString(R.string.driect_no_app), Toast.LENGTH_LONG).show()
             }
         }
     }

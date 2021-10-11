@@ -108,7 +108,7 @@ class ContestFragment : Fragment() {
             startActivity(intent)
         }catch (e : ActivityNotFoundException){
             if(url.startsWith("mqqwpa:")) Toast.makeText(requireContext()
-                , "您的手机上还没安装QQ哦，请安装后再使用！", Toast.LENGTH_LONG).show()
+                , getString(R.string.driect_no_app), Toast.LENGTH_LONG).show()
         }
     }
 

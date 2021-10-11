@@ -29,8 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxHeight="40dp"
-            style="@style/TextColor"
-            android:text="原神自抽号的好久开始就带回家爱上看大开杀戒话剧大赛看到"/>
+            style="@style/TextColor" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -52,7 +51,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="5dp"
-                    android:text="已上架"
                     android:textColor="@color/white" />
             </androidx.cardview.widget.CardView>
 
@@ -75,7 +73,6 @@
                 android:layout_height="20dp"
                 android:layout_gravity="center"
                 android:layout_marginStart="5dp"
-                android:text="2021-10-1"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/imageView4"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -89,7 +86,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:padding="0dp"
-                android:text="下架"/>
+                android:text="@string/market_cancel"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 

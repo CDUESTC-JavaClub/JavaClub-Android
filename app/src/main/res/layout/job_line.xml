@@ -12,7 +12,6 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="10dp"
         android:maxHeight="20dp"
-        android:text="提瓦特风龙废墟矿工岗位"
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout14"
@@ -104,7 +103,6 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="5dp"
             android:layout_marginVertical="2dp"
-            android:text="周末"
             android:textColor="@color/white"
             android:textSize="12sp" />
     </androidx.cardview.widget.CardView>

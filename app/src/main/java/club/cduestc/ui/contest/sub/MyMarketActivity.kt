@@ -1,6 +1,5 @@
 package club.cduestc.ui.contest.sub
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -17,8 +16,6 @@ import club.cduestc.util.AnimUtil
 import club.cduestc.util.NetManager
 import com.alibaba.fastjson.JSONArray
 import com.alibaba.fastjson.JSONObject
-import java.util.*
-import kotlin.collections.ArrayList
 
 
 class MyMarketActivity : AppCompatActivity() {
@@ -35,8 +32,8 @@ class MyMarketActivity : AppCompatActivity() {
         binding = ActivityMyMarketBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.myMarketControl.addTab("发布新商品", binding.addItem)
-        binding.myMarketControl.addTab("管理个人商品", binding.myItem)
+        binding.myMarketControl.addTab(getString(R.string.market_tab_add), binding.addItem)
+        binding.myMarketControl.addTab(getString(R.string.market_tab_my), binding.myItem)
 
         binding.marketMyLoading.setOnClickListener {  }
 
@@ -56,24 +53,24 @@ class MyMarketActivity : AppCompatActivity() {
 
     private fun publish() : Boolean{
         if(binding.marketMyName.text.isEmpty() || binding.marketMyName.text.length < 5) {
-            Toast.makeText(this, "商品标题必须是5-20个字之间！", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.market_tip_title), Toast.LENGTH_SHORT).show()
             return false
         }
         if(binding.marketMyDesc.text.isEmpty() || binding.marketMyDesc.text.length < 10) {
-            Toast.makeText(this, "商品描述必须是10-100个字之间！", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.market_tip_desc), Toast.LENGTH_SHORT).show()
             return false
         }
         if(uploadUrls.isEmpty()) {
-            Toast.makeText(this, "至少需要添加一张图片！", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.market_tip_img), Toast.LENGTH_SHORT).show()
             return false
         }
         val price = binding.marketMyPrice.text.toString().toDouble()
         if(price < 1 || price > 10000) {
-            Toast.makeText(this, "定价只能在1-10000元之间！", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.market_tip_price), Toast.LENGTH_SHORT).show()
             return false
         }
         if(binding.marketMyQq.text.length < 5 || binding.marketMyQq.text.length > 15){
-            Toast.makeText(this, "请输入正确的QQ号码！", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.market_tip_qq), Toast.LENGTH_SHORT).show()
             return false
         }
         val type = if(binding.radio.isChecked){
@@ -86,11 +83,11 @@ class MyMarketActivity : AppCompatActivity() {
             if(NetManager.createItem(binding.marketMyName.text.toString(), binding.marketMyDesc.text.toString(),
                 uploadUrls.toJSONString(), binding.marketMyQq.text.toString(), price, type)){
                 runOnUiThread {
-                    Toast.makeText(this, "发布成功，审核完成后就能出现在列表啦！", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, getString(R.string.market_publish_success), Toast.LENGTH_LONG).show()
                     finish()
                 }
             }else{
-                runOnUiThread { Toast.makeText(this, "未知错误，发布失败！", Toast.LENGTH_SHORT).show() }
+                runOnUiThread { Toast.makeText(this, getString(R.string.market_publish_failed), Toast.LENGTH_SHORT).show() }
             }
             runOnUiThread { AnimUtil.hide(binding.marketMyLoading) }
         }
@@ -151,7 +148,7 @@ class MyMarketActivity : AppCompatActivity() {
                     }
                 }
                 runOnUiThread {
-                    Toast.makeText(this, "图片上传失败！", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.market_upload_failed), Toast.LENGTH_SHORT).show()
                     imagesList[requestCode].setImageResource(R.drawable.market_add_image)
                     imagesMaskList[requestCode].visibility = View.GONE
                 }
