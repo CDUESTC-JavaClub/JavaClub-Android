@@ -75,6 +75,10 @@ class SettingsFragment : Fragment() {
             if(it.text.equals(getString(R.string.settings_user_github_disconnected))) linkToWeb("https://study.cduestc.club/index.php?account/connected-accounts/")
         }
 
+        binding.connectUs.setOnClickListener{
+            linkToWeb("https://qm.qq.com/cgi-bin/qm/qr?k=Y43zL-emSpcRuRC-gyMV7wezetCjuDWj&authKey=HNSY65/1T06XSYi9nQ9RFkpvshWt4VU1MPbIXM/x4ruhZ5/jb/X07J6Enq4/yB7s&noverify=0")
+        }
+
         return binding.root
     }
 

@@ -658,6 +658,20 @@
                     android:orientation="vertical">
 
                     <com.google.android.material.button.MaterialButton
+                        android:id="@+id/connect_us"
+                        style="@style/FunctionButtonKc"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:textAllCaps="false"
+                        android:textAppearance="@font/arial"
+                        android:text="@string/settings_btn_contact"
+                        android:textSize="15sp"
+                        app:icon="@drawable/contact_us"
+                        app:iconSize="20dp" />
+
+                    <View style="@style/SpiltLine" />
+
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/exit"
                         style="@style/FunctionButtonKc"
                         android:layout_width="match_parent"
