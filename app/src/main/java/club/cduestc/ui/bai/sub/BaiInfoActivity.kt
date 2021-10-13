@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import club.byjh.entity.score.ScoreAdd
 import club.cduestc.R
 import club.cduestc.databinding.ActivityBaiInfoBinding
 import club.cduestc.databinding.ActivityMainBinding
@@ -15,6 +16,7 @@ import club.cduestc.ui.bai.item.ScoreLine
 import club.cduestc.util.AnimUtil
 import club.cduestc.util.NetManager
 import club.cduestc.util.UserManager
+import java.lang.Exception
 
 class BaiInfoActivity : AppCompatActivity() {
 
@@ -26,10 +28,12 @@ class BaiInfoActivity : AppCompatActivity() {
 
     private fun init(){
         NetManager.createTask{
-            val list = UserManager.baiAccount.scoreAddList
+            val list : List<ScoreAdd>? = try {
+                UserManager.baiAccount.scoreAddList
+            } catch (e : Exception) { null }
             val score = UserManager.baiAccount.score
             this.runOnUiThread {
-                list.forEach {
+                list?.forEach {
                     findViewById<LinearLayout>(R.id.score_add_list).addView(ScoreLine(this, it))
                 }
                 findViewById<TextView>(R.id.bai_score_jm).text = score.jm.toString()
