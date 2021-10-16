@@ -12,14 +12,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import club.byjh.entity.account.BaiAccount
 import club.byjh.exception.ByjhAssistantException
-import club.byjh.net.WebManager
-import club.byjh.net.enums.StatusType
 import club.cduestc.R
 import club.cduestc.databinding.FragmentBaiBinding
 import club.cduestc.ui.bai.sub.BaiInfoActivity
 import club.cduestc.ui.bai.sub.BaiListActivity
 import club.cduestc.ui.bai.sub.BaiMyActivity
-import club.cduestc.ui.kc.sub.KcStudentActivity
 import club.cduestc.util.NetManager
 import club.cduestc.util.UserManager
 

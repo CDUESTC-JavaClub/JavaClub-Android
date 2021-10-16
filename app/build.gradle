@@ -11,7 +11,7 @@ android {
         minSdk 26
         targetSdk 31
         versionCode 1
-        versionName "1.1.0"
+        versionName "1.1.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -38,6 +38,7 @@ android {
 }
 
 dependencies {
+    implementation 'org.apache.poi:poi:4.1.2'
     implementation 'net.sourceforge.htmlunit:htmlunit:2.15'
     implementation 'org.jsoup:jsoup:1.14.2'
     implementation group: 'com.alibaba', name: 'fastjson', version: '1.2.78'

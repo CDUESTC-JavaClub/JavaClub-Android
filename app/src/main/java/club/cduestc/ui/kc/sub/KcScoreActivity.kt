@@ -16,6 +16,8 @@ import club.cduestc.util.AnimUtil
 import club.cduestc.util.NetManager
 import club.cduestc.util.UserManager
 import club.jw.score.ScoreList
+timport org.apache.poi.hssf.usermodel.HSSFWorkbook
+import org.apache.poi.ss.usermodel.Workbook
 import kotlin.streams.toList
 
 class KcScoreActivity : AppCompatActivity() {
@@ -50,12 +52,21 @@ class KcScoreActivity : AppCompatActivity() {
         }
     }
 
+    private fun createExcel(scoreList: ScoreList){
+        NetManager.createTask{
+            val wb = HSSFWorkbook()
+            val s1 = wb.createSheet("总学期成绩")
+            
+        }
+    }
+
     private fun doInitScore(){
         val scoreList = UserManager.kcAccount.score
         runOnUiThread {
             listScore(scoreList)
             AnimUtil.hide(findViewById(R.id.score_loading))
             findViewById<View>(R.id.score_menu).visibility = View.VISIBLE
+            findViewById<View>(R.id.btn_print).setOnClickListener { createExcel(scoreList) }
         }
     }
 
