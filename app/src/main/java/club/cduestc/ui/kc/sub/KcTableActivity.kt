@@ -7,11 +7,16 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.TableRow
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
+import androidx.core.view.children
+import androidx.core.view.get
 import club.cduestc.R
 import club.cduestc.ui.kc.item.ClassCard
+import club.cduestc.ui.kc.item.WeekSelect
 import club.cduestc.ui.kc.widget.KcClassUtil
 import club.cduestc.ui.kc.widget.KcClassWidget
 import club.cduestc.util.NetManager
@@ -32,7 +37,13 @@ class KcTableActivity : AppCompatActivity() {
         window.navigationBarColor = Color.TRANSPARENT
 
         val sharedPreference = getSharedPreferences("class_table", MODE_PRIVATE)
+        this.loadWeekChooser();
         this.initClassTable(sharedPreference.getInt("class_term", 1))
+    }
+
+    private fun loadWeekChooser(){
+        val view = findViewById<LinearLayout>(R.id.week_selector)
+        for (i in 1..20) view.addView(WeekSelect(this, i, view.children))
     }
 
     /**
@@ -90,14 +101,6 @@ class KcTableActivity : AppCompatActivity() {
         btn.setOnClickListener(this::switchTerm)
         sharedPreference.edit().putInt("class_term", term).apply()
         btn.text = genTerms()[sharedPreference.getInt("class_term", term) - 1]
-
-        val btn2 = findViewById<Button>(R.id.kc_week_switch)
-        btn2.setOnClickListener(this::switchWeek)
-        btn2.text = if((sharedPreference.getInt("single_week", getCurrentWeek()) - getCurrentWeek()) % 2 == 0){
-            getString(R.string.kc_class_week_odd)
-        }else{
-            getString(R.string.kc_class_week_dual)
-        }
 
         val matrix : Array<Array<ArrayList<ClassCard>>> = Array(5) { Array(7){ArrayList()} }
         val rows = listOf(

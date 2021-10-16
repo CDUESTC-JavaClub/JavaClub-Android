@@ -11,36 +11,36 @@
     <LinearLayout
         android:id="@+id/topCard"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="35dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
         <com.google.android.material.button.MaterialButton
             android:id="@+id/kc_class_switch"
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:textSize="14sp"
             android:layout_gravity="center"
             style="@style/FunctionButtonBai"
             app:icon="@drawable/icon_kc"
             android:textAllCaps="false"
-            app:iconSize="30dp" />
-
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="@color/main"/>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/kc_week_switch"
-            android:layout_width="match_parent"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:textAllCaps="false"
-            style="@style/FunctionButtonBai"
-            android:textSize="14sp"
-            app:iconSize="30dp" />
+            app:iconSize="20dp"/>
     </LinearLayout>
+
+    <HorizontalScrollView
+        android:id="@+id/linearLayout13"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintTop_toBottomOf="@+id/topCard">
+        <LinearLayout
+            style="@style/NavColor"
+            android:id="@+id/week_selector"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
+        </LinearLayout>
+    </HorizontalScrollView>
 
     <LinearLayout
         android:id="@+id/class_loading"
@@ -69,7 +69,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/topCard">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout13">
 
         <ScrollView
             android:layout_width="match_parent"
