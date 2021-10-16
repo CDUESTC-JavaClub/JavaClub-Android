@@ -6,10 +6,7 @@ import android.content.ComponentName
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.LinearLayout
-import android.widget.TableRow
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.core.view.children
@@ -37,32 +34,29 @@ class KcTableActivity : AppCompatActivity() {
         window.navigationBarColor = Color.TRANSPARENT
 
         val sharedPreference = getSharedPreferences("class_table", MODE_PRIVATE)
-        this.loadWeekChooser();
-        this.initClassTable(sharedPreference.getInt("class_term", 1))
+        val weekDate = Date(sharedPreference.getLong("current_week", KcClassUtil.getThisWeekMonday(Date()).time))
+        val week = KcClassUtil.getWeekCount(weekDate, Date()) + sharedPreference.getInt("current_week_number", 1)
+        this.loadWeekChooser(week.toInt())
+        this.initClassTable(sharedPreference.getInt("class_term", 1), week.toInt())
     }
 
-    private fun loadWeekChooser(){
+    private fun loadWeekChooser(index: Int){
         val view = findViewById<LinearLayout>(R.id.week_selector)
-        for (i in 1..20) view.addView(WeekSelect(this, i, view.children){})
+        for (i in 1..20) view.addView(WeekSelect(this, i, view.children, this::switchWeek, i == index))
     }
 
     /**
-     * 切换单双周
+     * 切换周数
      */
-    private fun switchWeek(it : View){
-        val builder: AlertDialog.Builder = AlertDialog.Builder(this, android.R.style.ThemeOverlay_Material_Dialog)
-        builder.setTitle(getString(R.string.kc_class_week_select))
-        builder.setItems(arrayOf(getString(R.string.kc_class_week_odd), getString(R.string.kc_class_week_dual))) { _, which ->
-            var week = getCurrentWeek()
-            if(which != 0) week -= 1
-            val sharedPreference = getSharedPreferences("class_table", MODE_PRIVATE)
-            sharedPreference.edit().putInt("single_week", week).apply()
-            initClassTable(sharedPreference.getInt("class_term", 1))
-        }
-        builder.show()
+    private fun switchWeek(index : Int){
+        val sharedPreference = getSharedPreferences("class_table", MODE_PRIVATE)
+        sharedPreference.edit()
+            .putInt("current_week_number", index)
+            .putLong("current_week", KcClassUtil.getThisWeekMonday(Date()).time).apply()
+        initClassTable(sharedPreference.getInt("class_term", 1), index)
     }
 
-    private fun switchTerm(it : View){
+    private fun switchTerm(it : View, week: Int){
         if(findViewById<View>(R.id.class_loading).visibility == View.VISIBLE) return
         val builder: AlertDialog.Builder = AlertDialog.Builder(this, android.R.style.ThemeOverlay_Material_Dialog)
         builder.setTitle(getString(R.string.kc_class_term_select))
@@ -70,7 +64,7 @@ class KcTableActivity : AppCompatActivity() {
         builder.setItems(cities) { _, which ->
             val sharedPreference = getSharedPreferences("class_table", MODE_PRIVATE)
             sharedPreference.edit().remove("class_table").remove("ignore").apply()
-            initClassTable(which + 1)
+            initClassTable(which + 1, week)
         }
         builder.show()
     }
@@ -94,11 +88,12 @@ class KcTableActivity : AppCompatActivity() {
         return list
     }
 
-    private fun initClassTable(term : Int){
+    private fun initClassTable(term : Int, week: Int){
+        findViewById<View>(R.id.no_class).visibility = View.GONE
         findViewById<View>(R.id.class_loading).visibility = View.VISIBLE
         val sharedPreference = getSharedPreferences("class_table", MODE_PRIVATE)
         val btn = findViewById<Button>(R.id.kc_class_switch)
-        btn.setOnClickListener(this::switchTerm)
+        btn.setOnClickListener{ switchTerm(it, week) }
         sharedPreference.edit().putInt("class_term", term).apply()
         btn.text = genTerms()[sharedPreference.getInt("class_term", term) - 1]
 
@@ -136,16 +131,17 @@ class KcTableActivity : AppCompatActivity() {
                 }
                 sharedPreference.edit().putString("class_table", arr.toString()).apply()
                 addCards(arr, matrix)
-                runOnUiThread { fillTable(rows, matrix) }
+                runOnUiThread { fillTable(week, rows, matrix) }
             }
         }else{
             val arr = JSON.parseArray(sharedPreference.getString("class_table", "[]"))
             addCards(arr, matrix)
-            fillTable(rows, matrix)
+            fillTable(week, rows, matrix)
         }
     }
 
-    private fun fillTable(rows : List<TableRow>,  matrix : Array<Array<ArrayList<ClassCard>>>){
+    private fun fillTable(week : Int,rows : List<TableRow>,  matrix : Array<Array<ArrayList<ClassCard>>>){
+        var flag = false
         for (i in 0..4){
             val row = rows[i]
             for (j in 0..6){
@@ -154,13 +150,18 @@ class KcTableActivity : AppCompatActivity() {
                 }else{
                     var clazz = ClassCard(this, null, null, null, this)
                     matrix[i][j].forEach {
-                        if(KcClassUtil.isThisWeekClass(it.clazz, this)) clazz = it
+                        if(it.clazz!!.getJSONArray("weekSet").contains(week)){
+                            clazz = it
+                            flag = true
+                        }
                     }
                     row.addView(clazz, j)
                 }
             }
         }
         findViewById<View>(R.id.class_loading).visibility = View.GONE
+
+        if(!flag) findViewById<View>(R.id.no_class).visibility = View.VISIBLE
 
         val appWidgetManager = AppWidgetManager.getInstance(applicationContext)
         val componentName = ComponentName(applicationContext, KcClassWidget::class.java)
@@ -179,12 +180,6 @@ class KcTableActivity : AppCompatActivity() {
             if(ignore.contains(name)) return@forEach
             if(index < 5) matrix[index][day - 1].add(ClassCard(this, item, calTime(index), colorSelect(name), this))
         }
-    }
-
-    private fun getCurrentWeek(): Int {
-        val g = GregorianCalendar()
-        g.time = Date()
-        return g[Calendar.WEEK_OF_YEAR]
     }
 
     /**

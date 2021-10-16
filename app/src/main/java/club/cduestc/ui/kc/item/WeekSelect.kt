@@ -15,37 +15,48 @@ import java.util.function.Consumer
 class WeekSelect(context: Context,
                  private val index : Int,
                  private val child : Sequence<View>,
-                 private val onClick : Consumer<Int>) :
+                 private val onClick : Consumer<Int>,
+                 private val selected : Boolean) :
     LinearLayout(context) {
 
     var select = false
-    var cardBackgroundColor : ColorStateList? = null
+    private var cardBackgroundColor : ColorStateList? = null
+    var textColor : ColorStateList? = null
 
     init {
         val view: View = LayoutInflater.from(context).inflate(R.layout.week_select, this)
         view.findViewById<TextView>(R.id.text).text = "第${index}周"
-        this.setOnClickListener {
-            select()
-        }
+        this.setOnClickListener { if(!select) select() }
+        select = selected
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        val card = this.findViewById<CardView>(R.id.card)
+        val text = this.findViewById<TextView>(R.id.text)
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-        this.cardBackgroundColor = this.findViewById<CardView>(R.id.card).cardBackgroundColor
+        if(this.cardBackgroundColor == null) this.cardBackgroundColor = card.cardBackgroundColor
+        if(this.textColor == null) this.textColor = text.textColors
+        if(selected){
+            card.setCardBackgroundColor(Color.parseColor("#4CAF50"))
+            text.setTextColor(Color.parseColor("#FFFFFF"))
+        }
     }
 
-    private fun select(){
+    fun select(){
         val card = this.findViewById<CardView>(R.id.card)
-        child.forEach { view ->
-            view as WeekSelect
-            if(view != this && view.select) view.select()
-        }
+        val text = this.findViewById<TextView>(R.id.text)
         select = if(!select){
+            child.forEach { view ->
+                view as WeekSelect
+                if(view != this && view.select) view.select()
+            }
             card.setCardBackgroundColor(Color.parseColor("#4CAF50"))
+            text.setTextColor(Color.parseColor("#FFFFFF"))
             onClick.accept(index)
             true
         }else{
             card.setCardBackgroundColor(this.cardBackgroundColor)
+            text.setTextColor(textColor)
             false
         }
     }

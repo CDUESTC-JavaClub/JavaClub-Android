@@ -38,7 +38,6 @@
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:orientation="horizontal">
-
         </LinearLayout>
     </HorizontalScrollView>
 
@@ -60,6 +59,31 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/kc_class_loading"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/no_class"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_gravity="center"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/no_class" />
+
+        <TextView
+            android:layout_margin="10dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="这周没有课程哦~"/>
     </LinearLayout>
 
     <LinearLayout

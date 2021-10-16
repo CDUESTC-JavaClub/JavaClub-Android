@@ -1,10 +1,7 @@
 package club.cduestc.ui.kc.widget
 
 import android.appwidget.AppWidgetManager
-import android.content.ComponentName
 import android.content.Context
-import android.content.Intent
-import android.net.Uri
 import android.util.Log
 import android.view.View
 import android.widget.RemoteViews
@@ -22,7 +19,8 @@ object KcClassUtil {
         val sharedPreference = context.getSharedPreferences("class_table", AppCompatActivity.MODE_PRIVATE)
         val arr = JSON.parseArray(sharedPreference.getString("class_table", "[]"))
         val ignore = JSONArray.parseArray(sharedPreference.getString("ignore", "[]"))
-
+        val weekDate = Date(sharedPreference.getLong("current_week", getThisWeekMonday(Date()).time))
+        val week = getWeekCount(weekDate, Date()) + sharedPreference.getInt("current_week_number", 1)
 
         for (i in appWidgetIds.indices){
             val views = RemoteViews(context.packageName, R.layout.kc_class_widget)
@@ -32,10 +30,11 @@ object KcClassUtil {
             arr.forEach {
                 val obj = JSONObject.parseObject(it.toString())
                 if(ignore.contains(obj.getString("name"))) return@forEach
-                if(!isThisWeekClass(obj, context)) return@forEach
+                if(!obj.getJSONArray("weekSet").contains(week.toInt())) return@forEach
                 if(obj.getIntValue("day") == getDay(Date())){
                     var index = obj.getJSONArray("indexSet").getIntValue(0)
                     index /= 2
+                    Log.i("Widget", index.toString())
                     when(index){
                         0 -> setupClass(days[0], R.id.widget_class_name_1, R.id.widget_class_desc_1, obj, views)
                         1 -> setupClass(days[1], R.id.widget_class_name_2, R.id.widget_class_desc_2, obj, views)
@@ -65,33 +64,29 @@ object KcClassUtil {
         return weekIndex
     }
 
-    fun isThisWeekClass(clazz : JSONObject?, context: Context) : Boolean{
-        if(clazz == null) return false
-        val sharedPreference = context.getSharedPreferences("class_table", AppCompatActivity.MODE_PRIVATE)
-        val type = convertWeek(clazz.getJSONArray("weekSet"))
-        if(type == 0) return true
-        val c = getCurrentWeek() - sharedPreference.getInt("single_week", getCurrentWeek())
-        if(c % 2 == 0 && type == 1) return true
-        if(c % 2 == 1 && type == 2) return true
-        return false
-    }
-
-    private fun convertWeek(week : JSONArray) : Int{
-        val f = week[0] as Int
-        return if(week.contains(f+1)) {
-            0
-        }else{
-            if(f % 2 == 0){
-                2
-            }else{
-                1
-            }
+    /**
+     * 获取本周一的时间
+     */
+    fun getThisWeekMonday(date: Date): Date {
+        val cal = Calendar.getInstance()
+        cal.time = date
+        val dayWeek = cal[Calendar.DAY_OF_WEEK]
+        if (1 == dayWeek) {
+            cal.add(Calendar.DAY_OF_MONTH, -1)
         }
+        cal.set(Calendar.HOUR_OF_DAY, 0)
+        cal.set(Calendar.MINUTE, 0)
+        cal.set(Calendar.SECOND, 0)
+        cal.firstDayOfWeek = Calendar.MONDAY
+        val day = cal[Calendar.DAY_OF_WEEK]
+        cal.add(Calendar.DATE, cal.firstDayOfWeek - day)
+        return cal.time
     }
 
-    private fun getCurrentWeek(): Int {
-        val g = GregorianCalendar()
-        g.time = Date()
-        return g[Calendar.WEEK_OF_YEAR]
+    /**
+     * 获取周数间隔
+     */
+    fun getWeekCount(startDate: Date, endDate: Date) : Long {
+        return (endDate.time - startDate.time) / (7 * 24 * 60 * 60 * 1000)
     }
 }
