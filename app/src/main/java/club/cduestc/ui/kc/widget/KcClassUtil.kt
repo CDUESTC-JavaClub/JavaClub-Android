@@ -31,7 +31,7 @@ object KcClassUtil {
                 val obj = JSONObject.parseObject(it.toString())
                 if(ignore.contains(obj.getString("name"))) return@forEach
                 if(!obj.getJSONArray("weekSet").contains(week.toInt())) return@forEach
-                if(obj.getIntValue("day") == getDay(Date())){
+                if(obj.getIntValue("day") == 2){
                     var index = obj.getJSONArray("indexSet").getIntValue(0)
                     index /= 2
                     Log.i("Widget", index.toString())
