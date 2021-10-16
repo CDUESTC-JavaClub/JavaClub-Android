@@ -43,7 +43,7 @@ class KcTableActivity : AppCompatActivity() {
 
     private fun loadWeekChooser(){
         val view = findViewById<LinearLayout>(R.id.week_selector)
-        for (i in 1..20) view.addView(WeekSelect(this, i, view.children))
+        for (i in 1..20) view.addView(WeekSelect(this, i, view.children){})
     }
 
     /**
