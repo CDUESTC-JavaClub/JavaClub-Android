@@ -260,40 +260,14 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/card4"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginHorizontal="20dp"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="10dp"
-            app:layout_constraintTop_toBottomOf="@id/card3">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginHorizontal="10dp">
-                <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_gravity="center_vertical"
-                    android:src="@drawable/kc_annouce"/>
-                <TextView
-                    android:layout_marginStart="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:text="@string/kc_announce_none"/>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView16"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginHorizontal="20dp"
+            android:layout_margin="20dp"
             app:cardCornerRadius="10dp"
-            app:layout_constraintTop_toBottomOf="@id/card4"
-            app:cardElevation="10dp">
+            app:cardElevation="10dp"
+            app:layout_constraintTop_toBottomOf="@+id/card4"
+            tools:layout_editor_absoluteX="20dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -304,36 +278,137 @@
                     android:id="@+id/btn_kc_score"
                     style="@style/FunctionButtonKc"
                     android:text="@string/btn_kc_score"
-                    android:textAppearance="@font/arial"
                     android:textAllCaps="false"
+                    android:textAppearance="@font/arial"
                     app:cornerRadius="0dp"
                     app:icon="@drawable/icon_kc"
                     app:iconSize="20dp" />
 
-                <View style="@style/SpiltLine"/>
+                <View style="@style/SpiltLine" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_kc_class"
                     style="@style/FunctionButtonKc"
                     android:text="@string/btn_kc_class"
-                    android:textAppearance="@font/arial"
                     android:textAllCaps="false"
+                    android:textAppearance="@font/arial"
                     app:cornerRadius="0dp"
                     app:icon="@drawable/icon_class_table"
                     app:iconSize="20dp" />
 
-                <View style="@style/SpiltLine"/>
+                <View style="@style/SpiltLine" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_kc_user"
                     style="@style/FunctionButtonKc"
                     android:text="@string/btn_kc_user"
-                    android:textAppearance="@font/arial"
                     android:textAllCaps="false"
+                    android:textAppearance="@font/arial"
                     app:cornerRadius="0dp"
                     app:icon="@drawable/icon_kc_user"
                     app:iconSize="20dp" />
             </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="10dp"
+            app:layout_constraintTop_toBottomOf="@+id/card3"
+            tools:layout_editor_absoluteX="20dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/linearLayout12"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginTop="5dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:layout_editor_absoluteX="10dp">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/kc_annouce" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="10dp"
+                        android:textSize="14sp"
+                        android:text="@string/kc_announce_none" />
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/view10"
+                    style="@style/SpiltLine"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="5dp"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout12"
+                    tools:layout_editor_absoluteX="10dp" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view10">
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/linearLayout15"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="关于电子科技大学成都学院成都校区 2021年10月13日凌晨2-4点的停电通知"
+                            android:textSize="12sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <LinearLayout
+                            android:id="@+id/linearLayout16"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="end"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/linearLayout15">
+
+                            <ImageView
+                                android:layout_width="14dp"
+                                android:layout_height="14dp"
+                                android:src="@drawable/bai_activity_time" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="2021-10-11"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_marginTop="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/gray"
+                            app:layout_constraintTop_toBottomOf="@+id/linearLayout16"
+                            app:layout_constraintBottom_toBottomOf="parent"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
         </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 

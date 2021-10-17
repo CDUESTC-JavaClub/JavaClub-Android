@@ -36,7 +36,7 @@ class KcScoreActivity : AppCompatActivity() {
                         UserManager.kcAccount.login()
                         this.doInitScore()
                         return@createTask
-                    }catch (e : Exception){
+                    } catch (e : Exception) {
                         e.printStackTrace()
                     }
                 }
@@ -51,7 +51,6 @@ class KcScoreActivity : AppCompatActivity() {
     private fun createExcel(scoreList: ScoreList){
         NetManager.createTask{
 
-            
         }
     }
 

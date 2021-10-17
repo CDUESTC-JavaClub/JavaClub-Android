@@ -66,7 +66,7 @@
     <string name="btn_kc_class">课程表查询</string>
     <string name="btn_kc_user">学籍信息查询</string>
     <string name="kc_loading">正在连接到教务系统…</string>
-    <string name="kc_announce_none">暂无公告内容，敬请期待~</string>
+    <string name="kc_announce_none">电子科技大学成都学院 通知公告</string>
     <string name="kc_fragment_bind_title">绑定您的学号</string>
     <string name="kc_fragment_bind_text">需要绑定学号（教务系统账号）之后才能使用教务系统功能哦，我们注重个人隐私，不会在远端保留您的密码和个人信息，敏感内容只会保存在本地</string>
     <string name="kc_fragment_bind_input_id">学号</string>
