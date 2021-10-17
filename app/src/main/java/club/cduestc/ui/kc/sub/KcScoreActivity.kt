@@ -4,11 +4,9 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
-import android.widget.ScrollView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentManager
 import club.cduestc.R
 import club.cduestc.ui.kc.item.ScoreLine
 import club.cduestc.ui.kc.item.TermScoreList
@@ -16,8 +14,6 @@ import club.cduestc.util.AnimUtil
 import club.cduestc.util.NetManager
 import club.cduestc.util.UserManager
 import club.jw.score.ScoreList
-import org.apache.poi.hssf.usermodel.HSSFWorkbook
-import org.apache.poi.ss.usermodel.Workbook
 import kotlin.streams.toList
 
 class KcScoreActivity : AppCompatActivity() {
@@ -54,8 +50,7 @@ class KcScoreActivity : AppCompatActivity() {
 
     private fun createExcel(scoreList: ScoreList){
         NetManager.createTask{
-            val wb = HSSFWorkbook()
-            val s1 = wb.createSheet("总学期成绩")
+
             
         }
     }

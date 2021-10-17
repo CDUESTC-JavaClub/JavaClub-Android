@@ -123,7 +123,7 @@ public class NetManager {
     }
 
     public static Response info(WebCookie cookie){
-        WebResponse response = request("/stdInfoApply!stdInfoCheck.action", Method.GET, cookie, null);
+        WebResponse response = request("/stdDetail.action", Method.GET, cookie, null);
         if(response.getStatusCode() != 200){
             return new ErrorResponse(response.getReason(), response.getStatusCode());
         }
