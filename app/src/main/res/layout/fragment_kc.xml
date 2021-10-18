@@ -356,57 +356,20 @@
                     app:layout_constraintTop_toBottomOf="@+id/linearLayout12"
                     tools:layout_editor_absoluteX="10dp" />
 
-                <LinearLayout
-                    android:orientation="vertical"
+                <ScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
+                    android:layout_height="100dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginBottom="10dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/view10">
-                    <androidx.constraintlayout.widget.ConstraintLayout
+                    <LinearLayout
+                        android:id="@+id/announce_list"
                         android:orientation="vertical"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
-
-                        <TextView
-                            android:id="@+id/linearLayout15"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="关于电子科技大学成都学院成都校区 2021年10月13日凌晨2-4点的停电通知"
-                            android:textSize="12sp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <LinearLayout
-                            android:id="@+id/linearLayout16"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="end"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/linearLayout15">
-
-                            <ImageView
-                                android:layout_width="14dp"
-                                android:layout_height="14dp"
-                                android:src="@drawable/bai_activity_time" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="2021-10-11"
-                                android:textSize="12sp" />
-                        </LinearLayout>
-
-                        <View
-                            android:layout_marginTop="5dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="@color/gray"
-                            app:layout_constraintTop_toBottomOf="@+id/linearLayout16"
-                            app:layout_constraintBottom_toBottomOf="parent"/>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                </LinearLayout>
+                    </LinearLayout>
+                </ScrollView>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.cardview.widget.CardView>

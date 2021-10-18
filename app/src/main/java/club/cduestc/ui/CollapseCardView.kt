@@ -2,10 +2,7 @@ package club.cduestc.ui
 
 import android.content.Context
 import android.util.AttributeSet
-import android.util.Log
 import android.view.View
-import android.view.ViewGroup
-import android.view.animation.AccelerateInterpolator
 import android.view.animation.Animation
 import android.view.animation.DecelerateInterpolator
 import android.view.animation.Transformation
@@ -37,12 +34,12 @@ class CollapseCardView : CardView {
         collapse = typedArray.getBoolean(R.styleable.CollapseCardView_collapse, false)
     }
 
-    fun collapse(){
+    fun collapse() {
         collapse(this)
         collapse = true
     }
 
-    fun toggle(){
+    fun toggle() {
         collapse = if(collapse){
             expand(this)
             false
@@ -54,7 +51,7 @@ class CollapseCardView : CardView {
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-        if(first){
+        if(first) {
             if(collapse) this.layoutParams.height = collapseHeight.toInt()
             if(expandedHeight == 0f) expandedHeight = measuredHeight.toFloat()
             first = false

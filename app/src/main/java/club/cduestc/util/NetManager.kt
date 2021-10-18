@@ -92,6 +92,13 @@ object NetManager {
         } else null
     }
 
+    fun getAnnouncement() : JSONArray?{
+        val getResp = get("/check/announcement", true) ?: return null
+        return if(getResp.getInteger("status") == 200){
+            getResp.getJSONArray("data")
+        } else null
+    }
+
     fun getSupplier() : JSONObject?{
         val getResp = get("/news/supplier", true) ?: return null
         return if(getResp.getInteger("status") == 200){

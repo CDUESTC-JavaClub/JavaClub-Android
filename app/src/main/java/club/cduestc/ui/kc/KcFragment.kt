@@ -16,12 +16,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import club.cduestc.R
 import club.cduestc.databinding.FragmentKcBinding
+import club.cduestc.ui.kc.item.AnnounceLine
 import club.cduestc.ui.kc.sub.KcScoreActivity
 import club.cduestc.ui.kc.sub.KcStudentActivity
 import club.cduestc.ui.kc.sub.KcTableActivity
 import club.cduestc.util.NetManager
 import club.cduestc.util.UserManager
 import club.jw.auth.KcAccount
+import com.alibaba.fastjson.JSONObject
 import org.apache.commons.io.IOUtils
 import java.io.ByteArrayInputStream
 import java.io.InputStream
@@ -157,10 +159,12 @@ class KcFragment : Fragment() {
             try {
                 UserManager.kcAccount = KcAccount.create(UserManager.getBindId(), pwd)
                 UserManager.kcAccount.login()
+                val arr = NetManager.getAnnouncement()
                 requireActivity().runOnUiThread {
                     binding.kcMenu.visibility = View.VISIBLE
                     binding.kcLoading.visibility = View.GONE
                     initInfoCard()
+                    arr?.forEach { binding.announceList.addView(AnnounceLine(requireContext(), it as JSONObject)) }
                 }
             }catch (e : Exception){
                 if(e.message == "验证码错误！"){
