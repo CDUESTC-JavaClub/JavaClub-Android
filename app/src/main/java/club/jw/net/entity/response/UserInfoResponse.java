@@ -48,7 +48,7 @@ public class UserInfoResponse extends JSONResponse{
     @Info("证件类型")
     private String certificateType;
     @Info("证件号码")
-    private String certificateId;
+    private String a;
     @Info("入校时间")
     private Date startDate;
     @Info("毕业时间")

@@ -144,6 +144,7 @@
     </LinearLayout>
 
     <androidx.cardview.widget.CardView
+        android:visibility="gone"
         android:id="@+id/btn_print"
         android:layout_margin="15dp"
         android:layout_width="50dp"

@@ -1,7 +1,14 @@
 package club.cduestc.ui.kc.sub
 
+import android.Manifest
+import android.app.Activity
+import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Color
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -14,7 +21,11 @@ import club.cduestc.util.AnimUtil
 import club.cduestc.util.NetManager
 import club.cduestc.util.UserManager
 import club.jw.score.ScoreList
+import org.apache.poi.hwpf.HWPFDocument
+import org.apache.poi.hwpf.HWPFOldDocument
+import java.io.*
 import kotlin.streams.toList
+
 
 class KcScoreActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,12 +59,6 @@ class KcScoreActivity : AppCompatActivity() {
         }
     }
 
-    private fun createExcel(scoreList: ScoreList){
-        NetManager.createTask{
-
-        }
-    }
-
     private fun doInitScore(){
         val scoreList = UserManager.kcAccount.score
         runOnUiThread {
@@ -84,5 +89,9 @@ class KcScoreActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.kc_statistic_count).text = scoreList.statistic.getString("门数")
         findViewById<TextView>(R.id.kc_statistic_cridet).text = scoreList.statistic.getString("总学分")
         findViewById<TextView>(R.id.kc_statistic_points).text = scoreList.statistic.getString("平均绩点")
+    }
+
+    private fun createExcel(scoreList: ScoreList){
+
     }
 }
