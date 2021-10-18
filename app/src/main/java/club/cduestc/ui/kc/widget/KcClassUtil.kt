@@ -24,6 +24,7 @@ object KcClassUtil {
 
         for (i in appWidgetIds.indices){
             val views = RemoteViews(context.packageName, R.layout.kc_class_widget)
+            views.setTextViewText(R.id.title, "第"+ mapToChinese(week.toInt())+"周   周"+ mapToChinese(getDay(Date())))
             val days = listOf(R.id.widget_class_day_1, R.id.widget_class_day_2, R.id.widget_class_day_3,
                 R.id.widget_class_day_4, R.id.widget_class_day_5)
             days.forEach{ views.setViewVisibility(it, View.GONE) }
@@ -88,5 +89,22 @@ object KcClassUtil {
      */
     fun getWeekCount(startDate: Date, endDate: Date) : Long {
         return (endDate.time - startDate.time) / (7 * 24 * 60 * 60 * 1000)
+    }
+
+    private fun mapToChinese(n : Int) : String{
+        if(n == 20) return "二十"
+        if(n >= 10) return "十" + mapToChinese(n%10)
+        return when (n){
+            1 -> "一"
+            2 -> "二"
+            3 -> "三"
+            4 -> "四"
+            5 -> "五"
+            6 -> "六"
+            7 -> "七"
+            8 -> "八"
+            9 -> "九"
+            else -> ""
+        }
     }
 }
